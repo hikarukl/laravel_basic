@@ -21,12 +21,26 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var arraylogoutOtherBrowserSessions
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
+        'email_verified_at',
         'password',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'phone',
+        'state',
+        'login_otp',
+        'otp_expired_at',
+        'otp_fail_times',
+        'is_verify_otp',
+        'password_fail_times',
+        'unlock_login_at',
+        'current_team_id',
+        'profile_photo_path',
     ];
 
     /**
