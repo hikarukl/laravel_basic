@@ -21263,6 +21263,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
+__webpack_require__(/*! ./custom */ "./resources/js/custom.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -21297,6 +21299,24 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/custom.js":
+/*!********************************!*\
+  !*** ./resources/js/custom.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+$(document).ready(function () {
+  window.addEventListener('resend-otp', function (event) {
+    console.log(event);
+  });
+});
+
+/***/ }),
+
 /***/ 0:
 /*!***********************************************************!*\
   !*** multi ./resources/js/app.js ./resources/css/app.css ***!
@@ -21304,8 +21324,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\wamp64\www\laravelbasic\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\wamp64\www\laravelbasic\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! E:\SoftInstalled\wamp\www\laravel_basic\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\SoftInstalled\wamp\www\laravel_basic\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

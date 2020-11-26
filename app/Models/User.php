@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -17,6 +18,9 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
+    const LIMIT_LOG_FAIL_TIMES = 5;
+    const UNLOCK_LOGIN_LIMIT_MINUTES = 5;
 
     /**
      * The attributes that are mass assignable.
@@ -72,4 +76,34 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Create new OTP
+     *
+     */
+    public function createOtp()
+    {
+        $otp = random_int(100000, 999999);
+        $this->login_otp = $otp;
+        $this->otp_expired_at = Carbon::now()
+            ->addSeconds(10)
+            //->addMinutes(1)
+            ->format('Y-m-d H:i:s');
+        $this->save();
+    }
+
+    /**
+     * Increase login password fail times
+     *
+     */
+    public function increaseLogPasswordFail()
+    {
+        $this->log_password_fail_times += 1;
+
+        if ($this->log_password_fail_times >= self::LIMIT_LOG_FAIL_TIMES) {
+            $this->unlock_login_at = Carbon::now()->addMinutes(self::UNLOCK_LOGIN_LIMIT_MINUTES)->format('Y-m-d H:i:s');
+        }
+
+        $this->save();
+    }
 }

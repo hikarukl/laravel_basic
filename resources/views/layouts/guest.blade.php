@@ -13,12 +13,17 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-        <!-- Scripts -->
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
+        @livewireStyles
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
     </body>
+    <footer>
+        <!-- Scripts -->
+        <script src="{{ mix('js/app.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js"></script>
+        @livewireScripts
+    </footer>
 </html>
