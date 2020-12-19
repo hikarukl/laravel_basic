@@ -94,6 +94,8 @@ class LoginOtpForm extends Component
 
             $user->otp_fail_times += 1;
 
+            $response['remaining_times'] = User::LIMIT_LOG_FAIL_TIMES - $user->otp_fail_times;
+
             if ($user->otp_fail_times >= User::LIMIT_LOG_FAIL_TIMES) {
                 $user->unlock_login_at = Carbon::now()->addMinutes(User::UNLOCK_LOGIN_LIMIT_MINUTES)->format('Y-m-d H:i:s');
                 $response['redirect_url'] = route('login');
@@ -101,6 +103,6 @@ class LoginOtpForm extends Component
             $user->save();
         }
 
-        return response()->json($response);
+        $this->dispatchBrowserEvent('send-otp', $response);
     }
 }

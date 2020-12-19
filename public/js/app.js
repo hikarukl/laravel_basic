@@ -21304,16 +21304,57 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   !*** ./resources/js/custom.js ***!
   \********************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
+var inputCountdownTime = $('input[name="input-countdown_login_otp_time"]');
+var countdownTarget = $('#remaining-login_otp');
 
+if (inputCountdownTime.length) {
+  handleCountdownLoginOtp(countdownTarget, inputCountdownTime.val());
+}
 
-$(document).ready(function () {
-  window.addEventListener('resend-otp', function (event) {
-    console.log(event);
-  });
+window.addEventListener('resend-otp', function (event) {
+  // Validate time countdown
+  handleCountdownLoginOtp(countdownTarget, inputCountdownTime.val());
 });
+window.addEventListener('send-otp', function (event) {
+  var wrapOtpErrorTarget = $('#wrap-otp_error');
+
+  if (event.detail.stt) {
+    window.location.href = event.detail.redirect_url;
+  } else {
+    if (event.detail.redirect_url) {
+      window.location.href = event.detail.redirect_url;
+    } else {
+      wrapOtpErrorTarget.removeClass('hidden');
+      var contentError = '<p>_MESSAGE_</p><p>_REMAINING_</p>';
+      wrapOtpErrorTarget.html(contentError.replace(/_MESSAGE_/, event.detail.message).replace(/_REMAINING_/, event.detail.remaining_times));
+    }
+  }
+});
+/*
+ * Handle show countdown OTP login
+ *
+ * */
+
+function handleCountdownLoginOtp(countdownTarget, countdownTime) {
+  var btnRequestLoginOtpTarget = $('#btn-request_login_otp'); // Validate time countdown
+
+  var currentDateTime = new Date();
+  var countdownDateTime = new Date(countdownTime);
+
+  if (countdownDateTime > currentDateTime) {
+    var contentCountDown = "Thời gian còn lại: <strong>%H:%M:%S</strong>";
+    countdownTarget.removeClass('hidden');
+    countdownTarget.countdown(countdownTime, function (event) {
+      btnRequestLoginOtpTarget.addClass('hidden');
+      $(this).html(event.strftime(contentCountDown));
+    }).on('finish.countdown', function (event) {
+      btnRequestLoginOtpTarget.removeClass('hidden');
+      $(this).html('');
+    });
+  }
+}
 
 /***/ }),
 
@@ -21324,8 +21365,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\SoftInstalled\wamp\www\laravel_basic\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\SoftInstalled\wamp\www\laravel_basic\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! D:\wamp64\www\laravelbasic\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\wamp64\www\laravelbasic\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

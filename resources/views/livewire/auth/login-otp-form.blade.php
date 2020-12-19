@@ -7,6 +7,8 @@
         <strong>{{ __('Vui lòng nhập OTP.') }}</strong>
     </div>
 
+    <div class="mb-4 text-sm text-red-600 hidden" id="wrap-otp_error"></div>
+
     <div class="mt-2 flex items-center justify-between">
         <form method="POST" class="w-full" action="{{ route('otp.send') }}">
             @csrf

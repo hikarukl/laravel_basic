@@ -93,6 +93,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Reset fail login OTP
+     *
+     */
+    public function resetLoginFailOtp()
+    {
+        $this->otp_fail_times = 0;
+        $this->save();
+    }
+
+    /**
      * Increase login password fail times
      *
      */
