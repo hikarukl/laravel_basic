@@ -1,4 +1,4 @@
-<nav class="bg-gray-800">
+<nav class="bg-gray-800 fixed z-10 w-full md:relative top-0">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -27,16 +27,31 @@
             </div>
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start" id="wrap-header_menus">
                 <div class="flex-shrink-0 flex items-center">
-                    <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
-                    <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Workflow">
+                    <a href="{{ route('home') }}">
+                        <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
+                    </a>
+                    <a href="{{ route('home') }}">
+                        <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Workflow">
+                    </a>
                 </div>
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-                        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
-                        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
-                        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Calendar</a>
+                        <a href="{{ route('home') }}" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
+                            <i class="far fa-home mr-2"></i>Trang chủ
+                        </a>
+                        <a href="{{ route('post-list', ['category' => "sport"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                            <i class="fad fa-futbol mr-2"></i>Thể thao
+                        </a>
+                        <a href="{{ route('post-list', ['category' => "business"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                            <i class="fad fa-business-time mr-2"></i>Kinh doanh
+                        </a>
+                        <a href="{{ route('post-list', ['category' => "news"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                            <i class="fal fa-newspaper mr-2"></i>Tin tức
+                        </a>
+                        <a href="{{ route('post-list', ['category' => "law"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                            <i class="fal fa-balance-scale mr-2"></i>Pháp luật
+                        </a>
                     </div>
                 </div>
             </div>
@@ -77,10 +92,21 @@
     <div class="hidden sm:hidden" id="wrap-mobile_header_menus">
         <div class="px-2 pt-2 pb-3 space-y-1">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
+            <a href="{{ route('home') }}" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
+                <i class="far fa-home mr-2"></i>Trang chủ
+            </a>
+            <a href="{{ route('post-list', ['category' => "sport"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                <i class="fad fa-futbol mr-2"></i>Thể thao
+            </a>
+            <a href="{{ route('post-list', ['category' => "business"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                <i class="fad fa-business-time mr-2"></i>Kinh doanh
+            </a>
+            <a href="{{ route('post-list', ['category' => "news"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                <i class="fal fa-newspaper mr-2"></i>Tin tức
+            </a>
+            <a href="{{ route('post-list', ['category' => "law"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                <i class="fal fa-balance-scale mr-2"></i>Pháp luật
+            </a>
         </div>
     </div>
 </nav>

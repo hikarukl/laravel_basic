@@ -1,0 +1,56 @@
+@extends('master')
+@section('main')
+    {{-- This section summary --}}
+    <section class="max-w-7xl mx-auto mt-5 pl-5 pr-5 xl:pl-0 xl:pr-0">
+        <h2 class="uppercase font-bold mb-2 text-xl md:text-3xl">Tin nổi bật</h2>
+        <div class="grid grid-cols-2 gap-4">
+            <div class="col-span-2 grid grid-cols-2 gap-4">
+                @for($i = 1; $i < 3; $i++)
+                    <div class="grid grid-cols-1">
+                        <a href="{{ route('post-detail', ['category' => 'sport', 'id' => 1]) }}">
+                            <img src="{{ asset('images/slider_summary_1.jpg') }}" class="rounded">
+                        </a>
+                        <a href="{{ route('post-detail', ['category' => 'sport', 'id' => 1]) }}" class="pl-1 md:pl-0 font-bold pt-2 text-sm md:text-xl text-gray-800 hover:text-blue-500">
+                            Trợ lý ảo tiếng Việt Kiki ra mắt - đa nền tảng, chạy được trên ôtô
+                        </a>
+                        <p class="mt-3 hidden md:block text-gray-700 italic">
+                            Áp thấp nhiệt đới đã mạnh lên thành bão số 14 với vận tốc di chuyển ổn định, hướng đi phức tạp. Hoàn lưu bão có thể gây mưa cho các tỉnh Nam Bộ trong 3 ngày tới.
+                        </p>
+                    </div>
+                @endfor
+            </div>
+            <div class="col-span-2 grid grid-cols-4 gap-4">
+                @for($i = 1; $i < 5; $i++)
+                    <div class="grid col-span-2 md:col-span-1">
+                        <a href="{{ route('post-detail', ['category' => 'sport', 'id' => 1]) }}">
+                            <img src="{{ asset('images/slider_summary_1.jpg') }}" class="rounded">
+                        </a>
+                        <a href="{{ route('post-detail', ['category' => 'sport', 'id' => 1]) }}" class="text-sm md:text-lg p-2 font-bold text-gray-800 hover:text-blue-600">
+                            Trợ lý ảo tiếng Việt Kiki ra mắt - đa nền tảng, chạy được trên ôtô
+                        </a>
+                        <p class="mt-2 hidden md:block text-gray-700 italic">
+                            Áp thấp nhiệt đới đã mạnh lên thành bão số 14 với vận tốc di chuyển ổn định, hướng đi phức tạp. Hoàn lưu bão có thể gây mưa cho các tỉnh Nam Bộ trong 3 ngày tới.
+                        </p>
+                    </div>
+                @endfor
+            </div>
+        </div>
+
+        <h2 class="uppercase font-bold mb-2 mt-5 md:mt-10 text-xl md:text-3xl">Các thông tin khác</h2>
+        <div class="grid grid-cols-2 gap-4">
+            @for($i = 1; $i < 5; $i++)
+                <div class="grid">
+                    <a href="{{ route('post-detail', ['category' => 'sport', 'id' => 1]) }}">
+                        <img src="{{ asset('images/slider_summary_1.jpg') }}" class="rounded">
+                    </a>
+                    <a href="{{ route('post-detail', ['category' => 'sport', 'id' => 1]) }}" class="pl-1 md:pl-0 font-bold pt-2 text-sm md:text-xl hover:text-blue-500">
+                        Trợ lý ảo tiếng Việt Kiki ra mắt - đa nền tảng, chạy được trên ôtô
+                    </a>
+                    <p class="mt-3 hidden md:block text-gray-700 italic">
+                        Áp thấp nhiệt đới đã mạnh lên thành bão số 14 với vận tốc di chuyển ổn định, hướng đi phức tạp. Hoàn lưu bão có thể gây mưa cho các tỉnh Nam Bộ trong 3 ngày tới.
+                    </p>
+                </div>
+            @endfor
+        </div>
+    </section>
+@endsection

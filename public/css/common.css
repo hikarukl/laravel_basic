@@ -1,0 +1,29 @@
+/*=============== General ===============*/
+@font-face {
+    font-family: "SF Pro Display Regular";
+    src: url("../fonts/San-Francisco-Pro-Fonts/SF-Pro-Display-Regular.otf");
+}
+@font-face {
+    font-family: "SF Pro Display Bold";
+    src: url("../fonts/San-Francisco-Pro-Fonts/SF-Pro-Display-Bold.otf");
+}
+@font-face {
+    font-family: "SF Pro Display Medium";
+    src: url("../fonts/San-Francisco-Pro-Fonts/SF-Pro-Display-Medium.otf");
+}
+@font-face {
+    font-family: "SF Pro Display Black";
+    src: url("../fonts/San-Francisco-Pro-Fonts/SF-Pro-Display-Black.otf");
+}
+
+body {
+    font-family: "Poppins",sans-serif;
+}
+
+/*  Home page  */
+.bg-linear-custom-home {
+    background: linear-gradient(to top,rgba(0,0,0,.8) 0,rgba(0,0,0,0) 100%);
+}
+.home-category-color {
+    color: #0e4374;
+}

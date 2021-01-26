@@ -18,10 +18,13 @@
     <meta property="og:type" content="Website" />
     @php $time = time(); @endphp
     <link href="{{ asset("css/app.css?t=$time") }}" rel="stylesheet">
+    <link href="{{ asset("css/all.min.css") }}" rel="stylesheet">
     <link href="{{ asset("css/flickity.css") }}" rel="stylesheet">
     <link href="{{ asset("css/common.css") }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/bqb1nuo.css">
     @yield('styles')
     @stack('styles_component')
+    <script data-ad-client="ca-pub-1183003705015401" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
 <section id="main-page">
@@ -34,6 +37,7 @@
 </body>
 <script type='text/javascript' src="{{ asset('js/jquery.min.js') }}"></script>
 <script type='text/javascript' src="{{ asset('js/app.js') }}"></script>
+<script type='text/javascript' src="{{ asset('js/all.min.js') }}"></script>
 <script type='text/javascript' src="{{ asset('js/flickity.min.js') }}"></script>
 <script type='text/javascript' src="{{ asset('js/common.js') }}"></script>
 <script type="text/javascript">
