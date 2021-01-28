@@ -8,12 +8,12 @@
                 <p class="text-gray-500 text-lg mt-1 mb-4"><i class="fad fa-clock mr-2"></i>
                     {{ \Illuminate\Support\Carbon::parse($post['created_at'])->format("d-m-Y H:i:s") }}
                 </p>
-                <p class="mb-3 text-gray-800">
+                <p class="mb-3 text-gray-400">
                     {{ $post['description'] }}
                 </p>
                 <img src="{{ $post['thumbnail'] }}" class="rounded mb-4">
                 @foreach($post['content'] as $content)
-                    <p class="font-bold text-lg text-gray-700 mb-4">
+                    <p class="text-lg text-gray-700 mb-4">
                         {!! $content !!}
                     </p>
                 @endforeach
@@ -30,33 +30,17 @@
             <div class="grid grid-cols-3 gap-8">
                 @foreach($related_post_list as $related_post)
                     <div class="grid col-span-3 md:col-span-1">
-                        <a href="{{ route('post-detail', ['category' => 'sport', 'id' => 1]) }}">
+                        <a href="{{ route('post-detail', ['category' => strtolower($category_list[$related_post['categories'][0]][0]['name']), 'id' => $related_post['id']]) }}">
                             <img src="{{ $related_post['thumbnail'] }}" class="rounded">
                         </a>
-                        <a href="{{ route('post-detail', ['category' => 'sport', 'id' => 1]) }}" class="pl-1 md:pl-0 font-bold mt-2 text-sm md:text-xl hover:text-blue-500">
-                            @if(strlen($related_post['title']) > 110)
-                                @php
-                                    $title = mb_substr($related_post['title'], 0 , 110);
-                                    $title = mb_substr($title, 0 , mb_strrpos($title, " "));
-                                @endphp
-                                {{ $title }}...
-                            @else
-                                {{ $related_post['title'] }}
-                            @endif
+                        <a href="{{ route('post-detail', ['category' => strtolower($category_list[$related_post['categories'][0]][0]['name']), 'id' => $related_post['id']]) }}" class="pl-1 md:pl-0 font-bold mt-2 text-sm md:text-sm hover:text-blue-500">
+                            {{ $related_post['title'] }}
                         </a>
                         <p class="text-gray-500 text-sm mt-1"><i class="fad fa-clock mr-2"></i>
                             {{ \Illuminate\Support\Carbon::parse($related_post['created_at'])->format("d-m-Y H:i:s") }}
                         </p>
                         <p class="mt-3 text-gray-700 text-sm">
-                            @if(strlen($related_post['description']) > 96)
-                                @php
-                                    $title = mb_substr($related_post['description'], 0, 96);
-                                    $title = mb_substr($title, 0 , mb_strrpos($title, " "));
-                                @endphp
-                                {{ $title }}...
-                            @else
-                                {{ $related_post['description'] }}
-                            @endif
+                            {{ $related_post['description'] }}
                         </p>
                     </div>
                 @endforeach
