@@ -22,9 +22,12 @@ class GuzzleClientHelper
         {
             $client = new Client();
 
+            $option = isset($params['query']) ? $params['query'] : [];
+
             $response = $client->request(
                 'GET',
-                $params['url']
+                $params['url'],
+                $option
             );
 
             return (string)$response->getBody();

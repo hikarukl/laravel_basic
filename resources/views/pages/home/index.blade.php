@@ -5,11 +5,11 @@
         <div class="grid grid-cols-3 gap-1 md:hidden">
             @foreach($top_post_list as $top_post)
                 <div class="col-span-3 relative">
-                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post['categories'][0]][0]['name']), 'id' => $top_post['id']]) }}">
+                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post['category']['id']][0]['name']), 'id' => $top_post['id']]) }}">
                         <img src="{{ $top_post['thumbnail'] }}">
                     </a>
                     <h2 class="text-left pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
-                        <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post['categories'][0]][0]['name']), 'id' => $top_post['id']]) }}" class="text-sm text-white hover:text-blue-500">
+                        <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post['category']['id']][0]['name']), 'id' => $top_post['id']]) }}" class="text-sm text-white hover:text-blue-500">
                             {{ $top_post['title'] }}
                         </a>
                         {{--<p class="text-white text-sm"><i class="fad fa-clock mr-2 text-white"></i>15 giờ trước</p>--}}
@@ -20,11 +20,11 @@
         {{-- This section summary for web --}}
         <div class="grid grid-cols-2 gap-1 hidden md:grid">
             <div class="col-span-1 relative">
-                <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['categories'][0]][0]['name']), 'id' => $top_post_list[0]['id']]) }}">
+                <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']][0]['name']), 'id' => $top_post_list[0]['id']]) }}">
                     <img src="{{ $top_post_list[0]['thumbnail'] }}">
                 </a>
                 <h2 class="text-left pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
-                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['categories'][0]][0]['name']), 'id' => $top_post_list[0]['id']]) }}" class="text-lg text-white hover:text-blue-500">
+                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']][0]['name']), 'id' => $top_post_list[0]['id']]) }}" class="text-lg text-white hover:text-blue-500">
                         {{ $top_post_list[0]['title'] }}
                     </a>
 {{--                    <p class="text-white text-sm"><i class="fad fa-clock mr-2 text-white"></i>--}}
@@ -35,11 +35,11 @@
             <div class="col-span-1 grid grid-cols-2 gap-1">
                 @for($i = 1; $i < count($top_post_list); $i++)
                     <div class="col-span-1 relative">
-                        <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[$i]['categories'][0]][0]['name']), 'id' => $top_post_list[$i]['id']]) }}">
+                        <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[$i]['category']['id']][0]['name']), 'id' => $top_post_list[$i]['id']]) }}">
                             <img src="{{ $top_post_list[$i]['thumbnail'] }}">
                         </a>
                         <h2 class="text-left pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-1/2">
-                            <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[$i]['categories'][0]][0]['name']), 'id' => $top_post_list[$i]['id']]) }}" class="text-sm text-white hover:text-blue-500">
+                            <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[$i]['category']['id']][0]['name']), 'id' => $top_post_list[$i]['id']]) }}" class="text-sm text-white hover:text-blue-500">
                                 @if(strlen($top_post_list[$i]['title']) > 137)
                                     {{ substr($top_post_list[$i]['title'], 0 , 134) }}...
                                 @else
@@ -81,16 +81,16 @@
                     </div>--}}
                     @foreach($focus_post_list as $focus_post)
                         <div class="grid mb-8 md:grid-cols-2">
-                            <a href="{{ route('post-detail', ['category' => strtolower($category_list[$focus_post['categories'][0]][0]['name']), 'id' => $focus_post['id']]) }}" class="md:col-span-1">
+                            <a href="{{ route('post-detail', ['category' => strtolower($category_list[$focus_post['category']['id']][0]['name']), 'id' => $focus_post['id']]) }}" class="md:col-span-1">
                                 <img src="{{ $focus_post['thumbnail'] }}">
                             </a>
                             <div class="md:col-span-1 md:pl-5 grid md:block">
-                                <a href="{{ route('post-detail', ['category' => strtolower($category_list[$focus_post['categories'][0]][0]['name']), 'id' => $focus_post['id']]) }}" class="mt-3 md:mt-0 text-lg font-bold text-gray-800 hover:text-blue-500">
+                                <a href="{{ route('post-detail', ['category' => strtolower($category_list[$focus_post['category']['id']][0]['name']), 'id' => $focus_post['id']]) }}" class="mt-3 md:mt-0 text-lg font-bold text-gray-800 hover:text-blue-500">
                                     {{ $focus_post['title'] }}
                                 </a>
                                 <p class="text-gray-500 text-sm mt-1 md:mt-3 md:mb-3">
                                     <i class="fad fa-clock mr-2"></i>
-                                    {{ \Illuminate\Support\Carbon::parse($focus_post['created_at'])->format("d-m-Y H:i:s") }}
+                                    {{ \Illuminate\Support\Carbon::parse($focus_post['published_time'])->format("d-m-Y H:i:s") }}
                                 </p>
                                 <p class="mt-2 text-gray-700 text-sm">
                                     {{ $focus_post['description'] }}
@@ -114,15 +114,15 @@
 
             <div class="container mx-auto mt-3">
                 <div class="col-span-3 relative">
-                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$new_post_list[0]['categories'][0]][0]['name']), 'id' => $new_post_list[0]['id']]) }}">
+                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$new_post_list[0]['category']['id']][0]['name']), 'id' => $new_post_list[0]['id']]) }}">
                         <img src="{{ $new_post_list[0]['thumbnail'] }}"/>
                     </a>
                     <h2 class="text-left pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
-                        <a href="{{ route('post-detail', ['category' => strtolower($category_list[$new_post_list[0]['categories'][0]][0]['name']), 'id' => $new_post_list[0]['id']]) }}" class="text-sm text-white hover:text-blue-500">
+                        <a href="{{ route('post-detail', ['category' => strtolower($category_list[$new_post_list[0]['category']['id']][0]['name']), 'id' => $new_post_list[0]['id']]) }}" class="text-sm text-white hover:text-blue-500">
                             {{ $new_post_list[0]['title'] }}
                         </a>
                         {{--<p class="text-white text-sm"><i class="fad fa-clock mr-2 text-white"></i>
-                            {{ \Illuminate\Support\Carbon::parse($new_post_list[0]['created_at'])->format("d-m-Y H:i:s") }}
+                            {{ \Illuminate\Support\Carbon::parse($new_post_list[0]['published_time'])->format("d-m-Y H:i:s") }}
                         </p>--}}
                     </h2>
                 </div>
@@ -133,11 +133,11 @@
                 <div class="grid grid-cols-1 gap-10 mt-10">
                     @foreach($new_post_list as $new_post)
                         <div class="col-span-1 grid grid-cols-3 gap-4">
-                            <a href="{{ route('post-detail', ['category' => strtolower($category_list[$new_post['categories'][0]][0]['name']), 'id' => $new_post['id']]) }}" class="col-span-1">
+                            <a href="#" class="col-span-1">
                                 <img src="{{ $new_post['thumbnail'] }}">
                             </a>
                             <div class="col-span-2">
-                                <a href="{{ route('post-detail', ['category' => strtolower($category_list[$new_post['categories'][0]][0]['name']), 'id' => $new_post['id']]) }}" class="col-span-2 text-sm font-bold text-gray-800 hover:text-blue-500">
+                                <a href="#" class="col-span-2 text-sm font-bold text-gray-800 hover:text-blue-500">
                                     @if(strlen($new_post['title']) > 119)
                                         @php
                                             $title = substr($new_post['title'], 0 , 119);
@@ -149,7 +149,7 @@
                                     @endif
                                 </a>
                                 <p class="text-gray-500 text-sm mt-1"><i class="fad fa-clock mr-2"></i>
-                                    {{ \Illuminate\Support\Carbon::parse($focus_post['created_at'])->format("d-m-Y H:i:s") }}
+                                    {{ \Illuminate\Support\Carbon::parse($focus_post['published_time'])->format("d-m-Y H:i:s") }}
                                 </p>
                             </div>
                         </div>
@@ -354,15 +354,15 @@
 
             <div class="grid mt-3 md:grid-cols-3">
                 <div class="col-span-3 md:col-span-1 relative">
-                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$another_post_list_mobile[0]['categories'][0]][0]['name']), 'id' => $another_post_list_mobile[0]['id']]) }}">
+                    <a href="#">
                         <img src="{{ $another_post_list_mobile[0]['thumbnail'] }}">
                     </a>
                     <h2 class="text-left pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-1/2">
-                        <a href="{{ route('post-detail', ['category' => strtolower($category_list[$another_post_list_mobile[0]['categories'][0]][0]['name']), 'id' => $another_post_list_mobile[0]['id']]) }}" class="text-sm text-white hover:text-blue-500">
+                        <a href="#" class="text-sm text-white hover:text-blue-500">
                             {{ $another_post_list_mobile[0]['title'] }}
                         </a>
                         {{--<p class="text-white text-sm"><i class="fad fa-clock mr-2"></i>
-                            {{ \Illuminate\Support\Carbon::parse($another_post_list_mobile[0]['created_at'])->format("d-m-Y H:i:s") }}
+                            {{ \Illuminate\Support\Carbon::parse($another_post_list_mobile[0]['published_time'])->format("d-m-Y H:i:s") }}
                         </p>--}}
                     </h2>
                 </div>
@@ -370,11 +370,11 @@
                 <div class="grid grid-cols-1 gap-10 mt-10">
                     @foreach($another_post_list_mobile as $another_post_mobile)
                         <div class="col-span-1 grid grid-cols-3 gap-4">
-                            <a href="{{ route('post-detail', ['category' => strtolower($category_list[$another_post_mobile['categories'][0]][0]['name']), 'id' => $another_post_mobile['id']]) }}" class="col-span-1">
+                            <a href="#" class="col-span-1">
                                 <img src="{{ $another_post_mobile['thumbnail'] }}">
                             </a>
                             <div class="col-span-2">
-                                <a href="{{ route('post-detail', ['category' => strtolower($category_list[$another_post_mobile['categories'][0]][0]['name']), 'id' => $another_post_mobile['id']]) }}" class="col-span-2 text-sm font-bold text-gray-800 hover:text-blue-500">
+                                <a href="#" class="col-span-2 text-sm font-bold text-gray-800 hover:text-blue-500">
                                     @if(strlen($another_post_mobile['title']) > 119)
                                         @php
                                             $title = substr($another_post_mobile['title'], 0 , 119);
@@ -386,7 +386,7 @@
                                     @endif
                                 </a>
                                 <p class="text-gray-500 text-sm mt-1"><i class="fad fa-clock mr-2"></i>
-                                    {{ \Illuminate\Support\Carbon::parse($another_post_mobile['created_at'])->format("d-m-Y H:i:s") }}
+                                    {{ \Illuminate\Support\Carbon::parse($another_post_mobile['published_time'])->format("d-m-Y H:i:s") }}
                                 </p>
                             </div>
                         </div>
@@ -409,11 +409,11 @@
                 @foreach($another_post_list as $another_list)
                     <div class="col-span-1 grid grid-cols-2">
                         <div class="col-span-2 relative">
-                            <a href="{{ route('post-detail', ['category' => strtolower($category_list[$another_list[0]['categories'][0]][0]['name']), 'id' => $another_list[0]['id']]) }}">
+                            <a href="$">
                                 <img src="{{ $another_list[0]['thumbnail'] }}">
                             </a>
                             <h2 class="text-left pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
-                                <a href="{{ route('post-detail', ['category' => strtolower($category_list[$another_list[0]['categories'][0]][0]['name']), 'id' => $another_list[0]['id']]) }}" class="text-sm text-white hover:text-blue-500">
+                                <a href="#" class="text-sm text-white hover:text-blue-500">
                                     @if(strlen($another_list[0]['title']) > 187)
                                         {{ substr($another_list[0]['title'], 0 , 187) }}...
                                     @else
@@ -427,11 +427,11 @@
                         <div class="col-span-2 grid grid-cols-2 gap-10 mt-10">
                             @foreach($another_list as $list)
                                 <div class="col-span-2 grid grid-cols-3 gap-4">
-                                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$list['categories'][0]][0]['name']), 'id' => $list['id']]) }}" class="col-span-1">
+                                    <a href="#" class="col-span-1">
                                         <img src="{{ $list['thumbnail'] }}">
                                     </a>
                                     <div class="col-span-2">
-                                        <a href="{{ route('post-detail', ['category' => strtolower($category_list[$list['categories'][0]][0]['name']), 'id' => $list['id']]) }}" class="col-span-2 text-sm font-bold text-gray-800 hover:text-blue-500">
+                                        <a href="#" class="col-span-2 text-sm font-bold text-gray-800 hover:text-blue-500">
                                             @if(strlen($list['title']) > 127)
                                                 @php
                                                     $title = substr($list['title'], 0 , 127);
@@ -443,7 +443,7 @@
                                             @endif
                                         </a>
                                         <p class="text-gray-500 text-sm mt-1"><i class="fad fa-clock mr-2"></i>
-                                            {{ \Illuminate\Support\Carbon::parse($focus_post['created_at'])->format("d-m-Y H:i:s") }}
+                                            {{ \Illuminate\Support\Carbon::parse($focus_post['published_time'])->format("d-m-Y H:i:s") }}
                                         </p>
                                     </div>
                                 </div>
