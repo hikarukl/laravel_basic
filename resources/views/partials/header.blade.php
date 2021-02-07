@@ -11,6 +11,7 @@
 
                       Menu open: "hidden", Menu closed: "block"
                     -->
+
                     <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -37,21 +38,22 @@
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a href="{{ route('home') }}" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
+                        <a href="{{ route('home') }}" class="@if(!isset($category_selected)) bg-gray-900 @else text-gray-300 hover:bg-gray-700 hover:text-white @endif text-white px-3 py-2 rounded-md text-sm font-medium">
+                            Trang chủ
+                        </a>
+                        @foreach($menu_list as $category)
+                            <a
+                                href="{{ route('post-list', ['category' => $category['slug']]) }}"
+                                class="@if(isset($category_selected) && $category_selected == $category['slug']) bg-gray-900 @else text-gray-300 hover:bg-gray-700 hover:text-white @endif text-white px-3 py-2 rounded-md text-sm font-medium">
+                            {{ $category['name'] }}
+                            </a>
+                        @endforeach
+                        {{--<a href="{{ route('home') }}" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
                             <i class="far fa-home mr-2"></i>Trang chủ
                         </a>
                         <a href="{{ route('post-list', ['category' => "sport"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                             <i class="fad fa-futbol mr-2"></i>Thể thao
-                        </a>
-                        <a href="{{ route('post-list', ['category' => "business"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                            <i class="fad fa-business-time mr-2"></i>Kinh doanh
-                        </a>
-                        <a href="{{ route('post-list', ['category' => "news"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                            <i class="fal fa-newspaper mr-2"></i>Tin tức
-                        </a>
-                        <a href="{{ route('post-list', ['category' => "law"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                            <i class="fal fa-balance-scale mr-2"></i>Pháp luật
-                        </a>
+                        </a>--}}
                     </div>
                 </div>
             </div>
@@ -91,22 +93,22 @@
     -->
     <div class="hidden sm:hidden" id="wrap-mobile_header_menus">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="{{ route('home') }}" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
+            <a href="{{ route('home') }}" class="@if(!isset($category_selected)) bg-gray-900 @else text-gray-300 hover:bg-gray-700 hover:text-white @endif text-white block px-3 py-2 rounded-md text-base font-medium">
+                Trang chủ
+            </a>
+
+            @foreach($menu_list as $category)
+                <a href="{{ route('post-list', ['category' => $category['slug']]) }}" class="@if(isset($category_selected) && $category_selected == $category['slug']) bg-gray-900 @else text-gray-300 hover:bg-gray-700 hover:text-white @endif text-white block px-3 py-2 rounded-md text-base font-medium">
+                    {{ $category['name'] }}
+                </a>
+            @endforeach
+        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            {{--<a href="{{ route('home') }}" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
                 <i class="far fa-home mr-2"></i>Trang chủ
             </a>
             <a href="{{ route('post-list', ['category' => "sport"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
                 <i class="fad fa-futbol mr-2"></i>Thể thao
-            </a>
-            <a href="{{ route('post-list', ['category' => "business"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                <i class="fad fa-business-time mr-2"></i>Kinh doanh
-            </a>
-            <a href="{{ route('post-list', ['category' => "news"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                <i class="fal fa-newspaper mr-2"></i>Tin tức
-            </a>
-            <a href="{{ route('post-list', ['category' => "law"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                <i class="fal fa-balance-scale mr-2"></i>Pháp luật
-            </a>
+            </a>--}}
         </div>
     </div>
 </nav>

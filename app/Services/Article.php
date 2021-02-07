@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Constants\CommonConstant;
 use App\Helpers\GuzzleClientHelper;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class Article
@@ -24,6 +25,10 @@ class Article
     public function getArticles($options = [])
     {
         try {
+            if (Cache::has(CommonConstant::CACHE_ARTICLE_LIST_NAME)) {
+                return Cache::get(CommonConstant::CACHE_ARTICLE_LIST_NAME);
+            }
+
             // Request get categories
             $params = [
                 'url'   => CommonConstant::URL_REQUEST_ARTICLES,
@@ -33,7 +38,15 @@ class Article
                 ]
             ];
 
-            return $this->getArticleRequest($params);
+            $result = $this->getArticlesRequest($params);
+
+            Cache::put(
+                CommonConstant::CACHE_ARTICLE_LIST_NAME,
+                $result,
+                now()->addMinutes(CommonConstant::CACHE_HOME_EXPIRE_IN_MINUTES)
+            );
+
+            return $result;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             Log::error($e->getTraceAsString());
@@ -53,12 +66,25 @@ class Article
     public function getArticleBaseOnCategorySlug($categorySlug)
     {
         try {
+            $cacheName = CommonConstant::CACHE_ARTICLE_CATEGORY_PREFIX_NAME . $categorySlug;
+            if (Cache::has($cacheName)) {
+                return Cache::get($cacheName);
+            }
+
             // Request get categories
             $params = [
                 'url'   => str_replace("slug", $categorySlug, CommonConstant::URL_REQUEST_ARTICLE_CATEGORY),
             ];
 
-            return $this->getArticleRequest($params);
+            $result = $this->getArticlesRequest($params);
+
+            Cache::put(
+                $cacheName,
+                $result,
+                now()->addMinutes(CommonConstant::CACHE_HOME_EXPIRE_IN_MINUTES)
+            );
+
+            return $result;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             Log::error($e->getTraceAsString());
@@ -67,7 +93,46 @@ class Article
         }
     }
 
-    private function getArticleRequest($params)
+    /**
+     * Get article detail
+     *
+     * @param int $articleId
+     *
+     * @return array
+     *
+     */
+    public function getArticleDetail($articleId)
+    {
+        try {
+            $cacheName = CommonConstant::CACHE_ARTICLE_PREFIX_NAME . $articleId;
+            if (Cache::has($cacheName)) {
+                return Cache::get($cacheName);
+            }
+
+            $params = [
+                'url' => str_replace("id", $articleId, CommonConstant::URL_REQUEST_ARTICLE_DETAIL)
+            ];
+
+            $responsePost = GuzzleClientHelper::sendRequestGetClientGuzzle($params);
+
+            $result = json_decode($responsePost, true);
+
+            Cache::put(
+                $cacheName,
+                $result,
+                now()->addMinutes(CommonConstant::CACHE_HOME_EXPIRE_IN_MINUTES)
+            );
+
+            return $result;
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            Log::error($e->getTraceAsString());
+
+            return [];
+        }
+    }
+
+    private function getArticlesRequest($params)
     {
         $responseArticles = GuzzleClientHelper::sendRequestGetClientGuzzle($params);
 

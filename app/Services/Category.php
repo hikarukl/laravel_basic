@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Constants\CommonConstant;
 use App\Helpers\GuzzleClientHelper;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class Category
@@ -35,14 +36,17 @@ class Category
     /**
      * Description
      *
-     * @param boolean $isFilter true then filter some specific categories
      *
      * @return array
      *
      */
-    public function getAllCategories($isFilter = true)
+    public function getAllCategories()
     {
         try {
+            if (Cache::has(CommonConstant::CACHE_GET_CATEGORIES_NAME)) {
+                return Cache::get(CommonConstant::CACHE_GET_CATEGORIES_NAME);
+            }
+
             // Request get categories
             $params = [
                 'url' => CommonConstant::URL_REQUEST_CATEGORIES
@@ -52,14 +56,19 @@ class Category
             $categoryInfo = json_decode($responseCategory, true);
             $categoryList = collect($categoryInfo['results']);
 
-            if ($isFilter) {
-                $categoryList = $categoryList->filter( function ($item) {
-                    return in_array($item['id'], self::CATEGORY_LIST_FILTER_MAP);
-                });
-
+            $categoryListArr = $categoryList->groupBy('id')->toArray();
+            $result = [];
+            foreach ($categoryListArr as $item) {
+                $result[] = $item[0];
             }
 
-            return $categoryList->groupBy('id')->toArray();
+            Cache::put(
+                CommonConstant::CACHE_GET_CATEGORIES_NAME,
+                $result,
+                now()->addMinutes(CommonConstant::CACHE_HOME_EXPIRE_IN_MINUTES)
+            );
+
+            return $result;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             Log::error($e->getTraceAsString());

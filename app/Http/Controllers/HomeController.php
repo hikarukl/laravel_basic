@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\CommonConstant;
 use App\Services\Article;
 use App\Services\Category;
 use Illuminate\Support\Facades\Cache;
@@ -9,9 +10,6 @@ use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
-    const CACHE_HOME_NAME = "GET_HOME_INFORMATION";
-    const CACHE_HOME_EXPIRE_IN_MINUTES = 10;
-
     protected $categoryService;
     protected $articleService;
 
@@ -29,15 +27,15 @@ class HomeController extends Controller
     public function index()
     {
         // Check cache
-        if (Cache::has(self::CACHE_HOME_NAME)) {
-            $response = Cache::get(self::CACHE_HOME_NAME);
+        if (Cache::has(CommonConstant::CACHE_HOME_NAME)) {
+            $response = Cache::get(CommonConstant::CACHE_HOME_NAME);
         } else {
             // Request get call categories
-            $allCategories = $this->categoryService->getAllCategories(false);
+            $allCategories = $this->categoryService->getAllCategories();
 
             // Request get filter categories for main menu display
             $filteredCategory = array_filter($allCategories, function ($item) {
-                return in_array($item[0]['id'], Category::CATEGORY_LIST_FILTER_MAP);
+                return in_array($item['id'], Category::CATEGORY_LIST_FILTER_MAP);
             });
 
             if (empty($allCategories)) {
@@ -47,11 +45,30 @@ class HomeController extends Controller
             // Request get articles base on cate gory slug
             $categoryArticleList = [];
             foreach ($allCategories as $cateId => $categoryInfo) {
+                $articles = $this->articleService->getArticleBaseOnCategorySlug($categoryInfo['slug']);
+
+                if (count($articles) < CommonConstant::MIN_ARTICLES_NEED_TO_DISPLAY) {
+                    continue;
+                }
+
+                // Calculate articles to set view
+                $viewComponent = "component_common.block_style_default";
+                if (count($articles) > 12) {
+                    $articles = array_slice($articles, 0, 12);
+                    $viewComponent = "component_common.block_three_columns_style_two";
+                }
+
+                if (count($articles) >= 7) {
+                    $articles = array_slice($articles, 0, 7);
+                    $viewComponent = "component_common.block_three_columns_style_one";
+                }
+
                 $categoryArticleList[$cateId] = [
-                    'category_id'   => $categoryInfo[0]['id'],
-                    'category_name' => $categoryInfo[0]['name'],
-                    'category_slug' => $categoryInfo[0]['slug'],
-                    'article_list'  => $this->articleService->getArticleBaseOnCategorySlug($categoryInfo[0]['slug'])
+                    'category_id'   => $categoryInfo['id'],
+                    'category_name' => $categoryInfo['name'],
+                    'category_slug' => $categoryInfo['slug'],
+                    'view_name'     => $viewComponent,
+                    'article_list'  => $articles
                 ];
             }
 
@@ -80,8 +97,13 @@ class HomeController extends Controller
                 'new_post_list'            => $newPostList,
                 'another_post_list'        => $anotherPostListWeb,
                 'another_post_list_mobile' => $anotherPostList,
+                'category_article_list'    => $categoryArticleList
             ];
-            Cache::add(self::CACHE_HOME_NAME, $response, now()->addMinutes(self::CACHE_HOME_EXPIRE_IN_MINUTES));
+            Cache::put(
+                CommonConstant::CACHE_HOME_NAME,
+                $response,
+                now()->addMinutes(CommonConstant::CACHE_HOME_EXPIRE_IN_MINUTES)
+            );
         }
 
         return view('pages.home.index', $response);
