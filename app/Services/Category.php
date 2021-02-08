@@ -58,8 +58,8 @@ class Category
 
             $categoryListArr = $categoryList->groupBy('id')->toArray();
             $result = [];
-            foreach ($categoryListArr as $item) {
-                $result[] = $item[0];
+            foreach ($categoryListArr as $key => $item) {
+                $result[$key] = $item[0];
             }
 
             Cache::put(
