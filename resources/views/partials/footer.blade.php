@@ -20,28 +20,28 @@
             <p class="text-2xl font-bold mb-3 md:col-span-3">Liên Hệ</p>
             <div class="md:hidden">
                 <p class="pb-2 md:col-span-2"><i class="fas fa-map-marker-alt mr-3"></i>Nguyễn Văn Thủ, Hồ Chí Minh</p>
-                <p class="pb-2 md:col-span-2"><i class="fas fa-phone-alt mr-3"></i>+84 012 345 6791</p>
+                <p class="pb-2 md:col-span-2"><i class="fas fa-phone-alt mr-3"></i>+84 387665204</p>
                 <p class="pb-2 md:col-span-2"><i class="fas fa-envelope mr-3"></i> emailtest@gmail.com</p>
                 <p class="pb-2 md:col-span-2"><i class="fas fa-chevron-double-right mr-3"></i>Tạp chỉ điện tử trực tuyến</p>
                 <p class="pb-2 md:col-span-1"><i class="fas fa-chevron-double-right mr-3"></i>Cơ quan chủ quản: Tạp chí ABC</p>
-                <p class="pb-2 md:col-span-1"><i class="fas fa-chevron-double-right mr-3"></i>Giấy phép kinh doanh số: ABC</p>
-                <p class="pb-2 md:col-span-1"><i class="fas fa-chevron-double-right mr-3"></i>Hotline: 123456789</p>
+                <p class="pb-2 md:col-span-1"><i class="fas fa-chevron-double-right mr-3"></i>Giấy phép kinh doanh số: </p>
+                <p class="pb-2 md:col-span-1"><i class="fas fa-chevron-double-right mr-3"></i>Hotline: 0387665204</p>
                 <p class="pb-2 md:col-span-1"><i class="fas fa-chevron-double-right mr-3"></i>Bản quyền thuộc: ABC</p>
             </div>
             {{--   Web  --}}
             <div class="hidden md:grid grid-cols-3 col-span-3">
                 <div class="col-span-1">
                     <p class="pb-2 md:col-span-2"><i class="fas fa-map-marker-alt mr-3"></i>Nguyễn Văn Thủ, Hồ Chí Minh</p>
-                    <p class="pb-2 md:col-span-2"><i class="fas fa-phone-alt mr-3"></i>+84 012 345 6791</p>
+                    <p class="pb-2 md:col-span-2"><i class="fas fa-phone-alt mr-3"></i>+84 387665204</p>
                     <p class="pb-2 md:col-span-2"><i class="fas fa-envelope mr-3"></i> emailtest@gmail.com</p>
                 </div>
                 <div class="col-span-1">
                     <p class="pb-2 md:col-span-2"><i class="fas fa-chevron-double-right mr-3"></i>Tạp chỉ điện tử trực tuyến</p>
                     <p class="pb-2 md:col-span-1"><i class="fas fa-chevron-double-right mr-3"></i>Cơ quan chủ quản: Tạp chí ABC</p>
-                    <p class="pb-2 md:col-span-1"><i class="fas fa-chevron-double-right mr-3"></i>Giấy phép kinh doanh số: ABC</p>
+                    <p class="pb-2 md:col-span-1"><i class="fas fa-chevron-double-right mr-3"></i>Giấy phép kinh doanh số: </p>
                 </div>
                 <div class="col-span-1">
-                    <p class="pb-2 md:col-span-1"><i class="fas fa-chevron-double-right mr-3"></i>Hotline: 123456789</p>
+                    <p class="pb-2 md:col-span-1"><i class="fas fa-chevron-double-right mr-3"></i>Hotline: 0387665204</p>
                     <p class="pb-2 md:col-span-1"><i class="fas fa-chevron-double-right mr-3"></i>Bản quyền thuộc: ABC</p>
                 </div>
             </div>
