@@ -82,7 +82,7 @@
                                 <img src="{{ $related_post['thumbnail'] }}">
                             </a>
                             <div class="md:col-span-1 md:pl-5 grid md:block">
-                                <a href="{{ route('post-detail', ['category' => 'sport', 'id' => 1]) }}" class="mt-3 md:mt-0 text-lg font-bold text-gray-800 hover:text-blue-500">
+                                <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['id']]) }}" class="mt-3 md:mt-0 text-lg font-bold text-gray-800 hover:text-blue-500">
                                     {{ $related_post['title'] }}
                                 </a>
                                 <p class="text-gray-500 text-sm mt-1 md:mt-3 md:mb-3">
