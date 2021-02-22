@@ -1,4 +1,5 @@
 @extends('master')
+@inject('postHelper', 'App\Helpers\PostHelper')
 @section('main')
     <div class="max-w-7xl mx-auto pl-5 pr-5 pt-16 md:pt-0">
         {{-- This section summary for mobile --}}
@@ -60,7 +61,8 @@
                     "title_info"            => [
                         "name"  => "Tiêu điểm",
                         "link"  => "#"
-                    ]
+                    ],
+                    'postHelper'            => $postHelper
                 ]
             )
         </section>
@@ -75,7 +77,8 @@
                     "title_info"            => [
                         "name"  => "Mới nhất",
                         "link"  => "#"
-                    ]
+                    ],
+                    'postHelper'            => $postHelper
                 ]
             )
         </section>
@@ -86,7 +89,8 @@
                 $listArticle['view_name'],
                 [
                     "category_list"         => $category_list[$cateId],
-                    "category_article_list" => $listArticle
+                    "category_article_list" => $listArticle,
+                    'postHelper'            => $postHelper
                 ]
             )
         @endforeach
@@ -132,7 +136,7 @@
                                     @endif
                                 </a>
                                 <p class="text-gray-500 text-sm mt-1"><i class="fad fa-clock mr-2"></i>
-                                    {{ \Illuminate\Support\Carbon::parse($another_post_list_mobile[$i]['published_time'])->format("d-m-Y H:i:s") }}
+                                    {{ $postHelper::convertTimeToDisplay($another_post_list_mobile[$i]['published_time']) }}
                                 </p>
                             </div>
                         </div>

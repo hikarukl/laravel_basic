@@ -24,4 +24,6 @@ class CommonConstant
     const CACHE_ARTICLE_CATEGORY_PREFIX_NAME = "GET_ARTICLE_CATEGORY_";
 
     const CACHE_GET_CATEGORIES_NAME = "GET_CATEGORIES";
+
+    const DEFAULT_TIMEZONE = 'Asia/Ho_Chi_Minh';
 }

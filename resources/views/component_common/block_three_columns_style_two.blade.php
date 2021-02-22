@@ -24,7 +24,7 @@
                             {{ $chunkList[$i][0]['title'] }}
                         </a>
                         <p class="text-white text-sm"><i class="fad fa-clock mr-2"></i>
-                            {{ \Illuminate\Support\Carbon::parse($chunkList[$i][0]['published_time'])->format("d-m-Y H:i:s") }}
+                            {{ $postHelper::convertTimeToDisplay($chunkList[$i][0]['published_time']) }}
                         </p>
                     </h2>
                 </div>
@@ -50,7 +50,7 @@
                                     @endif
                                 </a>
                                 <p class="text-gray-500 text-sm mt-1"><i class="fad fa-clock mr-2"></i>
-                                    {{ \Illuminate\Support\Carbon::parse($article['published_time'])->format("d-m-Y H:i:s") }}
+                                    {{ $postHelper::convertTimeToDisplay($article['published_time']) }}
                                 </p>
                             </div>
                         </div>

@@ -31,7 +31,7 @@
     <div class="relative">
         @include('partials.header')
         @yield('main')
-        @include('partials.footer')
+        {{--@include('partials.footer')--}}
     </div>
 </section>
 </body>

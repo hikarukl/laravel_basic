@@ -31,7 +31,7 @@
                     {{ $article['title'] }}
                 </a>
                 <p class="text-gray-500 text-sm mt-1"><i class="fad fa-clock mr-2"></i>
-                    {{ \Illuminate\Support\Carbon::parse($article['published_time'])->format("d-m-Y H:i:s") }}
+                    {{ $postHelper::convertTimeToDisplay($article['published_time']) }}
                 </p>
                 <p class="mt-2 text-gray-700 text-sm">
                     {{ $article['description'] }}

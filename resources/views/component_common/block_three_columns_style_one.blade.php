@@ -30,7 +30,7 @@
                 {{ $category_article_list['article_list'][0]['title'] }}
             </a>
             <p class="text-gray-500 text-sm mt-1"><i class="fad fa-clock mr-2"></i>
-                {{ \Illuminate\Support\Carbon::parse($category_article_list['article_list'][0]['published_time'])->format("d-m-Y H:i:s") }}
+                {{ $postHelper::convertTimeToDisplay($category_article_list['article_list'][0]['published_time']) }}
             </p>
             <p class="mt-2 text-gray-700 text-sm">
                 {{ $category_article_list['article_list'][0]['description'] }}
@@ -59,7 +59,7 @@
                                 @endif
                             </a>
                             <p class="text-gray-500 text-sm mt-1"><i class="fad fa-clock mr-2"></i>
-                                {{ \Illuminate\Support\Carbon::parse($category_article_list['article_list'][$i]['published_time'])->format("d-m-Y H:i:s") }}
+                                {{ $postHelper::convertTimeToDisplay($category_article_list['article_list'][$i]['published_time']) }}
                             </p>
                         </div>
                     </div>
