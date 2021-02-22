@@ -1,4 +1,5 @@
 @extends('master')
+@inject('postHelper', 'App\Helpers\PostHelper')
 @section('main')
     {{-- This section summary --}}
     <section class="max-w-7xl mx-auto pl-5 pr-5 pt-16 md:pt-0">
@@ -86,7 +87,7 @@
                                 </a>
                                 <p class="text-gray-500 text-sm mt-1 md:mt-3 md:mb-3">
                                     <i class="fad fa-clock mr-2"></i>
-                                    {{ \Illuminate\Support\Carbon::parse($related_post['published_time'])->format("d-m-Y H:i:s") }}
+                                    {{ $postHelper::convertTimeToDisplay($related_post['published_time']) }}
                                 </p>
                                 <p class="mt-2 text-gray-700 text-sm">
                                     {{ $related_post['description'] }}
@@ -108,7 +109,8 @@
                     "title_info"            => [
                         "name"  => "Mới nhất",
                         "link"  => "#"
-                    ]
+                    ],
+                    'postHelper'            => $postHelper
                 ]
             )
         </section>
