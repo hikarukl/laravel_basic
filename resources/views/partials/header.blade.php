@@ -39,13 +39,13 @@
                     <div class="flex space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                         <a href="{{ route('home') }}" class="@if(!isset($category_selected)) bg-gray-900 @else text-gray-300 hover:bg-gray-700 hover:text-white @endif text-white px-3 py-2 rounded-md text-sm font-medium">
-                            Trang chủ
+                            Trang Chủ
                         </a>
                         @foreach($menu_list as $category)
                             <a
                                 href="{{ route('post-list', ['category' => $category['slug']]) }}"
                                 class="@if(isset($category_selected) && $category_selected == $category['slug']) bg-gray-900 @else text-gray-300 hover:bg-gray-700 hover:text-white @endif text-white px-3 py-2 rounded-md text-sm font-medium">
-                            {{ $category['name'] }}
+                            {{ ucwords($category['name']) }}
                             </a>
                         @endforeach
                     </div>
@@ -87,13 +87,13 @@
     -->
     <div class="hidden sm:hidden" id="wrap-mobile_header_menus">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href="{{ route('home') }}" class="@if(!isset($category_selected)) bg-gray-900 @else text-gray-300 @endif text-white block px-3 py-2 rounded-md text-base font-medium">
+            <a href="{{ route('home') }}" class="@if(!isset($category_selected)) bg-gray-900 @endif text-white block px-3 py-2 rounded-md text-base font-medium">
                 Trang Chủ
             </a>
 
             @foreach($menu_list as $category)
-                <a href="{{ route('post-list', ['category' => $category['slug']]) }}" class="@if(isset($category_selected) && $category_selected == $category['slug']) bg-gray-900 @else text-gray-300 @endif text-white block px-3 py-2 rounded-md text-base font-medium">
-                    {{ ucfirst($category['name']) }}
+                <a href="{{ route('post-list', ['category' => $category['slug']]) }}" class="@if(isset($category_selected) && $category_selected == $category['slug']) bg-gray-900 @endif text-white block px-3 py-2 rounded-md text-base font-medium">
+                    {{ ucwords($category['name']) }}
                 </a>
             @endforeach
             <a
@@ -106,17 +106,17 @@
     <div class="grid grid-cols-3 gap-4 pl-4 pr-4 text-center border-t border-red-500 sm:hidden" id="wrap-mobile_specific_menus">
         <a
             href="{{ route('post-list', ['category' => 'moi-nhat']) }}"
-            class="@if(isset($category_selected) && $category_selected == 'moi-nhat') bg-gray-900 @else text-gray-300 @endif text-white px-3 py-2 rounded-md text-base font-medium">
+            class="@if(isset($category_selected) && $category_selected == 'moi-nhat') bg-gray-900 @endif text-white px-3 py-2 rounded-md text-base font-medium">
             Mới Nhất
         </a>
         <a
             href="{{ route('post-list', ['category' => 'doi-song']) }}"
-            class="@if(isset($category_selected) && $category_selected == 'doi-song') bg-gray-900 @else text-gray-300 @endif text-white px-3 py-2 rounded-md text-base font-medium">
+            class="@if(isset($category_selected) && $category_selected == 'doi-song') bg-gray-900 @endif text-white px-3 py-2 rounded-md text-base font-medium">
             Đời Sống
         </a>
         <a
             href="{{ route('post-list', ['category' => 'phap-luat']) }}"
-            class="@if(isset($category_selected) && $category_selected == 'phap-luat') bg-gray-900 @else text-gray-300 @endif text-white px-3 py-2 rounded-md text-base font-medium">
+            class="@if(isset($category_selected) && $category_selected == 'phap-luat') bg-gray-900 @endif text-white px-3 py-2 rounded-md text-base font-medium">
             Pháp Luật
         </a>
     </div>

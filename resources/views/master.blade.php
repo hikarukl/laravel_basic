@@ -39,7 +39,7 @@
 <script type='text/javascript' src="{{ asset('js/app.js') }}"></script>
 <script type='text/javascript' src="{{ asset('js/all.min.js') }}"></script>
 <script type='text/javascript' src="{{ asset('js/flickity.min.js') }}"></script>
-<script type='text/javascript' src="{{ asset('js/common.js') }}"></script>
+<script type='text/javascript' src="{{ asset("js/common.js?t=$time") }}"></script>
 <script type="text/javascript">
   $.ajaxSetup({
     headers: {
