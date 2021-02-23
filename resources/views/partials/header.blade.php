@@ -98,7 +98,7 @@
             @endforeach
             <a
                 href="{{ route('post-list', ['category' => 'moi-nhat']) }}"
-                class="text-white block px-3 py-2 rounded-md text-base font-medium">
+                class="@if(isset($category_selected) && $category_selected == 'moi-nhat') bg-gray-900 @endif text-white block px-3 py-2 rounded-md text-base font-medium">
                 Mới Nhất
             </a>
         </div>
