@@ -38,11 +38,25 @@ class PostController extends Controller
         // Request get newest 100 articles
         $newestArticles = $this->articleService->getArticles();
 
-        // Get 20 newest articles
-        $newArticleList = array_slice($newestArticles, 0, 20);
-
         // Related articles
-        $articleList = $this->articleService->getArticleBaseOnCategorySlug($categorySlug);
+        $offsetNewest = 0;
+        $numberArticleNewestLength = 20;
+        if ($categorySlug == 'moi-nhat') {
+            $count = count($newestArticles);
+            if ($count <= 80) {
+                $articleList = array_slice($newestArticles, 0, $count);
+                $numberArticleNewestLength = 0;
+            } else {
+                $articleList = array_slice($newestArticles, 0, 80);
+                $numberArticleNewestLength = $count - 80;
+                $offsetNewest = 80;
+            }
+        } else {
+            $articleList = $this->articleService->getArticleBaseOnCategorySlug($categorySlug);
+        }
+
+        // Get 20 newest articles
+        $newArticleList = array_slice($newestArticles, $offsetNewest, $numberArticleNewestLength);
 
         // Get 5 newest current articles
         $topArticles = array_slice($articleList, 0, 5);
@@ -51,6 +65,7 @@ class PostController extends Controller
             'category_list'     => $allCategories,
             'menu_list'         => $filteredCategory,
             'category_selected' => $categorySlug,
+            'category_name'     => $categorySlug == 'moi-nhat' ? "Mới Nhất" : $topArticles[0]['category']['name'],
             'top_post_list'     => $topArticles,
             'new_post_list'     => $newArticleList,
             'related_post_list' => array_slice($articleList, 5)

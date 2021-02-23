@@ -2,7 +2,7 @@
 @inject('postHelper', 'App\Helpers\PostHelper')
 @section('main')
     {{-- This section summary --}}
-    <section class="max-w-7xl mx-auto pl-5 pr-5 pt-16 md:pt-0">
+    <section class="max-w-7xl mx-auto pl-5 pr-5 pt-24 mt-2 md:mt-0 md:pt-8">
         {{-- This section summary for mobile --}}
         <div class="grid grid-cols-3 gap-1 md:hidden">
             @foreach($top_post_list as $top_post)
@@ -22,7 +22,7 @@
         <div class="grid grid-cols-2 gap-1 hidden md:grid">
             <div class="col-span-1 relative">
                 <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']]['slug']), 'id' => $top_post_list[0]['id']]) }}">
-                    <img src="{{ $top_post_list[0]['thumbnail'] }}">
+                    <img class="w-full" src="{{ $top_post_list[0]['thumbnail'] }}">
                 </a>
                 <h2 class="text-left pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
                     <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']]['slug']), 'id' => $top_post_list[0]['id']]) }}" class="text-lg text-white hover:text-blue-500">
@@ -57,7 +57,7 @@
             <div class="container mx-auto">
                 <div class="grid grid-cols-4 gap-4">
                     <h2 class="col-span-4 text-xl md:text-3xl font-bold home-category-color">
-                        <a href="#" class="border-b-2 border-orange-700">Bài Viết Cùng Danh Mục</a>
+                        <a href="#" class="border-b-2 border-orange-700">Chủ Đề {{ $category_name }}</a>
                     </h2>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                     "category_list"         => $category_list,
                     "category_article_list" => $new_post_list,
                     "title_info"            => [
-                        "name"  => "Mới nhất",
+                        "name"  => "Tin tức khác",
                         "link"  => "#"
                     ],
                     'postHelper'            => $postHelper

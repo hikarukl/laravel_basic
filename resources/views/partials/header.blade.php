@@ -48,12 +48,6 @@
                             {{ $category['name'] }}
                             </a>
                         @endforeach
-                        {{--<a href="{{ route('home') }}" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
-                            <i class="far fa-home mr-2"></i>Trang chủ
-                        </a>
-                        <a href="{{ route('post-list', ['category' => "sport"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                            <i class="fad fa-futbol mr-2"></i>Thể thao
-                        </a>--}}
                     </div>
                 </div>
             </div>
@@ -93,22 +87,37 @@
     -->
     <div class="hidden sm:hidden" id="wrap-mobile_header_menus">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href="{{ route('home') }}" class="@if(!isset($category_selected)) bg-gray-900 @else text-gray-300 hover:bg-gray-700 hover:text-white @endif text-white block px-3 py-2 rounded-md text-base font-medium">
-                Trang chủ
+            <a href="{{ route('home') }}" class="@if(!isset($category_selected)) bg-gray-900 @else text-gray-300 @endif text-white block px-3 py-2 rounded-md text-base font-medium">
+                Trang Chủ
             </a>
 
             @foreach($menu_list as $category)
-                <a href="{{ route('post-list', ['category' => $category['slug']]) }}" class="@if(isset($category_selected) && $category_selected == $category['slug']) bg-gray-900 @else text-gray-300 hover:bg-gray-700 hover:text-white @endif text-white block px-3 py-2 rounded-md text-base font-medium">
-                    {{ $category['name'] }}
+                <a href="{{ route('post-list', ['category' => $category['slug']]) }}" class="@if(isset($category_selected) && $category_selected == $category['slug']) bg-gray-900 @else text-gray-300 @endif text-white block px-3 py-2 rounded-md text-base font-medium">
+                    {{ ucfirst($category['name']) }}
                 </a>
             @endforeach
-        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            {{--<a href="{{ route('home') }}" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
-                <i class="far fa-home mr-2"></i>Trang chủ
+            <a
+                href="{{ route('post-list', ['category' => 'moi-nhat']) }}"
+                class="text-white block px-3 py-2 rounded-md text-base font-medium">
+                Mới Nhất
             </a>
-            <a href="{{ route('post-list', ['category' => "sport"]) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                <i class="fad fa-futbol mr-2"></i>Thể thao
-            </a>--}}
         </div>
+    </div>
+    <div class="grid grid-cols-3 gap-4 pl-4 pr-4 text-center border-t border-red-500 sm:hidden" id="wrap-mobile_specific_menus">
+        <a
+            href="{{ route('post-list', ['category' => 'moi-nhat']) }}"
+            class="@if(isset($category_selected) && $category_selected == 'moi-nhat') bg-gray-900 @else text-gray-300 @endif text-white px-3 py-2 rounded-md text-base font-medium">
+            Mới Nhất
+        </a>
+        <a
+            href="{{ route('post-list', ['category' => 'doi-song']) }}"
+            class="@if(isset($category_selected) && $category_selected == 'doi-song') bg-gray-900 @else text-gray-300 @endif text-white px-3 py-2 rounded-md text-base font-medium">
+            Đời Sống
+        </a>
+        <a
+            href="{{ route('post-list', ['category' => 'phap-luat']) }}"
+            class="@if(isset($category_selected) && $category_selected == 'phap-luat') bg-gray-900 @else text-gray-300 @endif text-white px-3 py-2 rounded-md text-base font-medium">
+            Pháp Luật
+        </a>
     </div>
 </nav>

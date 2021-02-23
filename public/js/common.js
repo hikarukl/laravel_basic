@@ -6,6 +6,7 @@ $(document).ready(function () {
   btnSwitchMenu.on('click', function () {
     $(this).find('svg').toggle('hidden');
     $('#wrap-mobile_header_menus').toggle('hidden');
+    $('#wrap-mobile_specific_menus').toggle('hidden');
   });
 
   btnUserMenu.on('click', function () {

@@ -1,7 +1,7 @@
 @extends('master')
 @inject('postHelper', 'App\Helpers\PostHelper')
 @section('main')
-    <div class="max-w-7xl mx-auto pl-5 pr-5 pt-16 md:pt-0">
+    <div class="max-w-7xl mx-auto pl-5 pr-5 pt-24 mt-2 md:mt-0 md:pt-8">
         {{-- This section summary for mobile --}}
         <div class="grid grid-cols-3 gap-1 md:hidden">
             @foreach($top_post_list as $top_post)
@@ -21,7 +21,7 @@
         <div class="grid grid-cols-2 gap-1 hidden md:grid">
             <div class="col-span-1 relative">
                 <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']]['slug']), 'id' => $top_post_list[0]['id']]) }}">
-                    <img src="{{ $top_post_list[0]['thumbnail'] }}">
+                    <img class="w-full" src="{{ $top_post_list[0]['thumbnail'] }}">
                 </a>
                 <h2 class="text-left pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
                     <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']]['slug']), 'id' => $top_post_list[0]['id']]) }}" class="text-lg text-white hover:text-blue-500">
