@@ -13,7 +13,7 @@ class CommonConstant
 
     // Cache
     const CACHE_HOME_NAME = "GET_HOME_INFORMATION";
-    const CACHE_HOME_EXPIRE_IN_MINUTES = 30;
+    const CACHE_HOME_EXPIRE_IN_MINUTES = 10;
     const MIN_ARTICLES_NEED_TO_DISPLAY = 5;
 
     // Cache article detail prefix
