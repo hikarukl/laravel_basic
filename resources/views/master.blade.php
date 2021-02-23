@@ -16,6 +16,7 @@
     <meta property="og:url" content="{{ Request::url() }}" />
     <meta property="og:image:alt" content=""/>
     <meta property="og:type" content="Website" />
+    <meta property="fb:pages" content="255498734635384" />
     @php $time = time(); @endphp
     <link href="{{ asset("css/app.css?t=$time") }}" rel="stylesheet">
     <link href="{{ asset("css/all.min.css") }}" rel="stylesheet">
@@ -27,6 +28,25 @@
     <script data-ad-client="ca-pub-1183003705015401" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '623528114334712',
+      xfbml      : true,
+      version    : 'v9.0'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
 <section id="main-page">
     <div class="relative">
         @include('partials.header')

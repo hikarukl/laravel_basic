@@ -134,4 +134,24 @@ class PostController extends Controller
             return view('errors.500');
         }
     }
+
+    public function instantArticles()
+    {
+        // Request get call categories
+        $allCategories = $this->categoryService->getAllCategories();
+
+        // Request get newest 100 articles
+        $newestArticles = $this->articleService->getArticles();
+
+        // Get 9 newest articles
+        $newPostList = array_slice($newestArticles, 0, 20);
+
+        $response = [
+            'articles'      => $newPostList,
+            'category_list' => $allCategories,
+            'title'         => "Instant Articles"
+        ];
+
+        return view('pages.posts.instant-articles', $response);
+    }
 }
