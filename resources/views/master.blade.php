@@ -9,13 +9,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{!! url('/')  !!}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta property="og:site_name" content="Tin tức" />
-    <meta property="og:type" content="Website" />
+    <meta property="og:site_name" content="Trang tin hay" />
+    <meta property="og:type" content="News" />
     <meta property="og:image:width" content="200"/>
     <meta property="og:image:height" content="200"/>
     <meta property="og:url" content="{{ Request::url() }}" />
     <meta property="og:image:alt" content=""/>
-    <meta property="og:type" content="Website" />
     <meta property="fb:pages" content="255498734635384" />
     @php $time = time(); @endphp
     <link href="{{ asset("css/app.css?t=$time") }}" rel="stylesheet">

@@ -29,10 +29,10 @@
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start" id="wrap-header_menus">
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
+                        <img class="block lg:hidden h-8 w-auto" src="{{ asset('images/logo.png') }}" alt="Trang tin hay">
                     </a>
                     <a href="{{ route('home') }}">
-                        <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Workflow">
+                        <img class="hidden lg:block h-8 w-auto" src="{{ asset('images/logo.png') }}" alt="Trang tin hay">
                     </a>
                 </div>
                 <div class="hidden sm:block sm:ml-6">
