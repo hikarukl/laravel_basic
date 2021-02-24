@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://use.typekit.net/bqb1nuo.css">
     @yield('styles')
     @stack('styles_component')
-    <script data-ad-client="ca-pub-1183003705015401" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script data-ad-client="ca-pub-3442901634407871" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
 <script>
