@@ -64,18 +64,6 @@
 
             <div class="container mx-auto mt-3">
                 <div class="grid grid-cols-1">
-                    {{--<div class="grid">
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-format="fluid"
-                             data-ad-layout-key="-6o+cd+1b-14+b1"
-                             data-ad-client="ca-pub-1183003705015401"
-                             data-ad-slot="9312214781"></ins>
-                        <script>
-                          (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
-                    </div>--}}
                     @foreach($related_post_list as $related_post)
                         <div class="grid mb-8 md:grid-cols-2">
                             <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['id']]) }}" class="md:col-span-1">
