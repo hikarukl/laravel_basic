@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\GuzzleClientHelper;
 use App\Services\Article;
 use App\Services\Category;
+use Facebook\Facebook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\View;
 
 class PostController extends Controller
 {
@@ -137,6 +140,14 @@ class PostController extends Controller
 
     public function instantArticles()
     {
+        // Create facebook instance
+        $fb = new Facebook([
+            'app_id'                => env('FACEBOOK_APP_ID'),
+            'app_secret'            => env('FACEBOOK_APP_SECRET'),
+            'default_graph_version' => 'v2.10',
+        ]);
+        $pageId = env('FACEBOOK_PAGE_ID');
+
         // Request get call categories
         $allCategories = $this->categoryService->getAllCategories();
 
@@ -146,12 +157,35 @@ class PostController extends Controller
         // Get 9 newest articles
         $newPostList = array_slice($newestArticles, 0, 20);
 
-        $response = [
-            'articles'      => $newPostList,
-            'category_list' => $allCategories,
-            'title'         => "Instant Articles"
-        ];
+        $filterPost = [];
+        foreach ($newPostList as $post) {
+            $detail = $this->articleService->getArticleDetail($post['id']);
+            $detail['category'] = $post['category'];
 
-        return view('pages.posts.instant-articles', $response);
+            $contentHtml = response()->view('pages.posts._rss', ['article' => $detail, 'category_list' => $allCategories])->content();
+
+            try {
+                $responseIa = $fb->post("/{$pageId}/instant_articles", [
+                    'html_source'      => $contentHtml,
+                    'published'        => false,
+                    'development_mode' => true,
+                    'access_token'     => env('FACEBOOK_APP_ACCESS_TOKEN')
+                ]);
+
+                Log::info("Create ia: " . $responseIa->getBody());
+            } catch (\Exception $e) {
+                Log::error($e->getMessage());
+
+                return response()->json([
+                    'status'  => 1,
+                    'message' => "Thất bại."
+                ]);
+            }
+        }
+
+        return response()->json([
+            'status'  => 1,
+            'message' => "Thành công."
+        ]);
     }
 }

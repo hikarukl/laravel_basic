@@ -1,7 +1,7 @@
 @extends('master')
 @inject('postHelper', 'App\Helpers\PostHelper')
 @section('main')
-    <div class="max-w-7xl mx-auto pl-5 pr-5 pt-24 mt-2 md:mt-0 md:pt-8">
+    <div class="max-w-7xl mx-auto pl-5 pr-5 pt-28 mt-2 md:mt-0 md:pt-8">
         {{-- This section summary for mobile --}}
         <div class="grid grid-cols-3 gap-1 md:hidden">
             @foreach($top_post_list as $top_post)

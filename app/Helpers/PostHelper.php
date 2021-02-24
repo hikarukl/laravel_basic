@@ -39,4 +39,10 @@ class PostHelper
         return $now->diff($time)->d . ' ngày ' . $now->diff($time)->h . ' giờ trước';
     }
 
+    public static function convertTimeInstantArticle($time, $type)
+    {
+        $time = Carbon::parse($time);
+
+        return $time->format($type);
+    }
 }

@@ -2,7 +2,7 @@
 @inject('postHelper', 'App\Helpers\PostHelper')
 @section('main')
     {{-- This section summary --}}
-    <div class="max-w-7xl mx-auto mt-3 pl-5 pr-5 pt-24 mt-2 md:mt-0 md:pt-3 md:grid md:grid-cols-3">
+    <div class="max-w-7xl mx-auto mt-3 pl-5 pr-5 pt-28 mt-2 md:mt-0 md:pt-3 md:grid md:grid-cols-3">
         <div class="md:col-span-2">
             <div class="grid grid-cols-1 auto-cols-max md:text-left md:flex md:flex-col">
                 <p class="font-bold text-lg md:text-3xl mb-4">
