@@ -5,7 +5,6 @@
         <link rel="canonical" href="{{ route('post-detail', ['category' => $category_list[$article['category']['id']]['slug'], 'id' => $article['id']]) }}">
         <meta charset="utf-8"/>
         <meta property="op:markup_version" content="v1.0"/>
-        <meta property="fb:use_automatic_ad_placement" content="true"/>
         <meta property="fb:article_style" content="default"/>
     </head>
     <body>
@@ -38,7 +37,7 @@
             @endforeach
 
             <footer>
-                <aside>Some plaintext credits.</aside>
+                <aside>{{  $article['title']  }}</aside>
             </footer>
         </article>
     </body>

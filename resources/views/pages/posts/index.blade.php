@@ -10,7 +10,7 @@
                     <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post['category']['id']]['slug']), 'id' => $top_post['id']]) }}">
                         <img src="{{ $top_post['thumbnail'] }}">
                     </a>
-                    <h2 class="text-left pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
+                    <h2 class="text-left text-title-common pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
                         <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post['category']['id']]['slug']), 'id' => $top_post['id']]) }}" class="text-sm text-white hover:text-blue-500">
                             {{ $top_post['title'] }}
                         </a>
@@ -24,8 +24,8 @@
                 <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']]['slug']), 'id' => $top_post_list[0]['id']]) }}">
                     <img class="w-full" src="{{ $top_post_list[0]['thumbnail'] }}">
                 </a>
-                <h2 class="text-left pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
-                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']]['slug']), 'id' => $top_post_list[0]['id']]) }}" class="text-lg text-white hover:text-blue-500">
+                <h2 class="text-left text-title-common pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
+                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']]['slug']), 'id' => $top_post_list[0]['id']]) }}" class="text-lg md:text-xl text-white hover:text-blue-500">
                         {{ $top_post_list[0]['title'] }}
                     </a>
                 </h2>
@@ -36,7 +36,7 @@
                         <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[$i]['category']['id']]['slug']), 'id' => $top_post_list[$i]['id']]) }}">
                             <img src="{{ $top_post_list[$i]['thumbnail'] }}">
                         </a>
-                        <h2 class="text-left pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-1/2">
+                        <h2 class="text-left text-title-common pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-1/2">
                             <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[$i]['category']['id']]['slug']), 'id' => $top_post_list[$i]['id']]) }}" class="text-sm text-white hover:text-blue-500">
                                 @if(strlen($top_post_list[$i]['title']) > 137)
                                     {{ substr($top_post_list[$i]['title'], 0 , 134) }}...
@@ -70,7 +70,7 @@
                                 <img src="{{ $related_post['thumbnail'] }}">
                             </a>
                             <div class="md:col-span-1 md:pl-5 grid md:block">
-                                <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['id']]) }}" class="mt-3 md:mt-0 text-lg font-bold text-gray-800 hover:text-blue-500">
+                                <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['id']]) }}" class="mt-3 md:mt-0 text-lg text-title-common font-bold text-gray-800 hover:text-blue-500">
                                     {{ $related_post['title'] }}
                                 </a>
                                 <p class="text-gray-500 text-sm mt-1 md:mt-3 md:mb-3">

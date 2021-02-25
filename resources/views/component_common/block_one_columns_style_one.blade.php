@@ -13,7 +13,7 @@
                 <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['id']]) }}">
                     <img src="{{ $new_post_list[0]['thumbnail'] }}"/>
                 </a>
-                <h2 class="text-left pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
+                <h2 class="text-left text-title-common pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
                     <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['id']]) }}" class="text-sm text-white hover:text-blue-500">
                         {{ $new_post_list[0]['title'] }}
                     </a>
@@ -26,7 +26,7 @@
                     <img src="{{ $article['thumbnail'] }}">
                 </a>
                 <div class="col-span-2">
-                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['id']]) }}" class="col-span-2 text-sm font-bold text-gray-800 hover:text-blue-500">
+                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['id']]) }}" class="col-span-2 text-sm text-title-common font-bold text-gray-800 hover:text-blue-500">
                         @if(strlen($article['title']) > 119)
                             @php
                                 $title = substr($article['title'], 0 , 119);

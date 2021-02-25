@@ -26,7 +26,7 @@
                     'category' => $category_list['slug'],
                     'id'       => $category_article_list['article_list'][0]['id']
                 ])
-            }}" class="mt-3 text-lg font-bold text-gray-800 hover:text-blue-500">
+            }}" class="mt-3 text-lg text-title-common font-bold text-gray-800 hover:text-blue-500">
                 {{ $category_article_list['article_list'][0]['title'] }}
             </a>
             <p class="text-gray-500 text-sm mt-1"><i class="fad fa-clock mr-2"></i>
@@ -47,7 +47,7 @@
                             <img src="{{ $category_article_list['article_list'][$i]['thumbnail'] }}">
                         </a>
                         <div class="col-span-2">
-                            <a href="{{ route('post-detail', ['category' => $category_list['slug'], 'id' => $category_article_list['article_list'][$i]['id']]) }}" class="col-span-2 text-sm font-bold text-gray-800 hover:text-blue-500">
+                            <a href="{{ route('post-detail', ['category' => $category_list['slug'], 'id' => $category_article_list['article_list'][$i]['id']]) }}" class="col-span-2 text-sm text-title-common font-bold text-gray-800 hover:text-blue-500">
                                 @if(strlen($category_article_list['article_list'][$i]['title']) > 119)
                                     @php
                                         $title = substr($category_article_list['article_list'][$i]['title'], 0 , 119);

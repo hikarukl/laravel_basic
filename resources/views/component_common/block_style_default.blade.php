@@ -27,7 +27,7 @@
                     'category' => $category_list['slug'],
                     'id'       => $article['id']
                 ])
-            }}" class="mt-3 text-lg font-bold text-gray-800 hover:text-blue-500">
+            }}" class="mt-3 text-lg text-title-common font-bold text-gray-800 hover:text-blue-500">
                     {{ $article['title'] }}
                 </a>
                 <p class="text-gray-500 text-sm mt-1"><i class="fad fa-clock mr-2"></i>

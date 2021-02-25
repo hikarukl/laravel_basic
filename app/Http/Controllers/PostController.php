@@ -155,7 +155,7 @@ class PostController extends Controller
         $newestArticles = $this->articleService->getArticles();
 
         // Get 9 newest articles
-        $newPostList = array_slice($newestArticles, 0, 20);
+        $newPostList = array_slice($newestArticles, 0, 11);
 
         $filterPost = [];
         foreach ($newPostList as $post) {
@@ -168,7 +168,7 @@ class PostController extends Controller
                 $responseIa = $fb->post("/{$pageId}/instant_articles", [
                     'html_source'      => $contentHtml,
                     'published'        => false,
-                    'development_mode' => true,
+                    'development_mode' => false,
                     'access_token'     => env('FACEBOOK_APP_ACCESS_TOKEN')
                 ]);
 

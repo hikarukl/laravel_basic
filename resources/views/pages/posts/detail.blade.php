@@ -5,19 +5,19 @@
     <div class="max-w-7xl mx-auto mt-3 pl-5 pr-5 pt-28 mt-2 md:mt-0 md:pt-3 md:grid md:grid-cols-3">
         <div class="md:col-span-2">
             <div class="grid grid-cols-1 auto-cols-max md:text-left md:flex md:flex-col">
-                <p class="font-bold text-lg md:text-3xl mb-4">
+                <p class="font-bold text-title-common text-2xl md:text-4xl mb-4">
                     {{ $post['title'] }}
                 </p>
-                <p class="text-gray-500 text-lg mt-1 mb-4"><i class="fad fa-clock mr-2"></i>
+                <p class="text-gray-500 text-sm mt-1 mb-4"><i class="fad fa-clock mr-2"></i>
                     {{ $postHelper::convertTimeToDisplay($post['published_time']) }}
                 </p>
-                <p class="mb-3 text-gray-400">
+                <p class="mb-3 text-gray-500">
                     {{ $post['description'] }}
                 </p>
                 <img src="{{ $post['thumbnail'] }}" class="rounded mb-4">
                 @foreach($post['content'] as $content)
                     @if(is_string($content) && !preg_match("/.*(Ảnh:).*/", $content) && !preg_match("/.*(Nguồn:).*/", $content))
-                        <p class="text-lg text-gray-700 mb-4">
+                        <p class="mb-4 text-content-detail">
                             {!! $content !!}
                         </p>
                     @else
@@ -44,7 +44,7 @@
                         <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['id']]) }}">
                             <img src="{{ $related_post['thumbnail'] }}" class="rounded">
                         </a>
-                        <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['id']]) }}" class="pl-1 md:pl-0 font-bold mt-2 text-sm md:text-sm hover:text-blue-500">
+                        <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['id']]) }}" class="pl-1 md:pl-0 font-bold mt-2 text-lg text-title-common hover:text-blue-500">
                             {{ $related_post['title'] }}
                         </a>
                         <p class="text-gray-500 text-sm mt-1"><i class="fad fa-clock mr-2"></i>
