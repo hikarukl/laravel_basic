@@ -44,31 +44,37 @@ class HomeController extends Controller
 
             // Request get articles base on cate gory slug
             $categoryArticleList = [];
-            foreach ($allCategories as $cateId => $categoryInfo) {
-                $articles = $this->articleService->getArticleBaseOnCategorySlug($categoryInfo['slug']);
+            $categoryList = [];
 
-                if (count($articles) < CommonConstant::MIN_ARTICLES_NEED_TO_DISPLAY) {
+            foreach ($allCategories as $cateId => $categoryInfo) {
+                $categoryList[$cateId] = $categoryInfo['slug'];
+            }
+
+            $postBySlugs = $this->articleService->getArticleBaseOnCategorySlugAsync($categoryList);
+
+            foreach ($postBySlugs as $categoryId => $listPerCate) {
+                if (count($listPerCate) < CommonConstant::MIN_ARTICLES_NEED_TO_DISPLAY) {
                     continue;
                 }
 
                 // Calculate articles to set view
                 $viewComponent = "component_common.block_style_default";
-                if (count($articles) > 12) {
-                    $articles = array_slice($articles, 0, 12);
+                if (count($listPerCate) > 12) {
+                    $listPerCate = array_slice($listPerCate, 0, 12);
                     $viewComponent = "component_common.block_three_columns_style_two";
                 }
 
-                if (count($articles) >= 7) {
-                    $articles = array_slice($articles, 0, 7);
+                if (count($listPerCate) >= 7) {
+                    $listPerCate = array_slice($listPerCate, 0, 7);
                     $viewComponent = "component_common.block_three_columns_style_one";
                 }
 
-                $categoryArticleList[$cateId] = [
-                    'category_id'   => $categoryInfo['id'],
-                    'category_name' => $categoryInfo['name'],
-                    'category_slug' => $categoryInfo['slug'],
+                $categoryArticleList[$categoryId] = [
+                    'category_id'   => $categoryId,
+                    'category_name' => $listPerCate[0]['category']['name'],
+                    'category_slug' => $categoryList[$categoryId],
                     'view_name'     => $viewComponent,
-                    'article_list'  => $articles
+                    'article_list'  => $listPerCate
                 ];
             }
 

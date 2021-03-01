@@ -10,10 +10,11 @@ class CommonConstant
     const URL_REQUEST_ARTICLES = "http://139.59.117.80/kenh14/articles/";
     const URL_REQUEST_ARTICLE_DETAIL = "http://139.59.117.80/kenh14/article/id";
     const URL_REQUEST_ARTICLE_CATEGORY = "http://139.59.117.80/kenh14/category-articles/slug";
+    const URL_REQUEST_HOST = "http://139.59.117.80/";
 
     // Cache
     const CACHE_HOME_NAME = "GET_HOME_INFORMATION";
-    const CACHE_HOME_EXPIRE_IN_MINUTES = 10;
+    const CACHE_HOME_EXPIRE_IN_MINUTES = 20;
     const MIN_ARTICLES_NEED_TO_DISPLAY = 5;
 
     // Cache article detail prefix

@@ -8,6 +8,8 @@ use App\Constants\CommonConstant;
 use App\Helpers\GuzzleClientHelper;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use GuzzleHttp\Client;
+use GuzzleHttp\Promise;
 
 class Article
 {
@@ -116,6 +118,63 @@ class Article
             $responsePost = GuzzleClientHelper::sendRequestGetClientGuzzle($params);
 
             $result = json_decode($responsePost, true);
+
+            Cache::put(
+                $cacheName,
+                $result,
+                now()->addMinutes(CommonConstant::CACHE_HOME_EXPIRE_IN_MINUTES)
+            );
+
+            return $result;
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            Log::error($e->getTraceAsString());
+
+            return [];
+        }
+    }
+
+    /**
+     * Get post base on slugs but call async
+     *
+     * @param array $categoryList
+     *
+     * @return array
+     *
+     */
+    public function getArticleBaseOnCategorySlugAsync($categoryList)
+    {
+        try {
+            $cacheName = CommonConstant::CACHE_ARTICLE_CATEGORY_PREFIX_NAME . "ASYNC";
+            if (Cache::has($cacheName)) {
+                return Cache::get($cacheName);
+            }
+
+            // Request get categories
+            $client = new Client(['base_uri' => CommonConstant::URL_REQUEST_HOST]);
+
+            $promises = [];
+            foreach ($categoryList as $cateId => $category) {
+                $promises[$cateId] = $client->getAsync("/kenh14/category-articles/{$category}");
+            }
+
+            $responseData = Promise\Utils::unwrap($promises);
+
+            $result = [];
+            foreach ($responseData as $cateId => $data) {
+                $dataArr = json_decode((string)$data->getBody(), true);
+                $dataParsed = $dataArr['results'];
+
+                foreach ($dataParsed as $offset => $article) {
+                    if (empty($article['category'])) {
+                        $dataParsed[$offset]['category'] = [
+                            'id'   => Category::CATEGORY_SOCIAL_ID,
+                            'name' => "Xã hội"
+                        ];
+                    }
+                }
+                $result[$cateId] = $dataParsed;
+            }
 
             Cache::put(
                 $cacheName,
