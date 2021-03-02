@@ -80,14 +80,11 @@ body {
 
 .text-content-detail {
     font-family: "Times New Roman", Georgia, Serif, sans-serif;
-    font-size: 17px;
-    line-height: 25px;
+    font-size: 18px;
+    line-height: 26px;
 }
 
 /* Article detail */
-.article-detail img {
-    max-width: 75%;
-}
 .text-size-description {
     font-size: 15px;
 }

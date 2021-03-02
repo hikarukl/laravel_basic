@@ -15,7 +15,7 @@
                     {{ $post['description'] }}
                 </p>
                 <div class="w-full flex justify-center">
-                    <img src="{{ $post['thumbnail'] }}" class="rounded mb-4">
+                    <img src="{{ $post['thumbnail'] }}" class="rounded mb-4 md:max-w-screen-sm">
                 </div>
                 @foreach($post['content'] as $content)
                     @if(is_string($content) && !preg_match("/.*(Ảnh:).*/", $content) && !preg_match("/.*(Nguồn:).*/", $content))
@@ -26,11 +26,11 @@
                         @if(is_array($content))
                             @if($content['type'] == 'img')
                                 <div class="w-full flex justify-center">
-                                    <img src="{{ $content['src'] }}" class="rounded mb-4">
+                                    <img src="{{ $content['src'] }}" class="rounded mb-4 md:max-w-screen-sm">
                                 </div>
                             @elseif($content['type'] == 'gif')
                                 <div class="w-full flex justify-center">
-                                    <img src="{{ $content['poster'] }}" class="rounded mb-4">
+                                    <img src="{{ $content['poster'] }}" class="rounded mb-4 md:max-w-screen-sm">
                                 </div>
                             @endif
                         @endif
