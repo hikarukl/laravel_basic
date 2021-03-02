@@ -1,4 +1,4 @@
-<section id="section-home_newest_sport" class="pr-5 pl-5 mb-5 mt-8 col-span-3">
+<section id="section-three_style_one" class="pr-5 pl-5 mb-5 mt-8 col-span-3">
     <div class="container mx-auto">
         <div class="grid grid-cols-4 gap-4">
             <h2 class="col-span-4 text-xl md:text-3xl uppercase font-bold home-category-color">
@@ -32,7 +32,7 @@
             <p class="text-gray-500 text-sm mt-1"><i class="fad fa-clock mr-2"></i>
                 {{ $postHelper::convertTimeToDisplay($category_article_list['article_list'][0]['published_time']) }}
             </p>
-            <p class="mt-2 text-gray-700 text-sm">
+            <p class="mt-2 text-gray-700 text-size-description">
                 {{ $category_article_list['article_list'][0]['description'] }}
             </p>
         </div>

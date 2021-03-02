@@ -38,6 +38,11 @@ class HomeController extends Controller
                 return in_array($item['id'], Category::CATEGORY_LIST_FILTER_MAP);
             });
 
+            // Filter categories for content display
+            $filteredContentCategory = array_filter($allCategories, function ($item) {
+                return in_array($item['id'], Category::CATEGORY_LIST_CONTENT_FILTER_MAP);
+            });
+
             if (empty($allCategories)) {
                 return view('errors.500');
             }
@@ -46,7 +51,7 @@ class HomeController extends Controller
             $categoryArticleList = [];
             $categoryList = [];
 
-            foreach ($allCategories as $cateId => $categoryInfo) {
+            foreach ($filteredContentCategory as $cateId => $categoryInfo) {
                 $categoryList[$cateId] = $categoryInfo['slug'];
             }
 

@@ -14,7 +14,7 @@
                     <img src="{{ $new_post_list[0]['thumbnail'] }}"/>
                 </a>
                 <h2 class="text-left text-title-common pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
-                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['id']]) }}" class="text-sm text-white hover:text-blue-500">
+                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['id']]) }}" class="text-size-description text-white hover:text-blue-500">
                         {{ $new_post_list[0]['title'] }}
                     </a>
                 </h2>

@@ -33,7 +33,7 @@
                         <i class="fad fa-clock mr-2"></i>
                         {{ $postHelper::convertTimeToDisplay($article['published_time']) }}
                     </p>
-                    <p class="mt-2 text-gray-700 text-sm">
+                    <p class="mt-2 text-gray-700 text-size-description">
                         {{ $article['description'] }}
                     </p>
                 </div>

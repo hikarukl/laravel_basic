@@ -2,9 +2,9 @@
 @inject('postHelper', 'App\Helpers\PostHelper')
 @section('main')
     {{-- This section summary --}}
-    <div class="max-w-7xl mx-auto mt-3 pl-5 pr-5 pt-28 mt-2 md:mt-0 md:pt-3 md:grid md:grid-cols-3">
+    <div class="max-w-7xl mx-auto mt-3 pl-5 pr-5 pt-28 mt-2 md:mt-0 md:pt-8 md:grid md:grid-cols-3">
         <div class="md:col-span-2">
-            <div class="grid grid-cols-1 auto-cols-max md:text-left md:flex md:flex-col">
+            <div class="grid grid-cols-1 auto-cols-max md:text-left article-detail">
                 <p class="font-bold text-title-common text-2xl md:text-4xl mb-4">
                     {{ $post['title'] }}
                 </p>
@@ -14,7 +14,9 @@
                 <p class="mb-3 text-gray-500">
                     {{ $post['description'] }}
                 </p>
-                <img src="{{ $post['thumbnail'] }}" class="rounded mb-4">
+                <div class="w-full flex justify-center">
+                    <img src="{{ $post['thumbnail'] }}" class="rounded mb-4">
+                </div>
                 @foreach($post['content'] as $content)
                     @if(is_string($content) && !preg_match("/.*(Ảnh:).*/", $content) && !preg_match("/.*(Nguồn:).*/", $content))
                         <p class="mb-4 text-content-detail">
@@ -23,14 +25,18 @@
                     @else
                         @if(is_array($content))
                             @if($content['type'] == 'img')
-                                <img src="{{ $content['src'] }}" class="rounded mb-4">
+                                <div class="w-full flex justify-center">
+                                    <img src="{{ $content['src'] }}" class="rounded mb-4">
+                                </div>
                             @elseif($content['type'] == 'gif')
-                                <img src="{{ $content['poster'] }}" class="rounded mb-4">
+                                <div class="w-full flex justify-center">
+                                    <img src="{{ $content['poster'] }}" class="rounded mb-4">
+                                </div>
                             @endif
                         @endif
                     @endif
                 @endforeach
-                <p class="text-lg text-gray-700 mb-4">
+                <p class="text-lg text-gray-700 mb-4 text-right">
                     <a href="{{ $post['url'] }}" target="_blank">Theo kenh14.vn <i class="fas fa-external-link"></i></a>
                 </p>
             </div>

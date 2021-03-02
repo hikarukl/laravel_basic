@@ -122,7 +122,7 @@ class Article
             Cache::put(
                 $cacheName,
                 $result,
-                now()->addMinutes(CommonConstant::CACHE_HOME_EXPIRE_IN_MINUTES)
+                now()->addMinutes(CommonConstant::CACHE_ARTICLE_DETAIL_EXPIRE_IN_MINUTES)
             );
 
             return $result;

@@ -75,7 +75,7 @@
                     "category_list"         => $category_list,
                     "category_article_list" => $new_post_list,
                     "title_info"            => [
-                        "name"  => "Mới nhất",
+                        "name"  => "Tin mới",
                         "link"  => "#"
                     ],
                     'postHelper'            => $postHelper

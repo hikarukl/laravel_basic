@@ -1,4 +1,4 @@
-<section id="section-home_newest_sport" class="pr-5 pl-5 mb-5 mt-8 col-span-3 hidden md:block">
+<section id="section-three_style_two" class="pr-5 pl-5 mb-5 mt-8 col-span-3 hidden md:block">
     <div class="container mx-auto">
         <div class="grid grid-cols-4 gap-4">
             <div class="grid grid-cols-4 gap-4">

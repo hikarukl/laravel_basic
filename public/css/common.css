@@ -83,3 +83,11 @@ body {
     font-size: 17px;
     line-height: 25px;
 }
+
+/* Article detail */
+.article-detail img {
+    max-width: 75%;
+}
+.text-size-description {
+    font-size: 15px;
+}
