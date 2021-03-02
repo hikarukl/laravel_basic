@@ -14,7 +14,7 @@
                 <p class="mb-3 text-gray-500">
                     {{ $post['description'] }}
                 </p>
-                <div class="w-full flex justify-center">
+                <div class="w-full md:flex md:justify-center">
                     <img src="{{ $post['thumbnail'] }}" class="rounded mb-4 md:max-w-screen-sm">
                 </div>
                 @foreach($post['content'] as $content)
@@ -25,11 +25,11 @@
                     @else
                         @if(is_array($content))
                             @if($content['type'] == 'img')
-                                <div class="w-full flex justify-center">
+                                <div class="w-full md:flex md:justify-center">
                                     <img src="{{ $content['src'] }}" class="rounded mb-4 md:max-w-screen-sm">
                                 </div>
                             @elseif($content['type'] == 'gif')
-                                <div class="w-full flex justify-center">
+                                <div class="w-full md:flex md:justify-center">
                                     <img src="{{ $content['poster'] }}" class="rounded mb-4 md:max-w-screen-sm">
                                 </div>
                             @endif
