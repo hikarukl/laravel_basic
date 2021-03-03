@@ -57,7 +57,7 @@
             <div class="container mx-auto">
                 <div class="grid grid-cols-4 gap-4">
                     <h2 class="col-span-4 text-xl md:text-3xl font-bold home-category-color">
-                        <a href="#" class="border-b-2 border-orange-700">Chủ Đề {{ ucwords($category_name) }}</a>
+                        <a href="#" class="border-b-2 border-orange-700">{{ ucwords($category_name) }}</a>
                     </h2>
                 </div>
             </div>
