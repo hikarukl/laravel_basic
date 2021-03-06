@@ -71,7 +71,7 @@ class Category
 
             // Request get categories
             $params = [
-                'url' => CommonConstant::URL_REQUEST_CATEGORIES
+                'url' => env('API_PREFIX_URL', "http://10.104.0.2/") . CommonConstant::URL_REQUEST_CATEGORIES
             ];
             $responseCategory = GuzzleClientHelper::sendRequestGetClientGuzzle($params);
 

@@ -6,10 +6,10 @@ namespace App\Constants;
 
 class CommonConstant
 {
-    const URL_REQUEST_CATEGORIES = "http://139.59.117.80/kenh14/categories/";
-    const URL_REQUEST_ARTICLES = "http://139.59.117.80/kenh14/articles/";
-    const URL_REQUEST_ARTICLE_DETAIL = "http://139.59.117.80/kenh14/article/id";
-    const URL_REQUEST_ARTICLE_CATEGORY = "http://139.59.117.80/kenh14/category-articles/slug";
+    const URL_REQUEST_CATEGORIES = "kenh14/categories/";
+    const URL_REQUEST_ARTICLES = "kenh14/articles/";
+    const URL_REQUEST_ARTICLE_DETAIL = "kenh14/article/id";
+    const URL_REQUEST_ARTICLE_CATEGORY = "kenh14/category-articles/slug";
     const URL_REQUEST_HOST = "http://139.59.117.80/";
 
     // Cache

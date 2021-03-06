@@ -5,23 +5,31 @@
     <div class="max-w-7xl mx-auto mt-3 pl-5 pr-5 pt-28 mt-2 md:mt-0 md:pt-8 md:grid md:grid-cols-3">
         <div class="md:col-span-2">
             <div class="grid grid-cols-1 auto-cols-max md:text-left article-detail">
-                <p class="font-bold text-title-common text-2xl md:text-4xl mb-4">
-                    {{ $post['title'] }}
-                </p>
-                <p class="text-gray-500 text-sm mt-1 mb-4"><i class="fad fa-clock mr-2"></i>
-                    {{ $postHelper::convertTimeToDisplay($post['published_time']) }}
-                </p>
-                <p class="mb-3 text-gray-500">
-                    {{ $post['description'] }}
-                </p>
+                <div class="w-full text-left md:flex md:justify-center">
+                    <p class="font-bold text-title-common text-2xl md:text-4xl mb-4  md:w-96">
+                        {{ $post['title'] }}
+                    </p>
+                </div>
+                <div class="w-full text-left md:flex md:justify-center">
+                    <p class="text-gray-500 text-sm mt-1 mb-4  md:w-96"><i class="fad fa-clock mr-2"></i>
+                        {{ $postHelper::convertTimeToDisplay($post['published_time']) }}
+                    </p>
+                </div>
+                <div class="w-full text-left md:flex md:justify-center">
+                    <p class="mb-3 text-gray-500 md:w-96">
+                        {{ $post['description'] }}
+                    </p>
+                </div>
                 <div class="w-full md:flex md:justify-center">
                     <img src="{{ $post['thumbnail'] }}" class="rounded mb-4 md:max-w-screen-sm">
                 </div>
                 @foreach($post['content'] as $content)
                     @if(is_string($content) && !preg_match("/.*(Ảnh:).*/", $content) && !preg_match("/.*(Nguồn:).*/", $content))
-                        <p class="mb-4 text-content-detail">
-                            {!! $content !!}
-                        </p>
+                        <div class="w-full text-left md:flex md:justify-center">
+                            <p class="mb-4 text-content-detail md:flex-initial md:w-96">
+                                {!! $content !!}
+                            </p>
+                        </div>
                     @else
                         @if(is_array($content))
                             @if($content['type'] == 'img')
@@ -36,9 +44,12 @@
                         @endif
                     @endif
                 @endforeach
-                <p class="text-lg text-gray-700 mb-4 text-right">
-                    <a href="{{ $post['url'] }}" target="_blank">Theo kenh14.vn <i class="fas fa-external-link"></i></a>
-                </p>
+                <div class="w-full text-left md:flex md:justify-center">
+                    <p class="text-lg text-gray-700 mb-4 text-right md:w-96">
+                        <a href="{{ $post['url'] }}" target="_blank">Theo kenh14.vn <i class="fas fa-external-link"></i></a>
+                    </p>
+                </div>
+
             </div>
 
             <h2 class="font-bold text-lg md:text-3xl mb-3 mt-5 home-category-color">

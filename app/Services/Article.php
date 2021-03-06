@@ -33,7 +33,7 @@ class Article
 
             // Request get categories
             $params = [
-                'url'   => CommonConstant::URL_REQUEST_ARTICLES,
+                'url'   => env('API_PREFIX_URL', "http://10.104.0.2/") . CommonConstant::URL_REQUEST_ARTICLES,
                 'query' => [
                     'limit'  => isset($options['limit']) ? $options['limit'] :  self::DEFAULT_LIMIT_GET_ARTICLES,
                     'offset' => isset($options['offset']) ? $options['offset'] : self::DEFAULT_START_OFFSET
@@ -74,8 +74,9 @@ class Article
             }
 
             // Request get categories
+            $url = env('API_PREFIX_URL', "http://10.104.0.2/") . CommonConstant::URL_REQUEST_ARTICLE_CATEGORY;
             $params = [
-                'url'   => str_replace("slug", $categorySlug, CommonConstant::URL_REQUEST_ARTICLE_CATEGORY),
+                'url'   => str_replace("slug", $categorySlug, $url),
             ];
 
             $result = $this->getArticlesRequest($params);
@@ -111,8 +112,9 @@ class Article
                 return Cache::get($cacheName);
             }
 
+            $url = env('API_PREFIX_URL', "http://10.104.0.2/") . CommonConstant::URL_REQUEST_ARTICLE_DETAIL;
             $params = [
-                'url' => str_replace("id", $articleId, CommonConstant::URL_REQUEST_ARTICLE_DETAIL)
+                'url' => str_replace("id", $articleId, $url)
             ];
 
             $responsePost = GuzzleClientHelper::sendRequestGetClientGuzzle($params);
@@ -151,7 +153,7 @@ class Article
             }
 
             // Request get categories
-            $client = new Client(['base_uri' => CommonConstant::URL_REQUEST_HOST]);
+            $client = new Client(['base_uri' => env('API_PREFIX_URL', "http://10.104.0.2/")]);
 
             $promises = [];
             foreach ($categoryList as $cateId => $category) {
