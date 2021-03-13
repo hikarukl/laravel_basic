@@ -1,4 +1,14 @@
 @extends('master')
+@push("meta_facebook")
+    {{-- Basic tags --}}
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ $post['title'] }}" />
+    <meta property="og:image" content="{{ $post['thumbnail'] }}" />
+    <meta property="og:url" content="{{ route('post-detail', ['category' => strtolower($category_list[$post['category']['id']]['slug']), 'id' => $post['id']]) }}" />
+    {{-- Optional tags --}}
+    <meta property="og:description" content="{{ $post['description'] }}" />
+    <meta property="og:og:site_name" content="Trang Tin Hay" />
+@endpush
 @inject('postHelper', 'App\Helpers\PostHelper')
 @section('main')
     {{-- This section summary --}}

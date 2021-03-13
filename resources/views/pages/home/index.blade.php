@@ -1,5 +1,15 @@
 @extends('master')
 @inject('postHelper', 'App\Helpers\PostHelper')
+@push("meta_facebook")
+    {{-- Basic tags --}}
+    <meta property="og:type" content="news" />
+    <meta property="og:title" content="Trang Tin Hay" />
+    <meta property="og:image" content="{{ asset('/images/logo.png') }}" />
+    <meta property="og:url" content="{{ Request::url() }}" />
+    {{-- Optional tags --}}
+    <meta property="og:description" content="Trang tin hay" />
+    <meta property="og:og:site_name" content="Trang Tin Hay" />
+@endpush
 @section('main')
     <div class="max-w-7xl mx-auto pl-5 pr-5 pt-28 mt-2 md:mt-0 md:pt-8">
         {{-- This section summary for mobile --}}
