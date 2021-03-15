@@ -63,12 +63,13 @@ class PostController extends Controller
 
         // Get 5 newest current articles
         $topArticles = array_slice($articleList, 0, 5);
+        $firstArticle = array_first($topArticles);
 
         $response = [
             'category_list'     => $allCategories,
             'menu_list'         => $filteredCategory,
             'category_selected' => $categorySlug,
-            'category_name'     => $categorySlug == 'moi-nhat' ? "Mới Nhất" : $topArticles[0]['category']['name'],
+            'category_name'     => $categorySlug == 'moi-nhat' ? "Mới Nhất" : $firstArticle['category']['name'],
             'top_post_list'     => $topArticles,
             'new_post_list'     => $newArticleList,
             'related_post_list' => array_slice($articleList, 5)

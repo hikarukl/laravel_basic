@@ -65,7 +65,7 @@ class Category
     public function getAllCategories()
     {
         try {
-            if (Cache::has(CommonConstant::CACHE_GET_CATEGORIES_NAME)) {
+            /*if (Cache::has(CommonConstant::CACHE_GET_CATEGORIES_NAME)) {
                 return Cache::get(CommonConstant::CACHE_GET_CATEGORIES_NAME);
             }
 
@@ -88,9 +88,9 @@ class Category
                 CommonConstant::CACHE_GET_CATEGORIES_NAME,
                 $result,
                 now()->addMinutes(CommonConstant::CACHE_CATEGORIES_EXPIRE_IN_MINUTES)
-            );
+            );*/
 
-            return $result;
+            return CommonConstant::CATEGORY_LIST_MAP;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             Log::error($e->getTraceAsString());
