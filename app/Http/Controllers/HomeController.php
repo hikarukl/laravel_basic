@@ -87,16 +87,16 @@ class HomeController extends Controller
             $newestArticles = $this->articleService->getArticles();
 
             // Get 5 top posts : Get from social
-            $topPostList = array_slice($newestArticles, 0, 5);
+            $topPostList = $this->getArticlesFilter(0, 5, $newestArticles);
 
             // Get 4 focus posts
-            $focusPostList = array_slice($newestArticles, 5, 5);
+            $focusPostList = $this->getArticlesFilter(5, 5, $newestArticles);
 
             // Get 9 newest posts
-            $newPostList = array_slice($newestArticles, 10, 9);
+            $newPostList = $this->getArticlesFilter(10, 9, $newestArticles);
 
             // Get another posts
-            $anotherPostList = array_slice($newestArticles, 19, 15);
+            $anotherPostList = $this->getArticlesFilter(19, 15, $newestArticles);
 
             $anotherPostListWeb = array_chunk($anotherPostList, 5);
 
@@ -118,5 +118,25 @@ class HomeController extends Controller
         }
 
         return view('pages.home.index', $response);
+    }
+
+    private function getArticlesFilter($offset, $length, $list)
+    {
+        $i = 0;
+
+        $result = [];
+
+        foreach ($list as $article) {
+            if ($i === $length) {
+                break;
+            }
+
+            if (!empty($article['category'])) {
+                $result[] = $article;
+                $i++;
+            }
+        }
+
+        return $result;
     }
 }
