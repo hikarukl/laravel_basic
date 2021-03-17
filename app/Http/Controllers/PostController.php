@@ -7,6 +7,7 @@ use App\Services\Article;
 use App\Services\Category;
 use Facebook\Facebook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
@@ -63,7 +64,7 @@ class PostController extends Controller
 
         // Get 5 newest current articles
         $topArticles = array_slice($articleList, 0, 5);
-        $firstArticle = array_first($topArticles);
+        $firstArticle = Arr::first($topArticles);
 
         $response = [
             'category_list'     => $allCategories,
