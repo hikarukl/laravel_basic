@@ -16,11 +16,11 @@
         @for ($i = 0; $i < 3; $i++)
             <div class="col-span-1 grid grid-cols-2">
                 <div class="col-span-2 relative">
-                    <a href="{{ route('post-detail', ['category' => $category_list['slug'], 'id' => $chunkList[$i][0]['id']]) }}">
+                    <a href="{{ route('post-detail', ['category' => $category_list['slug'], 'id' => $chunkList[$i][0]['slug']]) }}">
                         <img src="{{ $chunkList[$i][0]['thumbnail'] }}">
                     </a>
                     <h2 class="text-left text-title-common pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
-                        <a href="{{ route('post-detail', ['category' => 'sport', 'id' => 1]) }}" class="text-lg text-white hover:text-blue-500">
+                        <a href="{{ route('post-detail', ['category' => 'sport', 'id' => $chunkList[$i][0]['slug']] }}" class="text-lg text-white hover:text-blue-500">
                             {{ $chunkList[$i][0]['title'] }}
                         </a>
                         <p class="text-white text-sm"><i class="fad fa-clock mr-2"></i>
@@ -34,11 +34,11 @@
                 <div class="col-span-2 grid grid-cols-2 gap-10 mt-10">
                     @foreach($chunkList[$i] as $article)
                         <div class="col-span-2 grid grid-cols-3 gap-4">
-                            <a href="{{ route('post-detail', ['category' => $category_list['slug'], 'id' => $article['id']]) }}" class="col-span-1">
+                            <a href="{{ route('post-detail', ['category' => $category_list['slug'], 'id' => $article['slug']]) }}" class="col-span-1">
                                 <img src="{{ $article['thumbnail'] }}">
                             </a>
                             <div class="col-span-2">
-                                <a href="{{ route('post-detail', ['category' => 'sport', 'id' => 1]) }}" class="col-span-2 text-sm text-title-common font-bold text-gray-800 hover:text-blue-500">
+                                <a href="{{ route('post-detail', ['category' => 'sport', 'id' => $article['slug']]) }}" class="col-span-2 text-sm text-title-common font-bold text-gray-800 hover:text-blue-500">
                                     @if(strlen($article['title']) > 119)
                                         @php
                                             $title = substr($article['title'], 0 , 119);

@@ -22,11 +22,11 @@
         </div>--}}
         @foreach($category_article_list as $key => $article)
             <div class="grid mb-8 md:grid-cols-2">
-                <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['id']]) }}" class="md:col-span-1">
+                <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['slug']]) }}" class="md:col-span-1">
                     <img src="{{ $article['thumbnail'] }}">
                 </a>
                 <div class="md:col-span-1 md:pl-5 grid md:block">
-                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['id']]) }}" class="mt-3 md:mt-0 text-lg text-title-common font-bold text-gray-800 hover:text-blue-500">
+                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['slug']]) }}" class="mt-3 md:mt-0 text-lg text-title-common font-bold text-gray-800 hover:text-blue-500">
                         {{ $article['title'] }}
                     </a>
                     <p class="text-gray-500 text-sm mt-1 md:mt-3 md:mb-3">

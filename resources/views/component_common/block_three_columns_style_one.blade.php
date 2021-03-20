@@ -15,7 +15,7 @@
                 route('post-detail',
                 [
                     'category' => $category_list['slug'],
-                    'id'       => $category_article_list['article_list'][0]['id']
+                    'id'       => $category_article_list['article_list'][0]['slug']
                 ])
             }}">
                 <img src="{{ $category_article_list['article_list'][0]['thumbnail'] }}">
@@ -24,7 +24,7 @@
                 route('post-detail',
                 [
                     'category' => $category_list['slug'],
-                    'id'       => $category_article_list['article_list'][0]['id']
+                    'id'       => $category_article_list['article_list'][0]['slug']
                 ])
             }}" class="mt-3 text-lg text-title-common font-bold text-gray-800 hover:text-blue-500">
                 {{ $category_article_list['article_list'][0]['title'] }}
@@ -43,11 +43,11 @@
             @for($i = 1; $i < 7; $i++)
                 @if(isset($category_article_list['article_list'][$i]))
                     <div class="col-span-1 grid grid-cols-3 gap-4">
-                        <a href="{{ route('post-detail', ['category' => $category_list['slug'], 'id' => $category_article_list['article_list'][$i]['id']]) }}" class="col-span-1">
+                        <a href="{{ route('post-detail', ['category' => $category_list['slug'], 'id' => $category_article_list['article_list'][$i]['slug']]) }}" class="col-span-1">
                             <img src="{{ $category_article_list['article_list'][$i]['thumbnail'] }}">
                         </a>
                         <div class="col-span-2">
-                            <a href="{{ route('post-detail', ['category' => $category_list['slug'], 'id' => $category_article_list['article_list'][$i]['id']]) }}" class="col-span-2 text-sm text-title-common font-bold text-gray-800 hover:text-blue-500">
+                            <a href="{{ route('post-detail', ['category' => $category_list['slug'], 'id' => $category_article_list['article_list'][$i]['slug']]) }}" class="col-span-2 text-sm text-title-common font-bold text-gray-800 hover:text-blue-500">
                                 @if(strlen($category_article_list['article_list'][$i]['title']) > 119)
                                     @php
                                         $title = substr($category_article_list['article_list'][$i]['title'], 0 , 119);

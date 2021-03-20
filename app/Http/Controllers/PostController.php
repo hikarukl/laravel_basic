@@ -87,7 +87,7 @@ class PostController extends Controller
     public function detail(Request $request, $category, $id)
     {
         try {
-            if (!$id || !is_numeric($id)) {
+            if (!$id) {
                 throw new \Exception("Invalid id.");
             }
 

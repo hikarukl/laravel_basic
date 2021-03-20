@@ -7,11 +7,11 @@
         <div class="grid grid-cols-3 gap-1 md:hidden">
             @foreach($top_post_list as $top_post)
                 <div class="col-span-3 relative">
-                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post['category']['id']]['slug']), 'id' => $top_post['id']]) }}">
+                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post['category']['id']]['slug']), 'id' => $top_post['slug']]) }}">
                         <img src="{{ $top_post['thumbnail'] }}">
                     </a>
                     <h2 class="text-left text-title-common pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
-                        <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post['category']['id']]['slug']), 'id' => $top_post['id']]) }}" class="text-sm text-white hover:text-blue-500">
+                        <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post['category']['id']]['slug']), 'id' => $top_post['slug']]) }}" class="text-sm text-white hover:text-blue-500">
                             {{ $top_post['title'] }}
                         </a>
                     </h2>
@@ -21,11 +21,11 @@
         {{-- This section summary for web --}}
         <div class="grid grid-cols-2 gap-1 hidden md:grid">
             <div class="col-span-1 relative">
-                <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']]['slug']), 'id' => $top_post_list[0]['id']]) }}">
+                <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']]['slug']), 'id' => $top_post_list[0]['slug']]) }}">
                     <img class="w-full" src="{{ $top_post_list[0]['thumbnail'] }}">
                 </a>
                 <h2 class="text-left text-title-common pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
-                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']]['slug']), 'id' => $top_post_list[0]['id']]) }}" class="text-lg md:text-xl text-white hover:text-blue-500">
+                    <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']]['slug']), 'id' => $top_post_list[0]['slug']]) }}" class="text-lg md:text-xl text-white hover:text-blue-500">
                         {{ $top_post_list[0]['title'] }}
                     </a>
                 </h2>
@@ -33,11 +33,11 @@
             <div class="col-span-1 grid grid-cols-2 gap-1">
                 @for($i = 1; $i < count($top_post_list); $i++)
                     <div class="col-span-1 relative">
-                        <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[$i]['category']['id']]['slug']), 'id' => $top_post_list[$i]['id']]) }}">
+                        <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[$i]['category']['id']]['slug']), 'id' => $top_post_list[$i]['slug']]) }}">
                             <img src="{{ $top_post_list[$i]['thumbnail'] }}">
                         </a>
                         <h2 class="text-left text-title-common pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-1/2">
-                            <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[$i]['category']['id']]['slug']), 'id' => $top_post_list[$i]['id']]) }}" class="text-sm text-white hover:text-blue-500">
+                            <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[$i]['category']['id']]['slug']), 'id' => $top_post_list[$i]['slug']]) }}" class="text-sm text-white hover:text-blue-500">
                                 @if(strlen($top_post_list[$i]['title']) > 137)
                                     {{ substr($top_post_list[$i]['title'], 0 , 134) }}...
                                 @else
@@ -66,11 +66,11 @@
                 <div class="grid grid-cols-1">
                     @foreach($related_post_list as $related_post)
                         <div class="grid mb-8 md:grid-cols-2">
-                            <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['id']]) }}" class="md:col-span-1">
+                            <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['slug']]) }}" class="md:col-span-1">
                                 <img src="{{ $related_post['thumbnail'] }}">
                             </a>
                             <div class="md:col-span-1 md:pl-5 grid md:block">
-                                <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['id']]) }}" class="mt-3 md:mt-0 text-lg text-title-common font-bold text-gray-800 hover:text-blue-500">
+                                <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['slug']]) }}" class="mt-3 md:mt-0 text-lg text-title-common font-bold text-gray-800 hover:text-blue-500">
                                     {{ $related_post['title'] }}
                                 </a>
                                 <p class="text-gray-500 text-sm mt-1 md:mt-3 md:mb-3">

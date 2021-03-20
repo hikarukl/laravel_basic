@@ -16,7 +16,7 @@
                 route('post-detail',
                 [
                     'category' => $category_list['slug'],
-                    'id'       => $article['id']
+                    'id'       => $article['slug']
                 ])
             }}">
                     <img src="{{ $article['thumbnail'] }}">
@@ -25,7 +25,7 @@
                 route('post-detail',
                 [
                     'category' => $category_list['slug'],
-                    'id'       => $article['id']
+                    'id'       => $article['slug']
                 ])
             }}" class="mt-3 text-lg text-title-common font-bold text-gray-800 hover:text-blue-500">
                     {{ $article['title'] }}

@@ -4,7 +4,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="{{ $post['title'] }}" />
     <meta property="og:image" content="{{ $post['thumbnail'] }}" />
-    <meta property="og:url" content="{{ route('post-detail', ['category' => strtolower($category_list[$post['category']['id']]['slug']), 'id' => $post['id']]) }}" />
+    <meta property="og:url" content="{{ route('post-detail', ['category' => strtolower($category_list[$post['category']['id']]['slug']), 'id' => $post['slug']]) }}" />
     {{-- Optional tags --}}
     <meta property="og:description" content="{{ $post['description'] }}" />
     <meta property="og:og:site_name" content="Trang Tin Hay" />
@@ -68,10 +68,10 @@
             <div class="grid grid-cols-3 gap-8">
                 @foreach($related_post_list as $related_post)
                     <div class="grid col-span-3 md:col-span-1">
-                        <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['id']]) }}">
+                        <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['slug']]) }}">
                             <img src="{{ $related_post['thumbnail'] }}" class="rounded">
                         </a>
-                        <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['id']]) }}" class="pl-1 md:pl-0 font-bold mt-2 text-lg text-title-common hover:text-blue-500">
+                        <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['slug']]) }}" class="pl-1 md:pl-0 font-bold mt-2 text-lg text-title-common hover:text-blue-500">
                             {{ $related_post['title'] }}
                         </a>
                         <p class="text-gray-500 text-sm mt-1"><i class="fad fa-clock mr-2"></i>
