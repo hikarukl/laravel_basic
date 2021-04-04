@@ -10,6 +10,7 @@ class CommonConstant
     const URL_REQUEST_ARTICLES = "kenh14/articles/";
     const URL_REQUEST_ARTICLE_DETAIL = "kenh14/article/id";
     const URL_REQUEST_ARTICLE_CATEGORY = "kenh14/category-articles/slug";
+    const URL_REQUEST_INSTANT_ARTICLES = "rssfeeds/instant-articles";
     const URL_REQUEST_HOST = "http://139.59.117.80/";
 
     // Cache

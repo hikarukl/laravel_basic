@@ -22,5 +22,6 @@ use Illuminate\Support\Facades\Route;
 })->name('dashboard');*/
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/rssfeeds/instant-articles', 'RssController@instantArticles')->name('instant-articles');
 Route::get('/{category}', 'PostController@index')->name('post-list');
 Route::get('/{category}/{id}', 'PostController@detail')->name('post-detail');
