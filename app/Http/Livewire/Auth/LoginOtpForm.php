@@ -11,6 +11,8 @@ use Livewire\Component;
 
 class LoginOtpForm extends Component
 {
+    public $loginOtp;
+
     public function render()
     {
         $user = Auth::user();
@@ -58,7 +60,7 @@ class LoginOtpForm extends Component
     {
         $user = Auth::user();
         try {
-            $otpReceived = trim($request->get('login_otp'));
+            $otpReceived = trim($this->loginOtp);
             $otpSent = $user->login_otp;
 
             if (!$otpReceived || $otpReceived != $otpSent) {
@@ -75,7 +77,7 @@ class LoginOtpForm extends Component
             // Valid
             $user->is_verify_otp = 1;
             $user->otp_fail_times = 0;
-            $user->log_password_fail_times = 0;
+            $user->password_fail_times = 0;
             $user->save();
 
             $response = [

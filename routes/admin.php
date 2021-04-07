@@ -27,5 +27,9 @@ Route::group(['middleware' => ['auth:web']], function () {
        Route::get('/dashboard', function () {
            return view('dashboard');
        })->name('dashboard');
+
+        Route::post('coin/calculate', ['as' => 'coin.calculate', 'use' => '\App\Http\Controllers\Admin\CoinController@calculate']);
+        Route::resource('coin', \App\Http\Controllers\Admin\CoinController::class);
     });
+
 });

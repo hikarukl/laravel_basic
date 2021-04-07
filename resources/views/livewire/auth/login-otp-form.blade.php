@@ -13,7 +13,7 @@
         <form method="POST" class="w-full" action="{{ route('otp.send') }}">
             @csrf
             <div class="mb-4">
-                <x-jet-input id="otp" class="block mt-1 w-full" type="text" minlength="6" inputmode="numeric" name="login_otp" :value="old('login_otp')" required autofocus />
+                <x-jet-input id="otp" class="block mt-1 w-full" type="text" minlength="6" inputmode="numeric" wire:model="loginOtp" :value="old('login_otp')" required autofocus />
                 <p class="mt-1" id="remaining-login_otp"></p>
                 <x-jet-input type="hidden" name="input-countdown_login_otp_time" value="{{ $otp_expired_at }}"></x-jet-input>
             </div>
