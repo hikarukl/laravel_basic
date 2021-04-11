@@ -11,35 +11,33 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        {{--<link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/icons.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/metisMenu.min.css') }}">
 
         @livewireStyles
 
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-dropdown')
+    <body class="{{ isset($body_class) ? $body_class : "" }}">
+        @include("admin.share.topbar")
 
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+        <div class="page-wrapper">
+            @include("admin.share.left_nav_bar")
+            {{ $slot }}
         </div>
 
         @stack('modals')
 
         <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ mix('js/app.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js"></script>
+        <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
+        <script src="{{ asset('js/metisMenu.min.js') }}"></script>
+        <script src="{{ asset('js/waves.min.js') }}"></script>
+        <script src="{{ asset('js/custom.js') }}"></script>
 
         @stack('scripts')
         @livewireScripts

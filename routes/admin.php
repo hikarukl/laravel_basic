@@ -21,14 +21,9 @@ Route::group(['middleware' => ['auth:web']], function () {
     });
 
     Route::group(['middleware' => 'verified_otp'], function () {
-        Route::get('/', function () {
-            return view('dashboard');
-        })->name('home');
-       Route::get('/dashboard', function () {
-           return view('dashboard');
-       })->name('dashboard');
+        Route::get('/', ['as' => 'home', 'uses' => '\App\Http\Controllers\Admin\DashboardController@index']);
+        Route::get('/dashboard', ['as' => 'home', 'uses' => '\App\Http\Controllers\Admin\DashboardController@index']);
 
-        Route::post('coin/calculate', ['as' => 'coin.calculate', 'use' => '\App\Http\Controllers\Admin\CoinController@calculate']);
         Route::resource('coin', \App\Http\Controllers\Admin\CoinController::class);
     });
 
