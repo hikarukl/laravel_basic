@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::get('/dashboard', ['as' => 'home', 'uses' => '\App\Http\Controllers\Admin\DashboardController@index']);
 
         Route::resource('coin', \App\Http\Controllers\Admin\CoinController::class);
+        Route::resource('my-profile', \App\Http\Controllers\Admin\MyProfileController::class);
     });
 
 });
