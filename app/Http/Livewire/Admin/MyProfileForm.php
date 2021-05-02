@@ -43,7 +43,7 @@ class MyProfileForm extends Component
         $this->phone = $user->phone;
         $this->email = $user->email;
         $this->useOtp = $user->is_enable_otp;
-        $this->useAuthenticator = $user->two_factor_secret;
+        $this->useAuthenticator = (bool)$user->two_factor_secret;
     }
 
     /**
@@ -100,6 +100,8 @@ class MyProfileForm extends Component
         Log::info(__FUNCTION__ . ': End update profile.');
 
         $qrContent = $user->two_factor_secret ? $user->twoFactorQrCodeSvg() : '';
+
+        session()->flash("message", "Update profile was successfully.");
 
         $this->dispatchBrowserEvent('updated-profile', ['qr_content' => $qrContent]);
     }

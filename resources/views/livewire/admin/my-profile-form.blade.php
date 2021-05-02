@@ -3,6 +3,11 @@
         <div class="col-lg-12 col-xl-9 mx-auto">
             <div class="card">
                 <div class="card-body">
+                    @if(session()->has('message'))
+                        <div class="alert alert-secondary border-0" role="alert">
+                            {{ session('message') }}
+                        </div>
+                    @endif
                     <div class="general-label">
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">Name</label>
