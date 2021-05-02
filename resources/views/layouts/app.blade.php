@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/icons.css') }}">
         <link rel="stylesheet" href="{{ asset('css/metisMenu.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
         @livewireStyles
 
@@ -32,14 +33,16 @@
 
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ mix('js/app.js') }}"></script>
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js"></script>
         <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
         <script src="{{ asset('js/metisMenu.min.js') }}"></script>
         <script src="{{ asset('js/waves.min.js') }}"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
+
+        @livewireScripts
+        @stack('scripts')
+
+        <script src="{{ asset('js/apline.js') }}"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
 
-        @stack('scripts')
-        @livewireScripts
     </body>
 </html>

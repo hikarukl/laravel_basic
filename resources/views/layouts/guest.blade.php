@@ -31,7 +31,7 @@
         <script src="{{ asset('js/jquery.countdown.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ mix('js/app.js') }}"></script>
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js"></script>
+        <script src="{{ asset('js/apline.js') }}"></script>
         <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
         <script src="{{ asset('js/metisMenu.min.js') }}"></script>
         <script src="{{ asset('js/waves.min.js') }}"></script>

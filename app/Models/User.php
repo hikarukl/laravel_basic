@@ -21,6 +21,9 @@ class User extends Authenticatable
 
     const LIMIT_LOG_FAIL_TIMES = 5;
     const UNLOCK_LOGIN_LIMIT_MINUTES = 5;
+    const REGEX_NAME = '/[a-zA-Z\s]$/';
+    const REGEX_PHONE = '/^(09|03|07|08|05)[0-9]{8}$/';
+    const REGEX_PASSWORD = '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/';
 
     /**
      * The attributes that are mass assignable.
@@ -40,6 +43,7 @@ class User extends Authenticatable
         'login_otp',
         'otp_expired_at',
         'otp_fail_times',
+        'is_enable_otp',
         'is_verify_otp',
         'password_fail_times',
         'unlock_login_at',
