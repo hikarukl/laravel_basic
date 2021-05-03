@@ -184,6 +184,9 @@
 
       window.addEventListener('updated-profile', e => {
         $('#wrap-cotent_qr_code').html(e.detail.qr_content);
-      })
+        if (e.detail.avatar) {
+          $('.met-profile-main-pic').find('img').attr('src', e.detail.avatar);
+        }
+      });
     </script>
 @endpush

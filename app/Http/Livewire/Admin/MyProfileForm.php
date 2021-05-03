@@ -6,9 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Laravel\Fortify\Actions\EnableTwoFactorAuthentication;
-use Laravel\Fortify\Fortify;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -25,6 +23,8 @@ class MyProfileForm extends Component
     public $email;
     public $qrCodeAuthenticator;
     public $photo;
+
+    const PREFIX_DIRECTORY_AVATAR = "images/avatars/";
 
     protected $rules = [
         'name'             => ['required', 'string', 'regex:' . User::REGEX_NAME],
@@ -62,7 +62,7 @@ class MyProfileForm extends Component
     }
 
     /**
-     * Render
+     * Render view component
      *
      *
      */
@@ -71,6 +71,11 @@ class MyProfileForm extends Component
         return view('livewire.admin.my-profile-form');
     }
 
+    /**
+     * When updated value need validate avatar
+     *
+     *
+     */
     public function updatedPhoto()
     {
         $this->validate([
@@ -89,11 +94,10 @@ class MyProfileForm extends Component
         $this->validate();
 
         $user = Auth::user();
-        Log::info(__FUNCTION__ . ': Begin update profile.');
 
         // TemporaryUploadedFile
         if ($this->photo) {
-            $avatarName = md5($user->getAuthIdentifierName()) . '_avatar.' . $this->photo->extension();
+            $avatarName = md5(uniqid($user->getAuthIdentifierName())) . '_avatar.' . $this->photo->extension();
             $this->photo->storeAs('avatars', $avatarName, 'avatars');
         }
 
@@ -105,7 +109,7 @@ class MyProfileForm extends Component
         ];
 
         if ($this->photo) {
-            $dataUpdate['profile_photo_path'] = 'images/avatars/' . $avatarName;
+            $dataUpdate['profile_photo_path'] = self::PREFIX_DIRECTORY_AVATAR . $avatarName;
         }
 
         $user->update($dataUpdate);
@@ -115,14 +119,14 @@ class MyProfileForm extends Component
         }
 
         if ($this->useAuthenticator) {
-            $enableTwoFactorAuthentication($user);
+            if (!$user->two_factor_secret) {
+                $enableTwoFactorAuthentication($user);
+            }
         } else {
             $user->two_factor_secret = null;
             $user->two_factor_recovery_codes = null;
             $user->save();
         }
-
-        Log::info(__FUNCTION__ . ': End update profile.');
 
         $qrContent = $user->two_factor_secret ? $user->twoFactorQrCodeSvg() : '';
 
@@ -130,8 +134,9 @@ class MyProfileForm extends Component
 
         $responseData = [
             'qr_content' => $qrContent,
-            'avatar'     => $this->photo ? $dataUpdate['profile_photo_path'] : $user->profile_photo_path
+            'avatar'     => $this->photo ? asset($dataUpdate['profile_photo_path'] ): asset($user->profile_photo_path)
         ];
+
         $this->dispatchBrowserEvent('updated-profile', $responseData);
     }
 }

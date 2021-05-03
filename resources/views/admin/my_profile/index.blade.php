@@ -65,11 +65,5 @@
         <script src="{{ asset("plugins/filter/masonry.pkgd.min.js") }}"></script>
         <script src="{{ asset("plugins/filter/jquery.magnific-popup.min.js") }}"></script>
         <script src="{{ asset("pages/jquery.gallery.inity.js") }}"></script>
-
-        <script>
-            $('.fro-profile_main-pic-change').on('click', function () {
-              $('#input-upload_avatar').trigger('click');
-            });
-        </script>
     @endpush
 </x-app-layout>
