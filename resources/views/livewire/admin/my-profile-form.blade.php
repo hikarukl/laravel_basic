@@ -116,6 +116,36 @@
                             </div>
                         </div>
 
+                        @if($photo && empty($errors->count()))
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Review Avatar</label>
+                                <div class="col-sm-10">
+                                    <div class="met-profile">
+                                        <div class="row">
+                                            <div class="col-lg-4 align-self-center mb-3 mb-lg-0">
+                                                <div class="met-profile-main">
+                                                    <div class="met-profile-main-pic">
+                                                        <img src="{{ $photo->temporaryUrl() }}" alt="" class="thumb-xl rounded-circle">
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+                                        </div><!--end row-->
+                                    </div><!--end f_profile-->
+                                </div>
+                            </div>
+                        @endif
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Avatar</label>
+                            <div class="col-sm-10">
+                                <div class="custom-file mb-3">
+                                    <input wire:model="photo" type="file" class="custom-file-input" id="avatar">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                @error('photo') <span class="error">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-sm-10 ml-auto">
                                 <button
@@ -153,7 +183,6 @@
       });
 
       window.addEventListener('updated-profile', e => {
-        console.log(123);
         $('#wrap-cotent_qr_code').html(e.detail.qr_content);
       })
     </script>

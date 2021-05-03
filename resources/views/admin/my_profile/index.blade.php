@@ -16,10 +16,9 @@
                                     <div class="col-lg-4 align-self-center mb-3 mb-lg-0">
                                         <div class="met-profile-main">
                                             <div class="met-profile-main-pic">
-                                                <img src="{{ asset("images/users/user-4.jpg") }}" alt="" class="rounded-circle">
-                                                <span class="fro-profile_main-pic-change">
-                                                    <i class="fas fa-camera"></i>
-                                                </span>
+                                                <img
+                                                        src="{{ auth()->user()->profile_photo_path ? asset(auth()->user()->profile_photo_path)  : asset("images/users/user-4.jpg") }}"
+                                                        alt="" class="thumb-xl rounded-circle">
                                             </div>
                                             <div class="met-profile_user-detail">
                                                 <h5 class="met-user-name">{{ $user->name }}</h5>
@@ -68,9 +67,9 @@
         <script src="{{ asset("pages/jquery.gallery.inity.js") }}"></script>
 
         <script>
-          /*Livewire.on('enableTwoFactor', val => {
-            console.log(val);
-          })*/
+            $('.fro-profile_main-pic-change').on('click', function () {
+              $('#input-upload_avatar').trigger('click');
+            });
         </script>
     @endpush
 </x-app-layout>

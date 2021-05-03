@@ -3628,7 +3628,7 @@ label {
 }
 
 .custom-file-label::after {
-  height: calc(1.5em + 15px);
+  height: calc(1.5em + 17px);
   line-height: 24px;
 }
 
