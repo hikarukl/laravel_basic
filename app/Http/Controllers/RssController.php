@@ -24,7 +24,8 @@ class RssController extends Controller
     {
         // Request get call categories
         $params = [
-            'url' => env('API_PREFIX_URL', "http://10.104.0.2/") . CommonConstant::URL_REQUEST_INSTANT_ARTICLES
+            //'url' => env('API_PREFIX_URL', "http://10.104.0.2/") . CommonConstant::URL_REQUEST_INSTANT_ARTICLES
+            'url' => CommonConstant::URL_REQUEST_HOST . CommonConstant::URL_REQUEST_INSTANT_ARTICLES
         ];
 
         /*$result = GuzzleClientHelper::sendRequestGetClientGuzzle($params);
