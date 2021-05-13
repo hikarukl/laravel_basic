@@ -27,8 +27,9 @@ class RssController extends Controller
             'url' => env('API_PREFIX_URL', "http://10.104.0.2/") . CommonConstant::URL_REQUEST_INSTANT_ARTICLES
         ];
 
-        $result = GuzzleClientHelper::sendRequestGetClientGuzzle($params);
+        /*$result = GuzzleClientHelper::sendRequestGetClientGuzzle($params);
+        return view('pages.posts.instant-articles-server', ['data' => $result]);*/
 
-        return view('pages.posts.instant-articles-server', ['data' => $result]);
+        return redirect($params['url']);
     }
 }
