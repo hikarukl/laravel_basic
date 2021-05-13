@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Actions\Fortify\AttemptToAuthenticate;
+use App\Actions\Fortify\RedirectIfEnableOtp;
 use App\Actions\Jetstream\DeleteUser;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Http\Request;
@@ -39,6 +40,7 @@ class JetstreamServiceProvider extends ServiceProvider
             return array_filter([
                 AttemptToAuthenticate::class,
                 PrepareAuthenticatedSession::class,
+                RedirectIfEnableOtp::class,
                 RedirectIfAuthenticated::class
             ]);
         });
