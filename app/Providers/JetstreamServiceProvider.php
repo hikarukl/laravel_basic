@@ -38,9 +38,9 @@ class JetstreamServiceProvider extends ServiceProvider
         // Actions while logging must be follow
         Fortify::authenticateThrough(function (Request $request) {
             return array_filter([
+                RedirectIfEnableOtp::class,
                 AttemptToAuthenticate::class,
                 PrepareAuthenticatedSession::class,
-                RedirectIfEnableOtp::class,
                 RedirectIfAuthenticated::class
             ]);
         });

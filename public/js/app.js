@@ -21315,21 +21315,11 @@ if (inputCountdownTime.length) {
 
 window.addEventListener('resend-otp', function (event) {
   // Validate time countdown
-  handleCountdownLoginOtp(countdownTarget, inputCountdownTime.val());
+  handleCountdownLoginOtp(countdownTarget, event.detail.otp_expired_at);
 });
 window.addEventListener('send-otp', function (event) {
-  var wrapOtpErrorTarget = $('#wrap-otp_error');
-
   if (event.detail.stt) {
     window.location.href = event.detail.redirect_url;
-  } else {
-    if (event.detail.redirect_url) {
-      window.location.href = event.detail.redirect_url;
-    } else {
-      wrapOtpErrorTarget.removeClass('hidden');
-      var contentError = '<p>_MESSAGE_</p><p>_REMAINING_</p>';
-      wrapOtpErrorTarget.html(contentError.replace(/_MESSAGE_/, event.detail.message).replace(/_REMAINING_/, event.detail.remaining_times));
-    }
   }
 });
 /*
@@ -21338,19 +21328,23 @@ window.addEventListener('send-otp', function (event) {
  * */
 
 function handleCountdownLoginOtp(countdownTarget, countdownTime) {
-  var btnRequestLoginOtpTarget = $('#btn-request_login_otp'); // Validate time countdown
+  var btnRequestResendOtpTarget = $('#btn-request_resend_otp'); // Validate time countdown
 
   var currentDateTime = new Date();
   var countdownDateTime = new Date(countdownTime);
+  console.log(countdownDateTime);
+  console.log(currentDateTime);
+  console.log(countdownDateTime > currentDateTime);
 
   if (countdownDateTime > currentDateTime) {
+    console.log('Begin');
     var contentCountDown = "Thời gian còn lại: <strong>%H:%M:%S</strong>";
-    countdownTarget.removeClass('hidden');
+    countdownTarget.removeClass('d-none');
     countdownTarget.countdown(countdownTime, function (event) {
-      btnRequestLoginOtpTarget.addClass('hidden');
+      btnRequestResendOtpTarget.addClass('d-none');
       $(this).html(event.strftime(contentCountDown));
     }).on('finish.countdown', function (event) {
-      btnRequestLoginOtpTarget.removeClass('hidden');
+      btnRequestResendOtpTarget.removeClass('d-none');
       $(this).html('');
     });
   }

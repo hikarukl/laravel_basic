@@ -40,13 +40,42 @@ class RedirectIfEnableOtp
      */
     public function handle($request, $next)
     {
-        $user = auth()->user();
+        $user = $this->validateCredentials($request);
 
-        if ($user->is_verify_otp) {
+        if ($user->is_enable_otp) {
             return $this->verifyOtpResponse($request, $user);
         }
 
         return $next($request);
+    }
+
+    /**
+     * Attempt to validate the incoming credentials.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
+    protected function validateCredentials($request)
+    {
+        if (Fortify::$authenticateUsingCallback) {
+            return tap(call_user_func(Fortify::$authenticateUsingCallback, $request), function ($user) use ($request) {
+                if (! $user) {
+                    $this->fireFailedEvent($request);
+
+                    $this->throwFailedAuthenticationException($request);
+                }
+            });
+        }
+
+        $model = $this->guard->getProvider()->getModel();
+
+        return tap($model::where(Fortify::username(), $request->{Fortify::username()})->first(), function ($user) use ($request) {
+            if (!$user || ! $this->guard->getProvider()->validateCredentials($user, ['password' => $request->password])) {
+                $this->fireFailedEvent($request, $user);
+
+                $this->throwFailedAuthenticationException($request);
+            }
+        });
     }
 
     /**

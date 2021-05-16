@@ -32,13 +32,15 @@
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script src="{{ asset('js/jquery.countdown.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ mix('js/app.js') }}"></script>
-        @livewireScripts
-        @stack('scripts')
         <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
         <script src="{{ asset('js/metisMenu.min.js') }}"></script>
         <script src="{{ asset('js/waves.min.js') }}"></script>
-        <script src="{{ asset('js/apline.js') }}"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
+
+        @livewireScripts
+        @stack('scripts')
+
         <script src="{{ asset('js/custom.js') }}"></script>
+        <script src="{{ asset('js/apline.js') }}"></script>
     </footer>
 </html>

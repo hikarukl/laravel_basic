@@ -7,22 +7,12 @@ if (inputCountdownTime.length) {
 
 window.addEventListener('resend-otp', event => {
     // Validate time countdown
-    handleCountdownLoginOtp(countdownTarget, inputCountdownTime.val());
+    handleCountdownLoginOtp(countdownTarget, event.detail.otp_expired_at);
 })
 
 window.addEventListener('send-otp', event => {
-    let wrapOtpErrorTarget = $('#wrap-otp_error');
-
     if (event.detail.stt) {
         window.location.href = event.detail.redirect_url;
-    } else {
-        if (event.detail.redirect_url) {
-            window.location.href = event.detail.redirect_url;
-        } else {
-            wrapOtpErrorTarget.removeClass('hidden');
-            let contentError = '<p>_MESSAGE_</p><p>_REMAINING_</p>';
-            wrapOtpErrorTarget.html(contentError.replace(/_MESSAGE_/, event.detail.message).replace(/_REMAINING_/, event.detail.remaining_times));
-        }
     }
 })
 
@@ -32,22 +22,26 @@ window.addEventListener('send-otp', event => {
  * */
 function handleCountdownLoginOtp(countdownTarget, countdownTime)
 {
-    let btnRequestLoginOtpTarget = $('#btn-request_login_otp');
+    let btnRequestResendOtpTarget = $('#btn-request_resend_otp');
 
     // Validate time countdown
     let currentDateTime = new Date();
     let countdownDateTime = new Date(countdownTime);
 
+    console.log(countdownDateTime);
+    console.log(currentDateTime);
+    console.log(countdownDateTime > currentDateTime);
     if (countdownDateTime > currentDateTime) {
+        console.log('Begin');
         let contentCountDown = "Thời gian còn lại: <strong>%H:%M:%S</strong>";
 
-        countdownTarget.removeClass('hidden');
+        countdownTarget.removeClass('d-none');
 
         countdownTarget.countdown(countdownTime, function (event) {
-            btnRequestLoginOtpTarget.addClass('hidden');
+            btnRequestResendOtpTarget.addClass('d-none');
             $(this).html(event.strftime(contentCountDown));
         }).on('finish.countdown', function (event) {
-            btnRequestLoginOtpTarget.removeClass('hidden');
+            btnRequestResendOtpTarget.removeClass('d-none');
             $(this).html('');
         });
     }

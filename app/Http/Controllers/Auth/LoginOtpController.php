@@ -10,6 +10,6 @@ class LoginOtpController extends Controller
 {
     public function index()
     {
-        return view('livewire.auth.show');
+        return view('auth.login-otp');
     }
 }
