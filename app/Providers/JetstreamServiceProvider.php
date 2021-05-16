@@ -8,6 +8,7 @@ use App\Actions\Jetstream\DeleteUser;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use Laravel\Fortify\Fortify;
 use Laravel\Jetstream\Jetstream;
@@ -38,13 +39,13 @@ class JetstreamServiceProvider extends ServiceProvider
         // Actions while logging must be follow
         Fortify::authenticateThrough(function (Request $request) {
             return array_filter([
+                EnsureLoginIsNotThrottled::class,
                 RedirectIfEnableOtp::class,
                 AttemptToAuthenticate::class,
                 PrepareAuthenticatedSession::class,
                 RedirectIfAuthenticated::class
             ]);
         });
-
 
     }
 

@@ -12,9 +12,9 @@
                             <h4 class="mt-0 mb-3 mt-5">Input OTP</h4>
                         </div> <!--end auth-logo-text-->
 
-                        @if(session()->has('message'))
+                        @if(session()->has('message') || session()->has('status'))
                             <div class="alert alert-secondary border-0" role="alert">
-                                {{ session('message') }}
+                                {{ session()->has('message') ? session('message') : session('status') }}
                             </div>
                         @endif
 

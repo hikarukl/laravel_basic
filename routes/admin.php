@@ -21,8 +21,16 @@ Route::group(['prefix' => 'otp'], function () {
 
 Route::group(['middleware' => ['auth:web']], function () {
     Route::group(['middleware' => 'verified_otp'], function () {
+        $enableViews = config('fortify.views', true);
+
         Route::get('/', ['as' => 'home', 'uses' => '\App\Http\Controllers\Admin\DashboardController@index']);
         Route::get('/dashboard', ['as' => 'home', 'uses' => '\App\Http\Controllers\Admin\DashboardController@index']);
+
+        // Authentication...
+        if ($enableViews) {
+            Route::get('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionControllerCustom::class, 'destroy'])
+                ->name('logout');
+        }
 
         Route::resource('coin', \App\Http\Controllers\Admin\CoinController::class);
         Route::resource('my-profile', \App\Http\Controllers\Admin\MyProfileController::class);

@@ -6,7 +6,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
@@ -26,8 +25,7 @@ class LoginOtpForm extends Component
 
         $otpExpired = Carbon::parse($user->otp_expired_at);
         $this->otpExpiredAt = $otpExpired->format('Y/m/d H:i:s');
-Log::info('render');
-Log::info($this->otpExpiredAt);
+
         if ($otpExpired->lt(now())) {
             $this->showCountDown = false;
         }
@@ -51,8 +49,6 @@ Log::info($this->otpExpiredAt);
 
         $this->otpExpiredAt = Carbon::parse($user->otp_expired_at)->format('Y/m/d H:i:s');
         $this->showCountDown = true;
-        Log::info('resend');
-        Log::info($this->otpExpiredAt);
 
         $this->dispatchBrowserEvent('resend-otp', ['otp_expired_at' => $this->otpExpiredAt]);
     }
@@ -119,7 +115,6 @@ Log::info($this->otpExpiredAt);
 
             session()->flash('message', $e->getMessage());
         }
-
         $this->dispatchBrowserEvent('send-otp', $response);
     }
 }
