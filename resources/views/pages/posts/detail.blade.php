@@ -4,6 +4,8 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="{{ $post['title'] }}" />
     <meta property="og:image" content="{{ $post['thumbnail'] }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
     <meta property="og:url" content="{{ route('post-detail', ['category' => strtolower($category_list[$post['category']['id']]['slug']), 'id' => $post['slug']]) }}" />
     {{-- Optional tags --}}
     <meta property="og:description" content="{{ $post['description'] }}" />
