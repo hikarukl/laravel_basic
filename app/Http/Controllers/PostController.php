@@ -117,9 +117,11 @@ class PostController extends Controller
                 mkdir(public_path("images/post_og"));
             }
 
-            ImageManagerStatic::make($articleDetail['thumbnail'])
-                ->resize(1200, 675)
-                ->save(public_path("images/post_og/{$imageSaveName}"));
+            if (!file_exists(public_path("images/post_og/{$imageSaveName}"))) {
+                ImageManagerStatic::make($articleDetail['thumbnail'])
+                    ->resize(1200, 675)
+                    ->save(public_path("images/post_og/{$imageSaveName}"));
+            }
 
             $articleDetail['post_og_img'] = $imageSaveName;
 
