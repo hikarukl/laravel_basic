@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\GuzzleClientHelper;
+use App\Helpers\SignatureHelper;
 use App\Services\Article;
 use App\Services\Category;
 use Facebook\Facebook;
@@ -11,6 +12,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
+use Intervention\Image\ImageManagerStatic;
 
 class PostController extends Controller
 {
@@ -107,6 +109,19 @@ class PostController extends Controller
 
                 return view('errors.500');
             }
+
+            $thumbExtension = pathinfo($articleDetail['thumbnail'], PATHINFO_EXTENSION);
+            $imageSaveName = md5($articleDetail['slug']) . "." . $thumbExtension;
+
+            if (!file_exists(public_path("images/post_og"))) {
+                mkdir(public_path("images/post_og"));
+            }
+
+            ImageManagerStatic::make($articleDetail['thumbnail'])
+                ->resize(1200, 675)
+                ->save(public_path("images/post_og/{$imageSaveName}"));
+
+            $articleDetail['post_og_img'] = $imageSaveName;
 
             // Request get newest 100 articles
             $newestArticles = $this->articleService->getArticles();
