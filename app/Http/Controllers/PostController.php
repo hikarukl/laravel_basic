@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\CommonConstant;
 use App\Helpers\GuzzleClientHelper;
 use App\Helpers\SignatureHelper;
 use App\Services\Article;
@@ -43,6 +44,10 @@ class PostController extends Controller
 
         // Request get newest 100 articles
         $newestArticles = $this->articleService->getArticles();
+
+        $newestArticles = array_filter($newestArticles, function ($item) {
+            return  in_array($item['category']['id'], array_keys(CommonConstant::CATEGORY_LIST_MAP));
+        });
 
         // Related articles
         $offsetNewest = 0;
@@ -128,6 +133,10 @@ class PostController extends Controller
             // Request get newest 100 articles
             $newestArticles = $this->articleService->getArticles();
 
+            $newestArticles = array_filter($newestArticles, function ($item) {
+                return  in_array($item['category']['id'], array_keys(CommonConstant::CATEGORY_LIST_MAP));
+            });
+
             // Get 9 newest articles
             $newPostList = array_slice($newestArticles, 0, 20);
 
@@ -172,6 +181,10 @@ class PostController extends Controller
 
         // Request get newest 100 articles
         $newestArticles = $this->articleService->getArticles();
+
+        $newestArticles = array_filter($newestArticles, function ($item) {
+            return  in_array($item['category']['id'], array_keys(CommonConstant::CATEGORY_LIST_MAP));
+        });
 
         // Get 9 newest articles
         $newPostList = array_slice($newestArticles, 0, 11);

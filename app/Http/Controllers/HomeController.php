@@ -86,6 +86,10 @@ class HomeController extends Controller
             // Request get newest 100 articles
             $newestArticles = $this->articleService->getArticles();
 
+            $newestArticles = array_filter($newestArticles, function ($item) {
+               return  in_array($item['category']['id'], array_keys(CommonConstant::CATEGORY_LIST_MAP));
+            });
+
             // Get 5 top posts : Get from social
             $topPostList = $this->getArticlesFilter(0, 5, $newestArticles);
 
