@@ -58,7 +58,7 @@
                 @endforeach
                 <div class="w-full text-left md:flex md:justify-center">
                     <p class="text-lg text-gray-700 mb-4 text-right md:w-96">
-                        <a href="{{ $post['url'] }}" target="_blank">Theo kenh14.vn <i class="fas fa-external-link"></i></a>
+                        <a href="{{ $post['url'] }}" target="_blank">Link gốc <i class="fas fa-external-link"></i></a>
                     </p>
                 </div>
 

@@ -93,11 +93,12 @@ class HomeController extends Controller
             // Get 5 top posts : Get from social
             $topPostList = $this->getArticlesFilter(0, 5, $newestArticles);
 
-            // Get 4 focus posts
-            $focusPostList = $this->getArticlesFilter(5, 5, $newestArticles);
-
             // Get 9 newest posts
-            $newPostList = $this->getArticlesFilter(10, 9, $newestArticles);
+            $newPostList = $this->getArticlesFilter(5, 9, $newestArticles);
+
+            // Get 4 focus posts
+            $focusPostList = $this->getArticlesFilter(14, 5, $newestArticles);
+
 
             // Get another posts
             $anotherPostList = $this->getArticlesFilter(19, 15, $newestArticles);
@@ -130,15 +131,10 @@ class HomeController extends Controller
 
         $result = [];
 
-        foreach ($list as $article) {
-            if ($i === $length) {
-                break;
-            }
-
-            if (!empty($article['category'])) {
-                $result[] = $article;
-                $i++;
-            }
+        while ($i < $length) {
+            $result[] = $list[$offset];
+            $offset++;
+            $i++;
         }
 
         return $result;
