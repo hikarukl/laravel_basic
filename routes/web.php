@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['as' => 'home', 'uses' => 'App\Http\Controllers\HomeController@index']);
+Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'App\Http\Controllers\HomeController@index']);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::resource('category', \App\Http\Controllers\CategoryController::class);
+Route::resource('post', \App\Http\Controllers\PostController::class);
+
+
