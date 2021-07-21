@@ -5,13 +5,13 @@
         </h2>
     </div>
 </div>
-
+@inject('postHelper', 'App\Helpers\PostHelper')
 <div class="container mx-auto mt-3 grid gap-4">
     @foreach($category_article_list as $key => $article)
         @if($key === 0)
             <div class="relative">
                 <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['slug']]) }}">
-                    <img src="{{ $new_post_list[0]['thumbnail'] }}"/>
+                    <img src="{{ $postHelper::convertImgToGif($new_post_list[0]['thumbnail']) }}"/>
                 </a>
                 <h2 class="text-left text-title-common pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
                     <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['slug']]) }}" class="text-size-description text-white hover:text-blue-500">
@@ -23,7 +23,7 @@
         @else
             <div class="col-span-1 grid grid-cols-3 gap-4">
                 <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['slug']]) }}" class="col-span-1">
-                    <img src="{{ $article['thumbnail'] }}">
+                    <img src="{{ $postHelper::convertImgToGif($article['thumbnail']) }}">
                 </a>
                 <div class="col-span-2">
                     <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['slug']]) }}" class="col-span-2 text-sm text-title-common font-bold text-gray-800 hover:text-blue-500">

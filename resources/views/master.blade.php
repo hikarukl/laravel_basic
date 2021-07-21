@@ -9,12 +9,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{!! url('/')  !!}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    {{--<meta property="og:site_name" content="Trang tin hay" />
-    <meta property="og:type" content="News" />
-    <meta property="og:image:width" content="200"/>
-    <meta property="og:image:height" content="200"/>
-    <meta property="og:url" content="{{ Request::url() }}" />
-    <meta property="og:image:alt" content=""/>--}}
     @stack("meta_facebook")
     @php $time = time(); @endphp
     <link href="{{ asset("css/app.css?t=$time") }}" rel="stylesheet">
@@ -44,6 +38,30 @@
     js.src = "https://connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyDOdU5dGM37M02lqjGEyxSFp1a-mu03k9k",
+        authDomain: "trangthudo-3ebdb.firebaseapp.com",
+        projectId: "trangthudo-3ebdb",
+        storageBucket: "trangthudo-3ebdb.appspot.com",
+        messagingSenderId: "72145564117",
+        appId: "1:72145564117:web:60bd9d54f8770652a1cd5c",
+        measurementId: "G-MC6KPGS9LT"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
 </script>
 
 <section id="main-page">

@@ -33,7 +33,7 @@
                     </p>
                 </div>
                 <div class="w-full md:flex md:justify-center">
-                    <img src="{{ $post['thumbnail'] }}" class="rounded mb-4 md:max-w-screen-sm">
+                    <img src="{{ $postHelper::convertImgToGif($post['thumbnail']) }}" class="rounded mb-4 md:max-w-screen-sm">
                 </div>
                 @foreach($post['content'] as $content)
                     @if(is_string($content) && !preg_match("/.*(Ảnh:).*/", $content) && !preg_match("/.*(Nguồn:).*/", $content))
@@ -49,9 +49,17 @@
                                     <img src="{{ $content['src'] }}" class="rounded mb-4 md:max-w-screen-sm">
                                 </div>
                             @elseif($content['type'] == 'gif')
-                                <div class="w-full md:flex md:justify-center">
-                                    <img src="{{ $content['poster'] }}" class="rounded mb-4 md:max-w-screen-sm">
-                                </div>
+                                @if(isset($content['src']))
+                                    <div class="w-full md:flex md:justify-center">
+                                        <video autoplay muted controls loop class="md:w-3/4 rounded-md">
+                                            <source src="{{ $content['src'] }}" type="video/mp4">
+                                        </video>
+                                    </div>
+                                @else
+                                    <div class="w-full md:flex md:justify-center">
+                                        <img src="{{ $postHelper::convertImgToGif($content['poster']) }}" class="rounded mb-4 md:max-w-screen-sm">
+                                    </div>
+                                @endif
                             @endif
                         @endif
                     @endif

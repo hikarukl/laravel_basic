@@ -8,7 +8,7 @@
             </h2>
         </div>
     </div>
-
+    @inject('postHelper', 'App\Helpers\PostHelper')
     <div class="grid md:grid-cols-3 mx-auto mt-3">
         <div class="grid md:col-span-1">
             <a href="{{
@@ -18,7 +18,7 @@
                     'id'       => $category_article_list['article_list'][0]['slug']
                 ])
             }}">
-                <img src="{{ $category_article_list['article_list'][0]['thumbnail'] }}">
+                <img src="{{ $postHelper::convertImgToGif($category_article_list['article_list'][0]['thumbnail']) }}">
             </a>
             <a href="{{
                 route('post-detail',
@@ -44,7 +44,7 @@
                 @if(isset($category_article_list['article_list'][$i]))
                     <div class="col-span-1 grid grid-cols-3 gap-4">
                         <a href="{{ route('post-detail', ['category' => $category_list['slug'], 'id' => $category_article_list['article_list'][$i]['slug']]) }}" class="col-span-1">
-                            <img src="{{ $category_article_list['article_list'][$i]['thumbnail'] }}">
+                            <img src="{{ $postHelper::convertImgToGif($category_article_list['article_list'][$i]['thumbnail']) }}">
                         </a>
                         <div class="col-span-2">
                             <a href="{{ route('post-detail', ['category' => $category_list['slug'], 'id' => $category_article_list['article_list'][$i]['slug']]) }}" class="col-span-2 text-sm text-title-common font-bold text-gray-800 hover:text-blue-500">

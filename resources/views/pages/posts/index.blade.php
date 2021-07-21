@@ -8,7 +8,7 @@
             @foreach($top_post_list as $top_post)
                 <div class="col-span-3 relative">
                     <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post['category']['id']]['slug']), 'id' => $top_post['slug']]) }}">
-                        <img src="{{ $top_post['thumbnail'] }}">
+                        <img src="{{ $postHelper::convertImgToGif($top_post['thumbnail']) }}">
                     </a>
                     <h2 class="text-left text-title-common pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
                         <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post['category']['id']]['slug']), 'id' => $top_post['slug']]) }}" class="text-sm text-white hover:text-blue-500">
@@ -22,7 +22,7 @@
         <div class="grid grid-cols-2 gap-1 hidden md:grid">
             <div class="col-span-1 relative">
                 <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']]['slug']), 'id' => $top_post_list[0]['slug']]) }}">
-                    <img class="w-full" src="{{ $top_post_list[0]['thumbnail'] }}">
+                    <img class="w-full" src="{{ $postHelper::convertImgToGif($top_post_list[0]['thumbnail']) }}">
                 </a>
                 <h2 class="text-left text-title-common pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-2/5">
                     <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[0]['category']['id']]['slug']), 'id' => $top_post_list[0]['slug']]) }}" class="text-lg md:text-xl text-white hover:text-blue-500">
@@ -34,7 +34,7 @@
                 @for($i = 1; $i < count($top_post_list); $i++)
                     <div class="col-span-1 relative">
                         <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[$i]['category']['id']]['slug']), 'id' => $top_post_list[$i]['slug']]) }}">
-                            <img src="{{ $top_post_list[$i]['thumbnail'] }}">
+                            <img src="{{ $postHelper::convertImgToGif($top_post_list[$i]['thumbnail']) }}">
                         </a>
                         <h2 class="text-left text-title-common pl-2 pr-2 font-bold absolute bottom-0 bg-linear-custom-home w-full h-1/2">
                             <a href="{{ route('post-detail', ['category' => strtolower($category_list[$top_post_list[$i]['category']['id']]['slug']), 'id' => $top_post_list[$i]['slug']]) }}" class="text-sm text-white hover:text-blue-500">
@@ -67,7 +67,7 @@
                     @foreach($related_post_list as $related_post)
                         <div class="grid mb-8 md:grid-cols-2">
                             <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['slug']]) }}" class="md:col-span-1">
-                                <img src="{{ $related_post['thumbnail'] }}">
+                                <img src="{{ $postHelper::convertImgToGif($related_post['thumbnail']) }}">
                             </a>
                             <div class="md:col-span-1 md:pl-5 grid md:block">
                                 <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['slug']]) }}" class="mt-3 md:mt-0 text-lg text-title-common font-bold text-gray-800 hover:text-blue-500">

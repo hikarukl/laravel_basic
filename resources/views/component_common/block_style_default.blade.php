@@ -8,7 +8,7 @@
             </h2>
         </div>
     </div>
-
+    @inject('postHelper', 'App\Helpers\PostHelper')
     <div class="grid md:grid-cols-3 mx-auto mt-3 gap-4">
         @foreach($category_article_list['article_list'] as $article)
             <div class="grid md:col-span-1">
@@ -19,7 +19,7 @@
                     'id'       => $article['slug']
                 ])
             }}">
-                    <img src="{{ $article['thumbnail'] }}">
+                    <img src="{{ $postHelper::convertImgToGif($article['thumbnail']) }}">
                 </a>
                 <a href="{{
                 route('post-detail',

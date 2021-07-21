@@ -5,25 +5,13 @@
         </h2>
     </div>
 </div>
-
+@inject('postHelper', 'App\Helpers\PostHelper')
 <div class="container mx-auto mt-3">
     <div class="grid grid-cols-1">
-        {{--<div class="grid">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-format="fluid"
-                 data-ad-layout-key="-6o+cd+1b-14+b1"
-                 data-ad-client="ca-pub-1183003705015401"
-                 data-ad-slot="9312214781"></ins>
-            <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>--}}
         @foreach($category_article_list as $key => $article)
             <div class="grid mb-8 md:grid-cols-2">
                 <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['slug']]) }}" class="md:col-span-1">
-                    <img src="{{ $article['thumbnail'] }}">
+                    <img src="{{ $postHelper::convertImgToGif($article['thumbnail']) }}">
                 </a>
                 <div class="md:col-span-1 md:pl-5 grid md:block">
                     <a href="{{ route('post-detail', ['category' => strtolower($category_list[$article['category']['id']]['slug']), 'id' => $article['slug']]) }}" class="mt-3 md:mt-0 text-lg text-title-common font-bold text-gray-800 hover:text-blue-500">

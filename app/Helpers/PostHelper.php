@@ -45,4 +45,13 @@ class PostHelper
 
         return $time->format($type);
     }
+
+    public static function convertImgToGif($imgLink)
+    {
+        if(preg_match("/(\.gif\.).*$/", $imgLink)) {
+            return preg_replace("/(\.gif\.).*$/", ".gif", $imgLink);
+        }
+
+        return $imgLink;
+    }
 }
