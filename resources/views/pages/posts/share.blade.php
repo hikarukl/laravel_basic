@@ -37,10 +37,12 @@
                         Bấm để tải và đọc tiếp <i class="fal fa-download"></i>
                     </p>
                     {{-- Link for mobile --}}
-                    <a target="_blank" href="https://apps.apple.com/us/app/id1576498863?fbclid=IwAR3L9ZmJPth09TqEzWthPoGvzc8exdqImdlyaAeX3zi_H4T5qErL1n96HVs" class="md:hidden rounded nav-background p-3 text-white font-bold"><i class="fal fa-mobile mr-1"></i> Đọc tiếp bằng app Tin Hay 24h</a>
+                    {{--<a target="_blank" href="https://apps.apple.com/us/app/id1576498863?fbclid=IwAR3L9ZmJPth09TqEzWthPoGvzc8exdqImdlyaAeX3zi_H4T5qErL1n96HVs" class="md:hidden rounded nav-background p-3 text-white font-bold"><i class="fal fa-mobile mr-1"></i> Đọc tiếp bằng app Tin Hay 24h</a>--}}
                     {{-- Link for web --}}
-                    <a target="_blank" href="https://apps.apple.com/us/app/id1576498863?fbclid=IwAR3L9ZmJPth09TqEzWthPoGvzc8exdqImdlyaAeX3zi_H4T5qErL1n96HVs" class="hidden md:block md:max-w-sm rounded nav-background p-3 text-white font-bold"><i class="fal fa-mobile mr-1"></i> Đọc tiếp bằng app Tin Hay 24h</a>
+                    <a target="_blank" id="btn-open" href="" class="md:max-w-sm rounded nav-background p-3 text-white font-bold"><i class="fal fa-mobile mr-1"></i> Đọc tiếp bằng app Tin Hay 24h</a>
                 </div>
+                <input type="hidden" id="url-ios_app" value="{{ $ios_dynamic_link }}">
+                <input type="hidden" id="url-normal" value="{{ route('post-detail', ['category' => $category_list[$post['category']['id']]['slug'], 'id' => $post['slug']]) }}">
             </div>
         </div>
     </div>
@@ -48,7 +50,15 @@
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function () {
+            let isiOS = (navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false); console.log(isiOS);
+            let urlIosAppTarget = $('#url-ios_app');
+            let urlNormalTarget = $('#url-normal');
 
+            if (isiOS) {
+                $('#btn-open').attr('href', urlIosAppTarget.val());
+            } else {
+                $('#btn-open').attr('href', urlNormalTarget.val());
+            }
         });
     </script>
 @endsection

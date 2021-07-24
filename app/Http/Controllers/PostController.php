@@ -185,9 +185,12 @@ class PostController extends Controller
                 return view('errors.500');
             }
 
+            $urlIosDynamicLink = str_replace("{id}", $id, CommonConstant::URL_DYNAMIC_LINK);
+
             $response = [
                 'category_list'     => $allCategories,
                 'post'              => $articleDetail,
+                'ios_dynamic_link'  => $urlIosDynamicLink
             ];
 
             return view('pages.posts.share', $response);

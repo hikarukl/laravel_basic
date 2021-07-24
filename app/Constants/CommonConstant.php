@@ -12,6 +12,7 @@ class CommonConstant
     const URL_REQUEST_ARTICLE_CATEGORY = "kenh14/category-articles/slug";
     const URL_REQUEST_INSTANT_ARTICLES = "rssfeeds/instant-articles";
     const URL_REQUEST_HOST = "http://139.59.117.80/";
+    const URL_DYNAMIC_LINK = "https://tinhay24.page.link/?link=https://trangthudo.com/share/{id}&isi=1576498863&ibi=com.generlab.tinhay24h&cid=5476314331837942920&_icp=1";
 
     // Cache
     const CACHE_HOME_NAME = "GET_HOME_INFORMATION";
