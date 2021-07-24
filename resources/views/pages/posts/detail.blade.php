@@ -64,12 +64,16 @@
                         @endif
                     @endif
                 @endforeach
-                <div class="w-full text-left md:flex md:justify-center">
-                    <p class="text-lg text-gray-700 mb-4 text-right md:w-96">
+                <div class="w-full text-left flex justify-between items-center mb-4">
+                    <a href="javascript:void(0)" id="btn-share_post" class="button flex items-center justify-center nav-background text-white w-32 sm:w-40 rounded p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2 w-4 h-4 mr-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                        Chia sẻ link
+                    </a>
+                    <p class="text-lg text-gray-700 text-right md:w-96">
                         <a href="{{ $post['url'] }}" target="_blank">Link gốc <i class="fas fa-external-link"></i></a>
                     </p>
                 </div>
-
+                <input type="hidden" id="url-share_post" value="{{ route('post-share', ['id' => $post['id']]) }}">
             </div>
 
             <h2 class="font-bold text-lg md:text-3xl mb-3 mt-5 home-category-color">
@@ -79,7 +83,7 @@
                 @foreach($related_post_list as $related_post)
                     <div class="grid col-span-3 md:col-span-1">
                         <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['slug']]) }}">
-                            <img src="{{ $related_post['thumbnail'] }}" class="rounded">
+                            <img src="{{ $postHelper::convertImgToGif($related_post['thumbnail']) }}" class="rounded">
                         </a>
                         <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['slug']]) }}" class="pl-1 md:pl-0 font-bold mt-2 text-lg text-title-common hover:text-blue-500">
                             {{ $related_post['title'] }}
@@ -111,4 +115,24 @@
             )
         </section>
     </div>
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btn-share_post').on('click', function () {
+                let tempElement = $("<input id='inputTemp'>");
+                $('body').append(tempElement);
+                let inputTemp = document.getElementById('inputTemp');
+
+                let url = $('#url-share_post').val();
+                tempElement.val(url).select();
+                inputTemp.focus();
+                inputTemp.setSelectionRange(0, 99999);
+                document.execCommand('Copy');
+                tempElement.remove();
+
+                toastr.success("Đã copy link.");
+            })
+        });
+    </script>
 @endsection

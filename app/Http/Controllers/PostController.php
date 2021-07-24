@@ -166,6 +166,39 @@ class PostController extends Controller
         }
     }
 
+    public function share(Request $request, $id)
+    {
+        try {
+            if (!$id) {
+                throw new \Exception("Invalid id.");
+            }
+
+            // Request get call categories
+            $allCategories = $this->categoryService->getAllCategories();
+
+            // Request get detail
+            $articleDetail = $this->articleService->getArticleDetail($id);
+
+            if (empty($articleDetail)) {
+                Log::error(__FUNCTION__ . ": Request get article was fail.");
+
+                return view('errors.500');
+            }
+
+            $response = [
+                'category_list'     => $allCategories,
+                'post'              => $articleDetail,
+            ];
+
+            return view('pages.posts.share', $response);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            Log::error($e->getTraceAsString());
+
+            return view('errors.500');
+        }
+    }
+
     public function instantArticles()
     {
         // Create facebook instance

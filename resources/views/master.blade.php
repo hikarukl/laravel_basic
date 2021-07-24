@@ -15,6 +15,7 @@
     <link href="{{ asset("css/all.min.css") }}" rel="stylesheet">
     <link href="{{ asset("css/flickity.css") }}" rel="stylesheet">
     <link href="{{ asset("css/common.css") }}" rel="stylesheet">
+    <link href="{{ asset("css/toastr.min.css") }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.typekit.net/bqb1nuo.css">
     @yield('styles')
     @stack('styles_component')
@@ -77,6 +78,7 @@
 <script type='text/javascript' src="{{ asset('js/all.min.js') }}"></script>
 <script type='text/javascript' src="{{ asset('js/flickity.min.js') }}"></script>
 <script type='text/javascript' src="{{ asset("js/common.js?t=$time") }}"></script>
+<script type='text/javascript' src="{{ asset('js/toastr.min.js') }}"></script>
 <script type="text/javascript">
   $.ajaxSetup({
     headers: {
