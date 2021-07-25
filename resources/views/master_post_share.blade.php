@@ -14,7 +14,7 @@
     <link href="{{ asset("css/app.css?t=$time") }}" rel="stylesheet">
     <link href="{{ asset("css/all.min.css") }}" rel="stylesheet">
     <link href="{{ asset("css/common.css") }}" rel="stylesheet">
-    <link rel="icon" type="image/png" href="{{ asset('images/ico_app.png') }}"/>
+    <link rel="icon" type="image/png" href="{{ asset('images/ico_app_circle.png') }}"/>
     @yield('styles')
     @stack('styles_component')
 </head>
