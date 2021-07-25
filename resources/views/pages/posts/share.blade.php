@@ -1,7 +1,7 @@
 @extends('master_post_share')
 @push("meta_facebook")
     {{-- Basic tags --}}
-    <meta property="og:og:site_name" content="Trang Tin Hay" />
+    <meta property="og:og:site_name" content="Tin Hay 24h" />
     <meta property="og:title" content="{{ $post['title'] }}" />
     <meta property="og:image" content="{{ $post['thumbnail'] }}" />
     {{-- Optional tags --}}
@@ -11,11 +11,11 @@
 @section('main')
     {{-- This section summary --}}
     <div class="w-full md:max-w-screen-sm mx-auto">
-        <div class="flex justify-center items-center p-3 bg-blue-200">
+        <div class="flex justify-center items-center p-3 bg-header_share">
             <img class="w-5 rounded mr-2" src="{{ asset('images/icon_app.jpg') }}">
             <span class="font-bold text-sm mr-2">Tin hay 24h</span>
             <span class="text-sm text-gray-500 mr-3">App đọc tin hay</span>
-            <a target="_blank" href="https://apps.apple.com/us/app/id1576498863?fbclid=IwAR3L9ZmJPth09TqEzWthPoGvzc8exdqImdlyaAeX3zi_H4T5qErL1n96HVs" class="rounded nav-background p-1 text-white text-size-10 uppercase">Tải ngay</a>
+            <a target="_blank" href="https://apps.apple.com/us/app/id1576498863?fbclid=IwAR3L9ZmJPth09TqEzWthPoGvzc8exdqImdlyaAeX3zi_H4T5qErL1n96HVs" class="rounded bg-green_custom_one p-1 text-white text-size-10 uppercase">Tải ngay</a>
         </div>
 
         <div class="p-3">
@@ -35,7 +35,7 @@
                 <div class="w-full md:flex md:justify-center">
                     <img src="{{ $postHelper::convertImgToGif($post['thumbnail']) }}" class="rounded mb-4 md:max-w-screen-sm">
                 </div>
-                <div class="w-full text-left md:flex md:justify-center">
+                <div class="w-full text-left md:flex md:justify-center wrap-share_description relative">
                     <p class="mb-3 text-gray-500 md:w-96">
                         {{ $post['description'] }}
                     </p>
@@ -47,7 +47,7 @@
                     {{-- Link for mobile --}}
                     {{--<a target="_blank" href="https://apps.apple.com/us/app/id1576498863?fbclid=IwAR3L9ZmJPth09TqEzWthPoGvzc8exdqImdlyaAeX3zi_H4T5qErL1n96HVs" class="md:hidden rounded nav-background p-3 text-white font-bold"><i class="fal fa-mobile mr-1"></i> Đọc tiếp bằng app Tin Hay 24h</a>--}}
                     {{-- Link for web --}}
-                    <a target="_blank" id="btn-open" href="" class="md:max-w-sm rounded nav-background p-3 text-white font-bold"><i class="fal fa-mobile mr-1"></i> Đọc tiếp bằng app Tin Hay 24h</a>
+                    <a target="_blank" id="btn-open" href="" class="md:max-w-sm rounded bg-green_custom_one p-3 text-white font-bold"><i class="fal fa-mobile mr-1"></i> Đọc tiếp bằng app Tin Hay 24h</a>
                 </div>
                 <input type="hidden" id="url-ios_app" value="{{ $ios_dynamic_link }}">
                 <input type="hidden" id="url-normal" value="{{ route('post-detail', ['category' => $category_list[$post['category']['id']]['slug'], 'id' => $post['slug']]) }}">
