@@ -1,4 +1,12 @@
 @extends('master_post_share')
+@push("meta_facebook")
+    {{-- Basic tags --}}
+    <meta property="og:og:site_name" content="Trang Tin Hay" />
+    <meta property="og:title" content="{{ $post['title'] }}" />
+    <meta property="og:image" content="{{ $post['thumbnail'] }}" />
+    {{-- Optional tags --}}
+    <meta property="og:description" content="{{ $post['description'] }}" />
+@endpush
 @inject('postHelper', 'App\Helpers\PostHelper')
 @section('main')
     {{-- This section summary --}}
