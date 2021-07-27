@@ -12,10 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', '\App\Http\Controllers\HomeController@index')->name('home');
 
-Route::get('/', ['as' => 'home', 'uses' => 'App\Http\Controllers\HomeController@index']);
-Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'App\Http\Controllers\HomeController@index']);
-
+Route::resource('home', \App\Http\Controllers\HomeController::class);
 Route::resource('category', \App\Http\Controllers\CategoryController::class);
 Route::resource('post', \App\Http\Controllers\PostController::class);
 

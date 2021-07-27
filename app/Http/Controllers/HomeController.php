@@ -4,8 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Services\FrontendMenu as FrontendMenuService;
+
 class HomeController extends Controller
 {
+    protected $frontendMenuService;
+
+    public function __construct(FrontendMenuService $frontendMenuService)
+    {
+        $this->frontendMenuService = $frontendMenuService;
+    }
+
     /**
      * Description
      *
@@ -13,6 +22,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.home.index', ['category' => []]);
+        return view('pages.home.index');
     }
 }

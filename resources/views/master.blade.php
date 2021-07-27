@@ -14,7 +14,7 @@
     <meta property="og:url" content="{{ url('/') }}" />
     <meta property="og:image:alt" content=""/>
     @stack("meta_facebook")
-    <link href="{{ asset("css/app_midone.css") }}" rel="stylesheet">
+    <link href="{{ asset("css/app.css") }}" rel="stylesheet">
     <link href="{{ asset("css/all.min.css") }}" rel="stylesheet">
     <link href="{{ asset("css/flickity.min.css") }}" rel="stylesheet">
     <link href="{{ asset("css/common.css") }}" rel="stylesheet">
@@ -32,13 +32,13 @@
     </div>
 </section>
 </body>
-<script type='text/javascript' src="{{ asset('js/jquery.min.js') }}"></script>
-<script type='text/javascript' src="{{ asset('js/app_midone.js') }}"></script>
+{{--<script type='text/javascript' src="{{ asset('js/jquery.min.js') }}"></script>--}}
+<script type='text/javascript' src="{{ asset('js/app.js') }}"></script>
 <script type='text/javascript' src="{{ asset('js/all.min.js') }}"></script>
 <script type='text/javascript' src="{{ asset('js/flickity.min.js') }}"></script>
 <script type='text/javascript' src="{{ asset("js/common.js") }}"></script>
 <script type="text/javascript">
-    $.ajaxSetup({
+    /*$.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
@@ -46,7 +46,7 @@
     $('.main-carousel').flickity({
         autoPlay: true,
         prevNextButtons: false
-    });
+    });*/
 </script>
 @yield('scripts')
 @stack('scripts_component')
