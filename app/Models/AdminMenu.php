@@ -25,6 +25,6 @@ class AdminMenu extends Model
 
     public function subMenus()
     {
-        return $this->hasManyThrough(AdminMenuRelation::class, AdminMenu::class, 'parent_id', 'child_id');
+        return $this->hasManyThrough(AdminMenuRelation::class, AdminMenu::class, 'id', 'child_id');
     }
 }
