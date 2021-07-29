@@ -92,10 +92,14 @@
 
             $('.img-btn_play_thumb').on('click',function () {
                 let link = '';
-                if (shareType.val() === 'article') {
-                    link = urlNormalTarget.val();
+                if (isiOS) {
+                    link = urlDynamicAppTarget.val();
                 } else {
-                    link = urlIosAppTarget.val();
+                    if (shareType.val() === 'article') {
+                        link = urlNormalTarget.val();
+                    } else {
+                        link = urlIosAppTarget.val();
+                    }
                 }
                 window.open(link, '_blank');
             });
