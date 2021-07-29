@@ -27,7 +27,7 @@
                 </div>
                 <div class="w-full text-left md:flex md:justify-center">
                     <p class="text-sm mt-1 mb-4  md:w-96">
-                        {{ isset($category_list[$post['category']['id']]) ? $category_list[$post['category']['id']]['name'] : $post['category']['name'] }}
+                        {{ $share_type == "article" ? $category_list[$post['category']['id']]['name'] : $post['category']['name'] }}
                         -
                         <span class="text-gray-500">{{ $postHelper::convertTimeToDisplay($post['published_time']) }}</span>
                     </p>
