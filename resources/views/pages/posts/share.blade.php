@@ -56,7 +56,7 @@
                         @if($share_type == "article")
                             Đọc tiếp bằng app Tin Hay 24h
                         @else
-                            Xem Clip bằng app Tin Hay 24ht
+                            Xem Clip bằng app Tin Hay 24h
                         @endif
                     </a>
                 </div>
