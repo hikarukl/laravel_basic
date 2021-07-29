@@ -49,7 +49,13 @@
                     {{-- Link for mobile --}}
                     {{--<a target="_blank" href="https://apps.apple.com/us/app/id1576498863?fbclid=IwAR3L9ZmJPth09TqEzWthPoGvzc8exdqImdlyaAeX3zi_H4T5qErL1n96HVs" class="md:hidden rounded nav-background p-3 text-white font-bold"><i class="fal fa-mobile mr-1"></i> Đọc tiếp bằng app Tin Hay 24h</a>--}}
                     {{-- Link for web --}}
-                    <a target="_blank" id="btn-open" href="" class="md:max-w-sm rounded bg-green_custom_one p-3 text-white font-bold"><i class="fal fa-mobile mr-1"></i> Đọc tiếp bằng app Tin Hay 24h</a>
+                    <a target="_blank" id="btn-open" href="" class="md:max-w-sm rounded bg-green_custom_one p-3 text-white font-bold"><i class="fal fa-mobile mr-1"></i>
+                        @if($share_type == "article")
+                            Đọc tiếp bằng app Tin Hay 24h
+                        @else
+                            Xem Clip bằng app Tin Hay 24ht 
+                        @endif
+                    </a>
                 </div>
                 <input type="hidden" id="url-dynamic_link" value="{{ $ios_dynamic_link }}">
                 <input type="hidden" id="share-type" value="{{ $share_type }}">
