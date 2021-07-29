@@ -32,8 +32,11 @@
                         <span class="text-gray-500">{{ $postHelper::convertTimeToDisplay($post['published_time']) }}</span>
                     </p>
                 </div>
-                <div class="w-full md:flex md:justify-center">
+                <div class="w-full md:flex md:justify-center relative">
                     <img src="{{ $postHelper::convertImgToGif($post['thumbnail']) }}" class="rounded mb-4 md:max-w-screen-sm w-full">
+                    @if($share_type == 'video')
+                        <img class="absolute w-20 img-btn_play_thumb" src="{{ asset('images/img_play_thumb.png') }}">
+                    @endif
                 </div>
                 @if($share_type == "article")
                     <div class="w-full text-left md:flex md:justify-center wrap-share_description relative">
@@ -53,7 +56,7 @@
                         @if($share_type == "article")
                             Đọc tiếp bằng app Tin Hay 24h
                         @else
-                            Xem Clip bằng app Tin Hay 24ht 
+                            Xem Clip bằng app Tin Hay 24ht
                         @endif
                     </a>
                 </div>
@@ -86,6 +89,16 @@
                    $('#btn-open').attr('href', urlIosAppTarget.val());
                }
             }
+
+            $('.img-btn_play_thumb').on('click',function () {
+                let link = '';
+                if (shareType.val() === 'article') {
+                    link = urlNormalTarget.val();
+                } else {
+                    link = urlIosAppTarget.val();
+                }
+                window.open(link, '_blank');
+            });
         });
     </script>
 @endsection
