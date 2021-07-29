@@ -35,11 +35,13 @@
                 <div class="w-full md:flex md:justify-center">
                     <img src="{{ $postHelper::convertImgToGif($post['thumbnail']) }}" class="rounded mb-4 md:max-w-screen-sm w-full">
                 </div>
-                <div class="w-full text-left md:flex md:justify-center wrap-share_description relative">
-                    <p class="mb-3 text-gray-500 md:w-96">
-                        {{ $post['description'] }}
-                    </p>
-                </div>
+                @if($share_type == "article")
+                    <div class="w-full text-left md:flex md:justify-center wrap-share_description relative">
+                        <p class="mb-3 text-gray-500 md:w-96">
+                            {{ $post['description'] }}
+                        </p>
+                    </div>
+                @endif
                 <div class="w-full text-center shadow-download_app pt-5 flex flex-col justify-center items-center">
                     <p class="mb-3 text-gray-500 text-sm mb-4">
                         Bấm để tải và đọc tiếp <i class="fal fa-download"></i>
