@@ -108,3 +108,12 @@ body {
     background: linear-gradient(to top, rgba(255,255,255, 1) 1%, rgba(255,255,255, 0) 100% );
     pointer-events: none;
 }
+
+/* Video share */
+.img-btn_play_thumb {
+    top: 50%;
+    left: 50%;
+    margin-top: -40px;
+    margin-left: -40px;
+    cursor: pointer;
+}
