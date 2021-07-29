@@ -8,17 +8,20 @@ class CommonConstant
 {
     const URL_REQUEST_CATEGORIES = "kenh14/categories/";
     const URL_REQUEST_ARTICLES = "kenh14/articles/";
-    const URL_REQUEST_ARTICLE_DETAIL = "kenh14/article/id";
+    const URL_REQUEST_ARTICLE_DETAIL = "kenh14/article/{id}";
+    const URL_REQUEST_VIDEO_DETAIL = "video/GetVideoDetail/{id}";
     const URL_REQUEST_ARTICLE_CATEGORY = "kenh14/category-articles/slug";
     const URL_REQUEST_INSTANT_ARTICLES = "rssfeeds/instant-articles";
     const URL_REQUEST_HOST = "http://139.59.117.80/";
-    const URL_DYNAMIC_LINK = "https://tinhay24.page.link/?link=https://trangthudo.com/share/{id}&isi=1576498863&ibi=com.generlab.tinhay24h&cid=5476314331837942920&_icp=1&efr=1";
+    const URL_DYNAMIC_LINK = "https://tinhay24.page.link/?link=https://trangthudo.com/{type}/{id}&isi=1576498863&ibi=com.generlab.tinhay24h&cid=5476314331837942920&_icp=1&efr=1";
+    const URL_IOS_APP = "https://apps.apple.com/lt/app/id1576498863";
 
     // Cache
     const CACHE_HOME_NAME = "GET_HOME_INFORMATION";
     const CACHE_HOME_EXPIRE_IN_MINUTES = 5;
     const CACHE_CATEGORIES_EXPIRE_IN_MINUTES = 60*24*30;
     const CACHE_ARTICLE_DETAIL_EXPIRE_IN_MINUTES = 10;
+    const CACHE_ARTICLE_SHARE_EXPIRE_IN_MINUTES = 60*24*30;
     const MIN_ARTICLES_NEED_TO_DISPLAY = 5;
 
     // Cache article detail prefix

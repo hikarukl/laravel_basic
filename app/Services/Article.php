@@ -100,21 +100,27 @@ class Article
      * Get article detail
      *
      * @param int $articleId
+     * @param string $type
      *
      * @return array
      *
      */
-    public function getArticleDetail($articleId)
+    public function getArticleDetail($articleId, $type = 'article')
     {
         try {
-            $cacheName = CommonConstant::CACHE_ARTICLE_PREFIX_NAME . $articleId;
+            $cacheName = CommonConstant::CACHE_ARTICLE_PREFIX_NAME . $type . $articleId;
             if (Cache::has($cacheName)) {
                 return Cache::get($cacheName);
             }
 
-            $url = env('API_PREFIX_URL', "http://10.104.0.2/") . CommonConstant::URL_REQUEST_ARTICLE_DETAIL;
+            if ($type !== 'article') {
+                $url = env('API_PREFIX_URL', "http://10.104.0.2/") . CommonConstant::URL_REQUEST_VIDEO_DETAIL;
+            } else {
+                $url = env('API_PREFIX_URL', "http://10.104.0.2/") . CommonConstant::URL_REQUEST_ARTICLE_DETAIL;
+            }
+
             $params = [
-                'url' => str_replace("id", $articleId, $url)
+                'url' => str_replace("{id}", $articleId, $url)
             ];
 
             $responsePost = GuzzleClientHelper::sendRequestGetClientGuzzle($params);
@@ -124,7 +130,7 @@ class Article
             Cache::put(
                 $cacheName,
                 $result,
-                now()->addMinutes(CommonConstant::CACHE_ARTICLE_DETAIL_EXPIRE_IN_MINUTES)
+                now()->addMinutes(CommonConstant::CACHE_ARTICLE_SHARE_EXPIRE_IN_MINUTES)
             );
 
             return $result;

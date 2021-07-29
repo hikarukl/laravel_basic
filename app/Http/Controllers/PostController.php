@@ -166,32 +166,14 @@ class PostController extends Controller
         }
     }
 
-    public function share(Request $request, $id)
+    public function shareArticle(Request $request, $id)
     {
         try {
             if (!$id) {
                 throw new \Exception("Invalid id.");
             }
 
-            // Request get call categories
-            $allCategories = $this->categoryService->getAllCategories();
-
-            // Request get detail
-            $articleDetail = $this->articleService->getArticleDetail($id);
-
-            if (empty($articleDetail)) {
-                Log::error(__FUNCTION__ . ": Request get article was fail.");
-
-                return view('errors.500');
-            }
-
-            $urlIosDynamicLink = str_replace("{id}", $id, CommonConstant::URL_DYNAMIC_LINK);
-
-            $response = [
-                'category_list'     => $allCategories,
-                'post'              => $articleDetail,
-                'ios_dynamic_link'  => $urlIosDynamicLink
-            ];
+            $response = $this->getResponseShare("article", $id);
 
             return view('pages.posts.share', $response);
         } catch (\Exception $e) {
@@ -200,6 +182,51 @@ class PostController extends Controller
 
             return view('errors.500');
         }
+    }
+
+    public function shareVideo(Request $request, $id)
+    {
+        try {
+            if (!$id) {
+                throw new \Exception("Invalid id.");
+            }
+
+            $response = $this->getResponseShare("video", $id);
+
+            return view('pages.posts.share', $response);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            Log::error($e->getTraceAsString());
+
+            return view('errors.500');
+        }
+    }
+
+    private function getResponseShare($type, $id)
+    {
+        // Request get call categories
+        $allCategories = $this->categoryService->getAllCategories();
+
+        // Request get detail
+        $articleDetail = $this->articleService->getArticleDetail($id, $type);
+
+        if (empty($articleDetail)) {
+            Log::error(__FUNCTION__ . ": Request get {$type} was fail.");
+
+            return view('errors.500');
+        }
+
+        $shareLink = $type === "video" ? $type : "share";
+
+        $urlIosDynamicLink = str_replace(["{type}","{id}"], [$shareLink, $id], CommonConstant::URL_DYNAMIC_LINK);
+
+        return [
+            'category_list'     => $allCategories,
+            'post'              => $articleDetail,
+            'ios_dynamic_link'  => $urlIosDynamicLink,
+            'ios_app_link'      => CommonConstant::URL_IOS_APP,
+            'share_type'        => $type
+        ];
     }
 
     public function instantArticles()
