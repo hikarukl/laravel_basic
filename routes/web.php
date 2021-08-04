@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::domain(env('DOMAIN_SHARE'))->group(function () {
-    Route::get('/', function () {
-        return 'OK';
-    });
+    Route::get('/', 'HomeShareController@index')->name('share-home');
     Route::get('share/{id}', 'PostController@shareArticle')->name('post-share');
     Route::get('video/{id}', 'PostController@shareVideo')->name('video-share');
 });

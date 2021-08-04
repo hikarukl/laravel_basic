@@ -99,6 +99,15 @@ body {
 .bg-green_custom_one {
     background-color: #47B267;
 }
+.bg-green_custom_two {
+    background-color: #8dcf49;
+}
+.text-home_share_color_one {
+    color: #505c67;
+}
+.text-home_share_color_two {
+    color: #47B267;
+}
 .wrap-share_description:after {
     position: absolute;
     bottom: 0;
