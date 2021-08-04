@@ -54,7 +54,7 @@
     <div class="mt-12 sm:mt-0 w-full mx-auto bg-green_custom_two">
         {{-- Banner --}}
         <div class="w-full mx-auto md:max-w-screen-sm grid grid-cols-2 pt-8 pb-8 pl-2 pr-2 sm:pl-0 sm:pr-0">
-            <img class="w-3/4 sm:col-span-1" src="{{ asset('images/home_share_banner.png') }}">
+            <img class="w-11/12 sm:w-3/4 sm:col-span-1" src="{{ asset('images/home_share_banner.png') }}">
 
             <div class="md:col-span-1 mt-0 sm:mt-10">
                 <p class="text-3xl sm:text-5xl font-bold text-white sm:mt-5 mb-2">Tin Hay 24h</p>
