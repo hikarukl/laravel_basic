@@ -14,7 +14,8 @@ class CommonConstant
     const URL_REQUEST_INSTANT_ARTICLES = "rssfeeds/instant-articles";
     const URL_REQUEST_HOST = "http://139.59.117.80/";
     const URL_DYNAMIC_LINK = "https://tinhay24.page.link/?link=https://trangthudo.com/{type}/{id}&isi=1576498863&ibi=com.generlab.tinhay24h&cid=5476314331837942920&_icp=1&efr=1";
-    const URL_IOS_APP = "https://apps.apple.com/lt/app/id1576498863";
+    const URL_IOS_APP = "https://apps.apple.com/vn/app/id1576498863#?platform=iphone";
+
 
     // Cache
     const CACHE_HOME_NAME = "GET_HOME_INFORMATION";
