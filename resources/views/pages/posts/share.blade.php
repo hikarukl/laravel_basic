@@ -26,7 +26,7 @@
                     </p>
                 </div>
                 <div class="w-full text-left md:flex md:justify-center">
-                    <p class="text-sm mt-2 mb-5 md:w-96">
+                    <p class="text-sm mt-1 mb-5 md:w-96">
                         {{ $share_type == "article" ? $category_list[$post['category']['id']]['name'] : $post['category']['name'] }}
                         -
                         <span class="text-gray-500">{{ $postHelper::convertTimeToDisplay($post['published_time']) }}</span>
