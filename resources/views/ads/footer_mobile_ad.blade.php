@@ -13,5 +13,8 @@
                 'margin-bottom': footerAdHeight + 'px'
             });
         }
+        $('.footer-ad_mobile').on('click', function () {
+            firebase.analytics().logEvent('Mobile_click_banner');
+        });
     </script>
 @endpush
