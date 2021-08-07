@@ -71,7 +71,13 @@ body {
 
 /* Nav */
 .nav-background {
-    background-color: #2268c6;
+    /*background-color: #2268c6;*/
+    background-image: url("../images/web_news/img_bg_large.png") ;
+    background-size: cover;
+    background-position: left bottom;
+}
+.nav-item_active, .hover\:nav-item_active:hover {
+    background-color: #6dc824;
 }
 
 .text-title-common {

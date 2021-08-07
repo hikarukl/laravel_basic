@@ -151,6 +151,7 @@ class PostController extends Controller
 
             $response = [
                 'category_list'     => $allCategories,
+                'category_selected' => $category,
                 'menu_list'         => $filteredCategory,
                 'post'              => $articleDetail,
                 'new_post_list'     => $newPostList,
