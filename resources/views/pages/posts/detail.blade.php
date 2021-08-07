@@ -18,12 +18,12 @@
         <div class="md:col-span-2">
             <div class="grid grid-cols-1 auto-cols-max md:text-left article-detail">
                 <div class="w-full text-left md:flex md:justify-center">
-                    <p class="font-bold text-title-common text-2xl md:text-4xl mb-4  md:w-96">
+                    <p class="font-bold text-title-common text-2xl md:text-4xl mb-2  md:w-96">
                         {{ $post['title'] }}
                     </p>
                 </div>
                 <div class="w-full text-left md:flex md:justify-center">
-                    <p class="text-gray-500 text-sm mt-1 mb-4  md:w-96"><i class="fad fa-clock mr-2"></i>
+                    <p class="text-gray-500 text-sm mb-5 md:w-96"><i class="fad fa-clock mr-2"></i>
                         {{ $postHelper::convertTimeToDisplay($post['published_time']) }}
                     </p>
                 </div>
@@ -76,8 +76,8 @@
                 <input type="hidden" id="url-share_post" value="{{ route('post-share', ['id' => $post['id']]) }}">
             </div>
 
-            <h2 class="font-bold text-lg md:text-3xl mb-3 mt-5 home-category-color">
-                <a class="border-b-2 border-green_custom">Tin Liên Quan</a>
+            <h2 class="font-bold text-lg md:text-3xl mb-3 mt-5 text-gray-800">
+                <a class="border-b-4 border-green_custom">Tin Liên Quan</a>
             </h2>
             <div class="grid grid-cols-3 gap-8">
                 @foreach($related_post_list as $related_post)

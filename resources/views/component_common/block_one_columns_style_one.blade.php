@@ -1,7 +1,7 @@
 <div class="container mx-auto">
     <div class="grid gap-4">
-        <h2 class="text-xl md:text-3xl uppercase font-bold home-category-color">
-            <a href="{{ $title_info['link'] }}" class="border-b-2 border-green_custom">{{ $title_info['name'] }}</a>
+        <h2 class="text-xl md:text-3xl uppercase font-bold text-gray-800">
+            <a href="{{ $title_info['link'] }}" class="border-b-4 border-green_custom">{{ $title_info['name'] }}</a>
         </h2>
     </div>
 </div>

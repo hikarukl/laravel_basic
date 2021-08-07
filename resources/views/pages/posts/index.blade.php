@@ -56,8 +56,8 @@
         <section id="section-home_newest_sport" class="pr-5 pl-5 mt-8 col-span-3 md:col-span-2">
             <div class="container mx-auto">
                 <div class="grid grid-cols-4 gap-4">
-                    <h2 class="col-span-4 text-xl md:text-3xl font-bold home-category-color">
-                        <a href="#" class="border-b-2 border-green_custom">{{ ucwords($category_name) }}</a>
+                    <h2 class="col-span-4 text-xl md:text-3xl font-bold text-gray-800">
+                        <a href="#" class="border-b-4 border-green_custom">{{ ucwords($category_name) }}</a>
                     </h2>
                 </div>
             </div>

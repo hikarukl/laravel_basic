@@ -105,6 +105,10 @@ class HomeController extends Controller
 
             $anotherPostListWeb = array_chunk($anotherPostList, 5);
 
+            usort($filteredCategory, function ($itemFirst, $itemSecond) {
+               return $itemFirst['priority'] > $itemSecond['priority'];
+            });
+
             $response = [
                 'category_list'            => $allCategories,
                 'menu_list'                => $filteredCategory,

@@ -43,14 +43,16 @@ class CommonConstant
             "slug" => "lam-dep",
         ],
         2 => [
-            "id" => 2,
-            "name" => "Đời sống",
-            "slug" => "doi-song",
+            "id"        => 2,
+            "name"      => "Đời sống",
+            "slug"      => "doi-song",
+            "priority"  => 5
         ],
         3 => [
-            "id" => 3,
-            "name" => "Sức Khỏe - Giới Tính",
-            "slug" => "suc-khoe-gioi-tinh",
+            "id"        => 3,
+            "name"      => "Sức Khỏe",
+            "slug"      => "suc-khoe-gioi-tinh",
+            "priority"  => 6
         ],
         4 => [
             "id" => 4,
@@ -63,9 +65,10 @@ class CommonConstant
             "slug" => "xem-mua-luon",
         ],
         6 => [
-            "id" => 6,
-            "name" => "Xã Hội",
-            "slug" => "xa-hoi",
+            "id"        => 6,
+            "name"      => "Xã Hội",
+            "slug"      => "xa-hoi",
+            "priority"  => 1
         ],
         7 => [
             "id" => 7,
@@ -83,15 +86,16 @@ class CommonConstant
             "slug" => "hoc-duong",
         ],
         10 => [
-            "id" => 10,
-            "name" => "Pháp Luật",
-            "slug" => "phap-luat",
+            "id"        => 10,
+            "name"      => "Pháp Luật",
+            "slug"      => "phap-luat",
+            "priority"  => 4
         ],
-        11 => [
+        /*11 => [
             "id" => 11,
             "name" => "Phim Chiếu Rạp",
             "slug" => "phim-chieu-rap",
-        ],
+        ],*/
         12 => [
             "id" => 12,
             "name" => "Series Truyền Hình",
@@ -101,11 +105,13 @@ class CommonConstant
             "id" => 13,
             "name" => "Thế Giới",
             "slug" => "the-gioi",
+            "priority"  => 2
         ],
         14 => [
             "id" => 14,
             "name" => "Bóng Đá",
             "slug" => "bong-da",
+            "priority"  => 3
         ],
         15 => [
             "id" => 15,
@@ -122,11 +128,11 @@ class CommonConstant
             "name" => "Hậu Trường",
             "slug" => "hau-truong",
         ],
-        18 => [
+        /*18 => [
             "id" => 18,
             "name" => "Thời trang",
             "slug" => "thoi-trang",
-        ],
+        ],*/
         19 => [
             "id" => 19,
             "name" => "House n Home",
@@ -137,20 +143,21 @@ class CommonConstant
             "name" => "TV Show",
             "slug" => "tv-show",
         ],
-        21 => [
+        /*21 => [
             "id" => 21,
             "name" => "Công Nghệ Vui",
             "slug" => "cong-nghe-vui",
-        ],
+        ],*/
         22 => [
             "id" => 22,
             "name" => "HIP-HOP Neva Die",
             "slug" => "hip-hop-neva-die",
         ],
         23 => [
-            "id" => 23,
-            "name" => "2-Tek",
-            "slug" => "2-tek",
+            "id"        => 23,
+            "name"      => "Công Nghệ",
+            "slug"      => "2-tek",
+            "priority"  => 7
         ],
         24 => [
             "id" => 24,

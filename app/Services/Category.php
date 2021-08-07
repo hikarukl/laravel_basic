@@ -25,17 +25,21 @@ class Category
     const CATEGORY_MOBILE_ID = 25;
     const CATEGORY_NETWORK_HOT_ID = 26;
     const CATEGORY_FUNNY_TECHNICAL_ID = 21;
+    const CATEGORY_WORLD_ID = 13;
+    const CATEGORY_2TEK_ID = 23;
 
     const CATEGORY_LIST_FILTER_MAP = [
+        self::CATEGORY_SOCIAL_ID,
+        self::CATEGORY_WORLD_ID,
+        self::CATEGORY_FOOTBALL_ID,
+        self::CATEGORY_LAW_ID,
         self::CATEGORY_LIFE_ID,
         self::CATEGORY_HEALTHY_ID,
-        self::CATEGORY_VIETNAM_START_ID,
-        self::CATEGORY_SOCIAL_ID,
-        self::CATEGORY_LAW_ID,
-        self::CATEGORY_MOVIE_ID,
-        self::CATEGORY_FOOTBALL_ID,
-        self::CATEGORY_FASHION_ID,
-        self::CATEGORY_FUNNY_TECHNICAL_ID,
+        self::CATEGORY_2TEK_ID,
+        //self::CATEGORY_VIETNAM_START_ID,
+        //self::CATEGORY_MOVIE_ID,
+        //self::CATEGORY_FASHION_ID,
+        //self::CATEGORY_FUNNY_TECHNICAL_ID,
     ];
 
     const CATEGORY_LIST_CONTENT_FILTER_MAP = [

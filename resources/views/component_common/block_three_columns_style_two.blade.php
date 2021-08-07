@@ -2,9 +2,9 @@
     <div class="container mx-auto">
         <div class="grid grid-cols-4 gap-4">
             <div class="grid grid-cols-4 gap-4">
-                <h2 class="col-span-4 text-xl md:text-3xl uppercase font-bold home-category-color">
+                <h2 class="col-span-4 text-xl md:text-3xl uppercase font-bold text-gray-800">
                     <a href="{{ route('post-list', ['category' => $category_list['slug']]) }}"
-                       class="border-b-2 border-green_custom">{{ $category_list['name'] }}
+                       class="border-b-4 border-green_custom">{{ $category_list['name'] }}
                     </a>
                 </h2>
             </div>

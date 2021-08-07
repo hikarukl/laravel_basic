@@ -73,11 +73,14 @@ class PostController extends Controller
         $topArticles = array_slice($articleList, 0, 5);
         $firstArticle = Arr::first($topArticles);
 
+        usort($filteredCategory, function ($itemFirst, $itemSecond) {
+            return $itemFirst['priority'] > $itemSecond['priority'];
+        });
         $response = [
             'category_list'     => $allCategories,
             'menu_list'         => $filteredCategory,
             'category_selected' => $categorySlug,
-            'category_name'     => $categorySlug == 'moi-nhat' ? "Mới Nhất" : $firstArticle['category']['name'],
+            'category_name'     => $categorySlug == 'moi-nhat' ? "Mới Nhất" : $allCategories[$firstArticle['category']['id']]['name'],
             'top_post_list'     => $topArticles,
             'new_post_list'     => $newArticleList,
             'related_post_list' => array_slice($articleList, 5)
@@ -149,6 +152,9 @@ class PostController extends Controller
                return $item['id'] != $articleDetail['id'];
             })->toArray();
 
+            usort($filteredCategory, function ($itemFirst, $itemSecond) {
+                return $itemFirst['priority'] > $itemSecond['priority'];
+            });
             $response = [
                 'category_list'     => $allCategories,
                 'category_selected' => $category,
