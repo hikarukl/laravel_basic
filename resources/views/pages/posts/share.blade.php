@@ -15,7 +15,7 @@
             <img class="w-5 rounded mr-2" src="{{ asset('images/icon_app.jpg') }}">
             <span class="font-bold text-sm mr-2">Tin hay 24h</span>
             <span class="text-sm text-gray-500 mr-3">App đọc tin hay</span>
-            <a target="_blank" href="https://apps.apple.com/us/app/id1576498863?fbclid=IwAR3L9ZmJPth09TqEzWthPoGvzc8exdqImdlyaAeX3zi_H4T5qErL1n96HVs" class="rounded bg-green_custom_one p-1 text-white text-size-10 uppercase">Tải ngay</a>
+            <a target="_blank" href="{{ $ios_app_link }}" class="rounded bg-green_custom_one p-1 text-white text-size-10 uppercase">Tải ngay</a>
         </div>
 
         <div class="p-3">
