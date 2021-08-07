@@ -73,11 +73,11 @@
                                 <a href="{{ route('post-detail', ['category' => $category_list[$related_post['category']['id']]['slug'], 'id' => $related_post['slug']]) }}" class="mt-3 md:mt-0 text-lg text-title-common font-bold text-gray-800 hover:text-blue-500">
                                     {{ $related_post['title'] }}
                                 </a>
-                                <p class="text-gray-500 text-sm mt-1 md:mt-3 md:mb-3">
+                                <p class="text-gray-500 text-sm mt-1">
                                     <i class="fad fa-clock mr-2"></i>
                                     {{ $postHelper::convertTimeToDisplay($related_post['published_time']) }}
                                 </p>
-                                <p class="mt-2 text-gray-700 text-sm">
+                                <p class="mt-3 text-gray-700 text-sm">
                                     {{ $related_post['description'] }}
                                 </p>
                             </div>
