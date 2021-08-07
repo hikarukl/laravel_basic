@@ -77,7 +77,7 @@
             </div>
 
             <h2 class="font-bold text-lg md:text-3xl mb-3 mt-5 home-category-color">
-                <a class="border-b-2 border-orange-700">Tin Liên Quan</a>
+                <a class="border-b-2 border-green_custom">Tin Liên Quan</a>
             </h2>
             <div class="grid grid-cols-3 gap-8">
                 @foreach($related_post_list as $related_post)

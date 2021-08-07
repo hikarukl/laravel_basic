@@ -1,7 +1,7 @@
 <div class="container mx-auto">
     <div class="grid grid-cols-4 gap-4">
         <h2 class="col-span-2 text-xl md:text-3xl uppercase font-bold home-category-color">
-            <a href="{{ $title_info['link'] }}" class="border-b-2 border-orange-700">{{ $title_info['name'] }}</a>
+            <a href="{{ $title_info['link'] }}" class="border-b-2 border-green_custom">{{ $title_info['name'] }}</a>
         </h2>
     </div>
 </div>

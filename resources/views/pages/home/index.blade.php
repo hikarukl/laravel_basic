@@ -110,7 +110,7 @@
             <div class="container mx-auto">
                 <div class="grid grid-cols-4 gap-4">
                     <h2 class="col-span-2 text-xl md:text-3xl uppercase font-bold home-category-color">
-                        <a href="#" class="border-b-2 border-orange-700">Tin tức khác</a>
+                        <a href="#" class="border-b-2 border-green_custom">Tin tức khác</a>
                     </h2>
                 </div>
             </div>
