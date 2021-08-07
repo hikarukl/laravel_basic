@@ -26,13 +26,13 @@
                     </svg>
                 </button>
             </div>
-            <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start" id="wrap-header_menus">
+            <div class="flex-1 flex items-center justify-center sm:items-center sm:justify-start" id="wrap-header_menus">
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <img class="block lg:hidden h-8 w-auto" src="{{ asset('images/web_news/favicon.png') }}" alt="Trang tin hay">
+                        <img class="block lg:hidden h-12 w-auto" src="{{ asset('images/ico_app_circle.png') }}" alt="Trang tin hay">
                     </a>
                     <a href="{{ route('home') }}">
-                        <img class="hidden lg:block h-8 w-auto" src="{{ asset('images/web_news/favicon.png') }}" alt="Trang tin hay">
+                        <img class="hidden lg:block h-12 w-auto" src="{{ asset('images/ico_app_circle.png') }}" alt="Trang tin hay">
                     </a>
                 </div>
                 <div class="hidden sm:block sm:ml-6">

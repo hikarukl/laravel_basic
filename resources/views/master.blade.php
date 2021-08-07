@@ -17,7 +17,7 @@
     <link href="{{ asset("css/common.css") }}" rel="stylesheet">
     <link href="{{ asset("css/toastr.min.css") }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.typekit.net/bqb1nuo.css">
-    <link rel="icon" type="image/png" href="{{ asset('images/web_news/favicon.png') }}"/>
+    <link rel="icon" type="image/png" href="{{ asset('images/ico_app_circle.png') }}"/>
     @yield('styles')
     @stack('styles_component')
     <script data-ad-client="ca-pub-2010477428789415" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
