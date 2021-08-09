@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Constants\CommonConstant;
 use App\Helpers\GuzzleClientHelper;
+use App\Helpers\SignatureHelper;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Client;
@@ -34,9 +35,11 @@ class Article
             // Request get categories
             $params = [
                 'url'   => env('API_PREFIX_URL', "http://10.104.0.2/") . CommonConstant::URL_REQUEST_ARTICLES,
-                'query' => [
-                    'limit'  => isset($options['limit']) ? $options['limit'] :  self::DEFAULT_LIMIT_GET_ARTICLES,
-                    'offset' => isset($options['offset']) ? $options['offset'] : self::DEFAULT_START_OFFSET
+                'options' => [
+                    'query' => [
+                        'limit'  => isset($options['limit']) ? $options['limit'] :  self::DEFAULT_LIMIT_GET_ARTICLES,
+                        'offset' => isset($options['offset']) ? $options['offset'] : self::DEFAULT_START_OFFSET
+                    ]
                 ]
             ];
 
@@ -119,8 +122,14 @@ class Article
                 $url = env('API_PREFIX_URL', "http://10.104.0.2/") . CommonConstant::URL_REQUEST_ARTICLE_DETAIL;
             }
 
+            $requestToken = SignatureHelper::generateTokenRequestServer();
             $params = [
-                'url' => str_replace("{id}", $articleId, $url)
+                'url' => str_replace("{id}", $articleId, $url),
+                'options' => [
+                    'headers' => [
+                        'Authorization' => "Bearer $requestToken"
+                    ]
+                ]
             ];
 
             $responsePost = GuzzleClientHelper::sendRequestGetClientGuzzle($params);
@@ -158,8 +167,14 @@ class Article
                 return Cache::get($cacheName);
             }
 
+            $requestToken = SignatureHelper::generateTokenRequestServer();
             // Request get categories
-            $client = new Client(['base_uri' => env('API_PREFIX_URL', "http://10.104.0.2/")]);
+            $client = new Client([
+                'base_uri' => env('API_PREFIX_URL', "http://10.104.0.2/"),
+                'headers' => [
+                    'Authorization' => "Bearer $requestToken"
+                ]
+            ]);
 
             $promises = [];
             foreach ($categoryList as $cateId => $category) {
@@ -201,6 +216,8 @@ class Article
 
     private function getArticlesRequest($params)
     {
+        $requestToken = SignatureHelper::generateTokenRequestServer();
+        $params['options']['headers']['Authorization'] = "Bearer $requestToken";
         $responseArticles = GuzzleClientHelper::sendRequestGetClientGuzzle($params);
 
         $articleList = json_decode($responseArticles, true);

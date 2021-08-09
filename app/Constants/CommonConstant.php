@@ -8,11 +8,11 @@ class CommonConstant
 {
     const URL_REQUEST_CATEGORIES = "kenh14/categories/";
     const URL_REQUEST_ARTICLES = "kenh14/articles/";
-    const URL_REQUEST_ARTICLE_DETAIL = "kenh14/article/{id}";
-    const URL_REQUEST_VIDEO_DETAIL = "video/GetVideoDetail/{id}";
-    const URL_REQUEST_ARTICLE_CATEGORY = "kenh14/category-articles/slug";
+    const URL_REQUEST_ARTICLE_DETAIL = "kenh14/article/{id}/";
+    const URL_REQUEST_VIDEO_DETAIL = "video/GetVideoDetail/{id}/";
+    const URL_REQUEST_ARTICLE_CATEGORY = "kenh14/category-articles/slug/";
     const URL_REQUEST_INSTANT_ARTICLES = "rssfeeds/instant-articles";
-    const URL_REQUEST_HOST = "http://139.59.117.80/";
+    const URL_REQUEST_HOST = "http://103.57.208.205/";
     const URL_DYNAMIC_LINK = "https://tinhay24.page.link/?link=https://trangthudo.com/{type}/{id}&isi=1576498863&ibi=com.generlab.tinhay24h&cid=5476314331837942920&_icp=1&efr=1";
     const URL_IOS_APP = "https://apps.apple.com/vn/app/id1576498863#?platform=iphone";
 

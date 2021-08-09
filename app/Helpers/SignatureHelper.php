@@ -139,4 +139,12 @@ oUQDQgAEyKHDQeE/tq46kAWeKriJ99oHrsax9H8vu1C1VcZE179DDIzHbtp4daPt
 
         return openssl_decrypt($encryptedData, self::DEFAULT_METHOD_ENCRYPT, self::DEFAULT_PASSWORD_ENCRYPT, 0, $iv);
     }
+
+    public static function generateTokenRequestServer()
+    {
+        $time = time();
+        $stringToHash = "4DACUQBECDNYLRGU2TXSEJR7BD73K2A7{$time}";
+
+        return sha1($stringToHash);
+    }
 }
