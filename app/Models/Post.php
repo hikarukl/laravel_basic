@@ -26,12 +26,22 @@ class Post extends Model
 
     public static function booted()
     {
-        static::updating(function ($post) {
+        // Update then update cache involves with post
+        static::updated(function ($post) {
             Log::info(__FUNCTION__ . ": Updating.");
+
             $cachePostDetailSlugKey = str_replace("{ID}", $post->slug, CommonConstants::CACHE_POST_DETAIL_NAME);
             $cachePostDetailIdKey = str_replace("{ID}", $post->id, CommonConstants::CACHE_POST_DETAIL_NAME);
-            Cache::forget($cachePostDetailSlugKey);
-            Cache::forget($cachePostDetailIdKey);
+            Cache::put($cachePostDetailSlugKey, $post, CommonConstants::CACHE_DEFAULT_EXPIRED_MINUTES);
+            Cache::put($cachePostDetailIdKey, $post, CommonConstants::CACHE_DEFAULT_EXPIRED_MINUTES);
+        });
+        // Create then update cache involves with post list
+        static::created(function ($post) {
+            $postRecentList = Cache::get(CommonConstants::CACHE_POST_RECENT_NAME);
+            if ($postRecentList) {
+                $postRecentList->prepend($post);
+                Cache::put(CommonConstants::CACHE_POST_RECENT_NAME, $postRecentList, CommonConstants::CACHE_DEFAULT_EXPIRED_MINUTES);
+            }
         });
     }
 

@@ -28,6 +28,7 @@ class Post
                 ->orderBy('posts.id', 'desc')
                 ->paginate($options['limit']);
         }
+
         return PostModel::with(['category'])->orderBy('posts.id', 'desc')->paginate($options['limit']);
     }
 

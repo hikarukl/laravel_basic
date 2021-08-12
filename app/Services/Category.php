@@ -40,8 +40,7 @@ class Category
         }
 
         if (isset($options['status'])) {
-            $categoryList = CategoryModel::with('posts')
-                ->where('status', $options['status'])
+            $categoryList = CategoryModel::where('status', $options['status'])
                 ->get();
         } else {
             $categoryList = CategoryModel::with('posts')->get();
