@@ -154,6 +154,7 @@ class PostController
                     $dataUpdate[$matches[2]] = $val;
                 }
             }
+            $dataUpdate['status'] = isset($dataReceived['post_status']) ? CommonConstants::STATUS_ACTIVE_NUMBER : CommonConstants::STATUS_INACTIVE_NUMBER;
 
             if (isset($dataReceived['post_thumbnail']) && $dataReceived['post_thumbnail'] instanceof UploadedFile) {
                 $fileName = "post_thumbnail_{$id}." . $dataReceived['post_thumbnail']->getClientOriginalExtension();
@@ -186,7 +187,7 @@ class PostController
                 'description' => $dataReceived['post_description'],
                 'category_id' => $dataReceived['post_category_id'],
                 'tags'        => $dataReceived['post_tags'],
-                'status'      => $dataReceived['post_status'] == 'on' ? CommonConstants::STATUS_ACTIVE_NUMBER : CommonConstants::STATUS_INACTIVE_NUMBER,
+                'status'      => isset($dataReceived['post_status']) ? CommonConstants::STATUS_ACTIVE_NUMBER : CommonConstants::STATUS_INACTIVE_NUMBER,
             ];
             $postId = $post->insertGetId($dataStore);
 

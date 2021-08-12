@@ -118,7 +118,7 @@
                         <div class="mt-5">
                             <label>Published</label>
                             <div class="mt-2">
-                                <input name="post_status" class="input input--switch border" type="checkbox">
+                                <input id="post-status" name="post_status" class="input input--switch border" type="checkbox" @if($post->status || old('pot_status') == 'on') checked @endif">
                             </div>
                         </div>
                     </div>

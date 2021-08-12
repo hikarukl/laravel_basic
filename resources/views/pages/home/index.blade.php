@@ -33,6 +33,6 @@
             @endforeach
         </div>
 
-        @include('partials.side-bar', ['recent_posts' => $recent_posts])
+        @include('partials.side-bar', ['recent_posts' => $recent_posts, 'category_list' => $category_list])
     </div>
 @endsection

@@ -38,11 +38,14 @@ class CategoryController extends Controller
                 'category_slug' => $slug,
                 'limit'         => CommonConstants::DEFAULT_LIMIT_SEARCH_HOME
             ];
-            $postList = $this->categoryService->getAllListPagination($options);
+            $postList = $this->postService->getAllListPagination($options);
+            $categoryList = $this->categoryService->getAllCategory();
 
             $data = [
-                'post_list' => $postList,
-                'category'  => $postList->total() ? $postList->items()[0] : null
+                'post_list'     => $postList,
+                'recent_posts'  => $this->postService->getRecentPosts(),
+                'category_list' => $categoryList,
+                'category'      => $categoryList->where('slug', $slug)->first()
             ];
             return view('pages.category.index', $data);
         } catch (\Exception $e) {

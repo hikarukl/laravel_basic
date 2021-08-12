@@ -32,7 +32,7 @@ class Category
      * @return Collection
      *
      */
-    public function getAllCategory(array $options)
+    public function getAllCategory(array $options = [])
     {
         $categoryCacheKey = CommonConstants::CACHE_CATEGORY_LIST_NAME;
         if (Cache::has($categoryCacheKey)) {
@@ -40,9 +40,11 @@ class Category
         }
 
         if (isset($options['status'])) {
-            $categoryList = CategoryModel::where('status', $options['status'])->get();
+            $categoryList = CategoryModel::with('posts')
+                ->where('status', $options['status'])
+                ->get();
         } else {
-            $categoryList = CategoryModel::all();
+            $categoryList = CategoryModel::with('posts')->get();
         }
         Cache::put($categoryCacheKey, $categoryList);
 

@@ -30,7 +30,7 @@ class PostUpdateRequest extends FormRequest
             'post_category_id' => 'required|numeric',
             'post_tags'        => 'nullable',
             'post_thumbnail'   => 'nullable|file',
-            'post_status'      => 'in:0,1',
+            'post_status'      => 'in:on,off',
         ];
     }
 }

@@ -19,4 +19,9 @@ class Category extends Model
     {
         return $query->where('status', CommonConstants::STATUS_ACTIVE_NUMBER);
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
