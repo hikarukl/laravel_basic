@@ -20,7 +20,7 @@ class PostHelper
      */
     public static function convertTimeToDisplay($time)
     {
-        $time = Carbon::parse($time);
+        $time = Carbon::parse($time)->timezone('Asia/Ho_Chi_Minh');
         $now = Carbon::now();
 
         if ($now->diffInDays($time) > self::LIMIT_DISPLAY_DAY_FORMAT) {
