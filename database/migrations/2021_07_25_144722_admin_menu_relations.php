@@ -17,7 +17,8 @@ class AdminMenuRelations extends Migration
             $table->id();
             $table->bigInteger('parent_id')->index();
             $table->bigInteger('child_id')->index();
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

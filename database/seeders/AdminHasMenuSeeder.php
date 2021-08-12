@@ -14,16 +14,16 @@ class AdminHasMenuSeeder extends Seeder
      */
     public function run()
     {
-        AdminHasMenu::insert($this->getData());
+        //AdminHasMenu::insert($this->getData());
     }
 
     private function getData()
     {
         return [
-            [
-                'admin_id'  => 1,
-                'menu_id'   => 1,
-            ]
+            /*[
+                'admin_id'      => 2,
+                'admin_menu_id' => 2,
+            ]*/
         ];
     }
 }

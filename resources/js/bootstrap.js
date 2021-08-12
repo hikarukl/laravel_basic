@@ -1,3 +1,6 @@
+import Tabulator from "tabulator-tables";
+import $ from "cash-dom";
+
 window._ = require('lodash');
 
 import helper from "./helper";
@@ -13,6 +16,8 @@ window.axios = require('axios');
 window.cash = cash;
 window.helper = helper;
 window.Toastify = require('toastify-js');
+window.Tabulator = Tabulator;
+window.$ = $;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

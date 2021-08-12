@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
                 AdminHasPermissionSeeder::class,
                 AdminMenuSeeder::class,
                 AdminHasMenuSeeder::class,
-                AdminMenuRelationSeeder::class
+                AdminMenuRelationSeeder::class,
+                RoleHasMenuSeeder::class,
             ]
         );
     }

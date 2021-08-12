@@ -5,6 +5,14 @@
     padding: 10px;
 }
 
+.image-scale:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+}
+.image-scale {
+    transition: all 2000ms cubic-bezier(.19,1,.22,1) 0ms;
+}
+
 @media (min-width:640px) {
     .sm\:col-span-2{grid-column:span 2/span 2}
     .sm\:col-span-10{grid-column:span 10/span 10}

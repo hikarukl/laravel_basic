@@ -2,17 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\CommonConstants;
 use Illuminate\Http\Request;
 
 use App\Services\FrontendMenu as FrontendMenuService;
+use App\Services\Post as PostService;
 
 class HomeController extends Controller
 {
     protected $frontendMenuService;
+    /**
+     * @var PostService
+     */
+    protected $postService;
 
-    public function __construct(FrontendMenuService $frontendMenuService)
+    public function __construct(FrontendMenuService $frontendMenuService, PostService $postService)
     {
         $this->frontendMenuService = $frontendMenuService;
+        $this->postService = $postService;
     }
 
     /**
@@ -22,7 +29,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.home.index');
+        $options = [
+            'limit' => CommonConstants::DEFAULT_LIMIT_SEARCH_HOME
+        ];
+        $data = [
+            'post_list'    => $this->postService->getAllListPagination($options),
+            'recent_posts' => $this->postService->getRecentPosts()
+        ];
+
+        return view('pages.home.index', $data);
     }
 
     public function show()

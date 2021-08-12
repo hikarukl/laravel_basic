@@ -14,15 +14,19 @@ class AdminMenuRelationSeeder extends Seeder
      */
     public function run()
     {
-        //AdminMenuRelation::insert($this->getData());
+        AdminMenuRelation::insert($this->getData());
     }
 
     private function getData()
     {
         return [
             [
-                'parent_id' => 1,
-                'child_id'  => 2,
+                'parent_id' => 2,
+                'child_id'  => 3,
+            ],
+            [
+                'parent_id' => 2,
+                'child_id'  => 4,
             ]
         ];
     }

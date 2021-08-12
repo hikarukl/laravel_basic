@@ -16,8 +16,9 @@ class AdminHasMenus extends Migration
         Schema::create('admin_has_menus', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('admin_id')->index();
-            $table->bigInteger('menu_id')->index();
-            $table->timestamps();
+            $table->bigInteger('admin_menu_id')->index();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

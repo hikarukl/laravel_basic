@@ -18,9 +18,13 @@ class AdminMenus extends Migration
             $table->string('name');
             $table->string('slug')->index();
             $table->string('route')->nullable();
+            $table->text('icon_config')->nullable();
+            $table->text('route_params')->nullable();
             $table->smallInteger('priority')->nullable();
             $table->tinyInteger('status')->nullable()->default(1);
-            $table->timestamps();
+            $table->tinyInteger('is_root')->nullable()->default(0);
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

@@ -21,4 +21,9 @@
             {{ $slot }}
         </div>
     </body>
+    <script type='text/javascript' src="{{ asset('js/jquery.min.js') }}"></script>
+    <script type='text/javascript' src="{{ asset('js/app.js') }}"></script>
+    <script type='text/javascript' src="{{ asset("js/countdown.min.js") }}"></script>
+    <script type='text/javascript' src="{{ asset("js/common.js") }}"></script>
+    @stack('scripts')
 </html>

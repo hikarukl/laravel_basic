@@ -24,6 +24,6 @@
             @endfor
         </div>
 
-        @include('partials.side-bar')
+        @include('partials.side-bar', ['recent_posts' => $recent_posts])
     </div>
 @endsection

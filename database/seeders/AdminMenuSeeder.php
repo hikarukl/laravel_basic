@@ -21,9 +21,42 @@ class AdminMenuSeeder extends Seeder
     {
         return [
             [
-                'name'      => 'Admin Management',
-                'slug'      => 'admin-management',
-                'priority'  => 1
+                'name'      => 'Dashboard',
+                'slug'      => 'dashboard',
+                'route'     => NULL,
+                'icon_config'  => json_encode([
+                    'type'  => 'font-awesome',
+                    'value' => '<i class="fa fa-home" aria-hidden="true"></i>'
+                ]),
+                'priority'  => 1,
+                'is_root'   => 1,
+            ],
+            [
+                'name'      => 'Management',
+                'slug'      => 'management',
+                'route'     => NULL,
+                'icon_config'  => json_encode([
+                    'type'  => 'font-awesome',
+                    'value' => '<i class="fa fa-bars" aria-hidden="true"></i>'
+                ]),
+                'priority'  => 2,
+                'is_root'   => 1,
+            ],
+            [
+                'name'      => 'Category',
+                'slug'      => 'admin-category',
+                'route'     => 'admin-category.index',
+                'icon_config'  => NULL,
+                'priority'  => 1,
+                'is_root'   => 0,
+            ],
+            [
+                'name'      => 'Posts',
+                'slug'      => 'admin-post',
+                'route'     => 'admin-post.index',
+                'icon_config'  => NULL,
+                'priority'  => 2,
+                'is_root'   => 0,
             ]
         ];
     }

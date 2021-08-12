@@ -31,7 +31,8 @@ class Admins extends Migration
             $table->integer('password_fail_times')->nullable()->default(0);
             $table->timestamp('unlock_login_at')->nullable();
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

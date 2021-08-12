@@ -4,7 +4,11 @@
             <x-jet-authentication-card-logo />
         </x-slot>
 
-        <x-jet-validation-errors class="mb-4" />
+        @if(old('countdown_time'))
+            @include('auth.validation-account-locking')
+        @else
+            <x-jet-validation-errors class="mb-4" />
+        @endif
 
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">

@@ -18,7 +18,8 @@ class Permissions extends Migration
             $table->string('name');
             $table->string('route');
             $table->tinyInteger('status')->nullable()->default(1);
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

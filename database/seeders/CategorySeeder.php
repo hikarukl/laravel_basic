@@ -25,14 +25,16 @@ class CategorySeeder extends Seeder
                 'slug'              => 'php',
                 'priority'          => 1,
                 'frontend_menu_id'  => 2,
-                'route'             => 'category.show'
+                'route'             => 'category.show',
+                'route_params'      => json_encode(['category' => 'php'])
             ],
             [
                 'name'              => 'Javascript',
                 'slug'              => 'javascript',
                 'priority'          => 2,
                 'frontend_menu_id'  => 2,
-                'route'             => 'category.show'
+                'route'             => 'category.show',
+                'route_params'      => json_encode(['category' => 'javascript'])
             ],
 
             [
@@ -40,14 +42,16 @@ class CategorySeeder extends Seeder
                 'slug'              => 'html',
                 'priority'          => 3,
                 'frontend_menu_id'  => 2,
-                'route'             => 'category.show'
+                'route'             => 'category.show',
+                'route_params'      => json_encode(['category' => 'html'])
             ],
             [
                 'name'              => 'Css',
                 'slug'              => 'css',
                 'priority'          => 4,
                 'frontend_menu_id'  => 2,
-                'route'             => 'category.show'
+                'route'             => 'category.show',
+                'route_params'      => json_encode(['category' => 'css'])
             ]
         ];
     }

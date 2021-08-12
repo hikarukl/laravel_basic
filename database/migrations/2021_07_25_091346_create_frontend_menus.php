@@ -19,9 +19,11 @@ class CreateFrontendMenus extends Migration
             $table->string('slug')->index();
             $table->string('route')->nullable();
             $table->text('icon_config')->nullable();
+            $table->text('route_params')->nullable();
             $table->tinyInteger('priority')->nullable()->default(0);
             $table->tinyInteger('status')->nullable()->default(1)->index();
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

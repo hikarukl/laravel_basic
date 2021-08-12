@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['auth', 'web'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function () {
     Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.index');
+
+    Route::group(['middleware' => 'can.access.menu'], function () {
+        // Ajax when go to screen
+        Route::get('/admin-post/ajax/list', '\App\Http\Controllers\Admin\PostController@ajaxGetList')->name('admin-post.ajax.list');
+
+        Route::resource('admin-category', \App\Http\Controllers\Admin\CategoryController::class);
+        Route::resource('admin-post', \App\Http\Controllers\Admin\PostController::class);
+    });
 });

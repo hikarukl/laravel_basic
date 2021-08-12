@@ -18,10 +18,12 @@ class CreateCategories extends Migration
             $table->string('name');
             $table->string('slug')->index();
             $table->string('route');
+            $table->string('route_params')->nullable();
             $table->bigInteger('frontend_menu_id')->index();
             $table->tinyInteger('priority')->nullable()->default(0);
             $table->tinyInteger('status')->nullable()->default(1);
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

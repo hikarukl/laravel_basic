@@ -47,15 +47,14 @@
             }
             .top-menu {
                 height: 55px;
-                border-top-left-radius: 1rem;
-                border-top-right-radius: 1rem;
+                border-radius: 1rem;
                 @apply flex items-center px-5 mr-1 text-white relative;
                 @media (max-width: $xl) {
                     @apply rounded-full mb-3;
                 }
                 &.top-menu--active {
                     @apply bg-theme-2;
-                    &:before {
+                    /*&:before {
                         content: "";
                         width: 20px;
                         height: 20px;
@@ -80,7 +79,7 @@
                         @media (max-width: $xl) {
                             @apply hidden;
                         }
-                    }
+                    }*/
                     .top-menu__icon {
                         @apply text-theme-3;
                     }
@@ -109,7 +108,7 @@
             ul {
                 left: 100%;
                 margin-left: -4px;
-                background: #1a389fed;
+                background: #15329A;
                 box-shadow: 0px 3px 20px #0000000b;
                 @apply hidden w-56 absolute rounded-md z-20 px-0 top-0 -mt-5;
                 li {

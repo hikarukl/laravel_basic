@@ -17,7 +17,8 @@ class AdminHasRoles extends Migration
             $table->id();
             $table->bigInteger('admin_id')->index();
             $table->bigInteger('role_id')->index();
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

@@ -18,4 +18,6 @@ Route::resource('home', \App\Http\Controllers\HomeController::class);
 Route::resource('category', \App\Http\Controllers\CategoryController::class);
 Route::resource('post', \App\Http\Controllers\PostController::class);
 
+Route::post('/ckfinder/upload', '\App\Http\Controllers\CkFinderController@index')->name('ckfinder.upload');
+
 

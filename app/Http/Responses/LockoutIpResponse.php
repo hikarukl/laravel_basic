@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Http\Responses;
+
+use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
+use Laravel\Fortify\Contracts\LockoutResponse as LockoutResponseContract;
+use Laravel\Fortify\Fortify;
+
+class LockoutIpResponse implements LockoutResponseContract
+{
+    /**
+     * Create an HTTP response that represents the object.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function toResponse($request)
+    {
+        throw ValidationException::withMessages([
+            Fortify::username() => [
+                trans('auth.ip_locked'),
+            ],
+        ])->status(Response::HTTP_LOCKED);
+    }
+}

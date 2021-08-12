@@ -25,8 +25,8 @@ class FrontendMenuSeeder extends Seeder
                 'slug'         => 'home',
                 'priority'     => 1,
                 'icon_config'  => json_encode([
-                    'type'  => 'feather',
-                    'value' => '<i data-feather="home"></i>'
+                    'type'  => 'font-awesome',
+                    'value' => '<i class="fa fa-home" aria-hidden="true"></i>'
                 ]),
                 'route'        => 'home.index'
             ],
@@ -35,8 +35,8 @@ class FrontendMenuSeeder extends Seeder
                 'slug'      => 'category',
                 'priority'  => 2,
                 'icon_config'  => json_encode([
-                    'type'  => 'layers',
-                    'value' => '<i data-feather="home"></i>'
+                    'type'  => 'font-awesome',
+                    'value' => '<i class="fa fa-bars" aria-hidden="true"></i>'
                 ]),
                 'route'     => null
             ]

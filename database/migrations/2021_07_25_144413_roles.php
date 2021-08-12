@@ -17,7 +17,8 @@ class Roles extends Migration
             $table->id();
             $table->string('name');
             $table->tinyInteger('status')->nullable()->default(1);
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

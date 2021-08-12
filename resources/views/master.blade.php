@@ -25,7 +25,7 @@
 <section id="main-page">
     <div class="relative">
         @include('partials.header')
-        <div class="content">
+        <div class="content p-0 overflow-auto">
             @yield('main')
         </div>
         @include('partials.footer')
@@ -37,17 +37,6 @@
 <script type='text/javascript' src="{{ asset('js/all.min.js') }}"></script>
 <script type='text/javascript' src="{{ asset('js/flickity.min.js') }}"></script>
 <script type='text/javascript' src="{{ asset("js/common.js") }}"></script>
-<script type="text/javascript">
-    /*$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $('.main-carousel').flickity({
-        autoPlay: true,
-        prevNextButtons: false
-    });*/
-</script>
 @yield('scripts')
 @stack('scripts_component')
 </html>

@@ -17,7 +17,8 @@ class RoleHasPermissions extends Migration
             $table->id();
             $table->bigInteger('role_id')->index();
             $table->bigInteger('permission_id')->index();
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

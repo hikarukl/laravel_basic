@@ -1,98 +1,91 @@
-import ClassicEditor from "@ckeditor/ckeditor5-editor-classic/src/classiceditor";
-import InlineEditor from "@ckeditor/ckeditor5-editor-inline/src/inlineeditor";
-import BalloonEditor from "@ckeditor/ckeditor5-editor-balloon/src/ballooneditor";
-import DocumentEditor from "@ckeditor/ckeditor5-editor-decoupled/src/decouplededitor";
-import EssentialsPlugin from "@ckeditor/ckeditor5-essentials/src/essentials";
-import BoldPlugin from "@ckeditor/ckeditor5-basic-styles/src/bold";
-import ItalicPlugin from "@ckeditor/ckeditor5-basic-styles/src/italic";
-import UnderlinePlugin from "@ckeditor/ckeditor5-basic-styles/src/underline";
-import StrikethroughPlugin from "@ckeditor/ckeditor5-basic-styles/src/strikethrough";
-import CodePlugin from "@ckeditor/ckeditor5-basic-styles/src/code";
-import SubscriptPlugin from "@ckeditor/ckeditor5-basic-styles/src/subscript";
-import SuperscriptPlugin from "@ckeditor/ckeditor5-basic-styles/src/superscript";
-import LinkPlugin from "@ckeditor/ckeditor5-link/src/link";
-import ParagraphPlugin from "@ckeditor/ckeditor5-paragraph/src/paragraph";
-import EasyImage from "@ckeditor/ckeditor5-easy-image/src/easyimage";
-import Font from "@ckeditor/ckeditor5-font/src/font";
-import Heading from "@ckeditor/ckeditor5-heading/src/heading";
-import HeadingButtonsUI from "@ckeditor/ckeditor5-heading/src/headingbuttonsui";
-import Highlight from "@ckeditor/ckeditor5-highlight/src/highlight";
+import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor.js';
+import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold.js';
+import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder.js';
+import CKFinderUploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter.js';
+import Code from '@ckeditor/ckeditor5-basic-styles/src/code.js';
+import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock.js';
+import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials.js';
+import FontBackgroundColor from '@ckeditor/ckeditor5-font/src/fontbackgroundcolor.js';
+import FontColor from '@ckeditor/ckeditor5-font/src/fontcolor.js';
+import FontFamily from '@ckeditor/ckeditor5-font/src/fontfamily.js';
+import FontSize from '@ckeditor/ckeditor5-font/src/fontsize.js';
+import Heading from '@ckeditor/ckeditor5-heading/src/heading.js';
+import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight.js';
+import Image from '@ckeditor/ckeditor5-image/src/image.js';
+import Indent from '@ckeditor/ckeditor5-indent/src/indent.js';
+import IndentBlock from '@ckeditor/ckeditor5-indent/src/indentblock.js';
+import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic.js';
+import Link from '@ckeditor/ckeditor5-link/src/link.js';
+import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough.js';
+import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript.js';
+import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript.js';
+import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline.js';
+
+
 import cash from "cash-dom";
 
-let simpleEditorConfig = {
-    plugins: [
-        ParagraphPlugin,
-        BoldPlugin,
-        UnderlinePlugin,
-        ItalicPlugin,
-        LinkPlugin,
-    ],
-    toolbar: {
-        items: ["bold", "italic", "underline", "link"],
-    },
-};
-
 let editorConfig = {
-    cloudServices: {
-        tokenUrl: "",
-        uploadUrl: "",
-    },
     plugins: [
-        Font,
-        EssentialsPlugin,
-        BoldPlugin,
-        UnderlinePlugin,
-        StrikethroughPlugin,
-        ItalicPlugin,
-        LinkPlugin,
-        ParagraphPlugin,
-        CodePlugin,
-        SubscriptPlugin,
-        SuperscriptPlugin,
-        EasyImage,
+        Bold,
+        CKFinder,
+        CKFinderUploadAdapter,
+        Code,
+        CodeBlock,
+        Essentials,
+        FontBackgroundColor,
+        FontColor,
+        FontFamily,
+        FontSize,
         Heading,
-        HeadingButtonsUI,
         Highlight,
+        Image,
+        Indent,
+        IndentBlock,
+        Italic,
+        Link,
+        Strikethrough,
+        Subscript,
+        Superscript,
+        Underline
     ],
     toolbar: {
         items: [
-            "fontSize",
-            "fontFamily",
-            "fontColor",
-            "fontBackgroundColor",
-            "bold",
-            "italic",
-            "underline",
-            "strikethrough",
-            "code",
-            "subscript",
-            "superscript",
-            "link",
-            "undo",
-            "redo",
-            "imageUpload",
-            "highlight",
-        ],
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'link',
+            '|',
+            'codeBlock',
+            'outdent',
+            'indent',
+            '|',
+            'undo',
+            'redo',
+            'fontFamily',
+            'fontSize',
+            'fontColor',
+            'fontBackgroundColor',
+            'underline',
+            'strikethrough',
+            'code',
+            'subscript',
+            'superscript',
+            'highlight',
+            'CKFinder'
+        ]
     },
+    ckfinder: {
+        // Upload the images to the server using the CKFinder QuickUpload command.
+        uploadUrl: 'http://personal.local/ckfinder/upload?type=Images&responseType=json',
+        openerMethod: 'popup'
+    }
 };
 
 cash(".editor").each(function () {
     let editor = ClassicEditor;
     let options = editorConfig;
     let el = this;
-
-    if (cash(el).data("simple-toolbar")) {
-        options = simpleEditorConfig;
-    }
-
-    if (cash(el).data("editor") == "inline") {
-        editor = InlineEditor;
-    } else if (cash(el).data("editor") == "balloon") {
-        editor = BalloonEditor;
-    } else if (cash(el).data("editor") == "document") {
-        editor = DocumentEditor;
-        el = cash(el).find(".document-editor__editable")[0];
-    }
 
     editor
         .create(el, options)
