@@ -75,7 +75,7 @@
                         <a href="{{ $post['url'] }}" target="_blank">Link gốc <i class="fas fa-external-link"></i></a>
                     </p>
                 </div>
-                <input type="hidden" id="url-share_post" value="{{ route('post-share', ['id' => $post['id']]) }}">
+                <input type="hidden" id="url-share_post" value="{{ $share_link }}">
             </div>
 
             <h2 class="font-bold text-lg md:text-3xl mb-3 mt-5 text-gray-800">

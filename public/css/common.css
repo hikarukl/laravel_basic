@@ -117,6 +117,12 @@ body {
 .bg-green_custom_two {
     background-color: #8dcf49;
 }
+.bg-orange_custom_one {
+    background-color: #ff6a05;
+}
+ .bg-orange_custom_two {
+     background-color: #ff9b01;
+ }
 .text-home_share_color_one {
     color: #505c67;
 }

@@ -13,11 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::domain(env('DOMAIN_SHARE'))->group(function () {
+$commonShare = function () {
     Route::get('/', 'HomeShareController@index')->name('share-home');
     Route::get('share/{id}', 'PostController@shareArticle')->name('post-share');
     Route::get('video/{id}', 'PostController@shareVideo')->name('video-share');
-});
+};
+
+Route::domain(env('DOMAIN_SHARE'))->group($commonShare);
+Route::domain(env('DOMAIN_HUMOR_SHARE'))->group($commonShare);
 
 Route::domain(env('DOMAIN_WEB'))->group(function () {
     Route::get('/', 'HomeController@index')->name('home');

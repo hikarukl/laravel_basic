@@ -155,6 +155,9 @@ class PostController extends Controller
             usort($filteredCategory, function ($itemFirst, $itemSecond) {
                 return $itemFirst['priority'] > $itemSecond['priority'];
             });
+
+            // Share link
+            $shareLink = env('DOMAIN_SHARE') . "/share/{$articleDetail['id']}";
             $response = [
                 'category_list'     => $allCategories,
                 'category_selected' => $category,
@@ -162,6 +165,7 @@ class PostController extends Controller
                 'post'              => $articleDetail,
                 'new_post_list'     => $newPostList,
                 'related_post_list' => array_slice($relatedArticleList, 0, 6),
+                'share_link'        => $shareLink
             ];
 
             return view('pages.posts.detail', $response);
@@ -180,7 +184,16 @@ class PostController extends Controller
                 throw new \Exception("Invalid id.");
             }
 
-            $response = $this->getResponseShare("article", $id);
+            $currentRequestDomain = \request()->getHttpHost();
+            $humorDomainHost = substr(env('DOMAIN_HUMOR_SHARE'), strrpos(env('DOMAIN_HUMOR_SHARE'),"/") + 1);
+            $pattern = "/($humorDomainHost)/";
+            if (preg_match($pattern, $currentRequestDomain)) {
+                $type = CommonConstant::SHARE_TYPE_PICTURE;
+            } else {
+                $type = CommonConstant::SHARE_TYPE_ARTICLE;
+            }
+
+            $response = $this->getResponseShare($type, $id);
 
             return view('pages.posts.share', $response);
         } catch (\Exception $e) {
@@ -215,7 +228,7 @@ class PostController extends Controller
         $allCategories = $this->categoryService->getAllCategories();
 
         // Request get detail
-        $articleDetail = $this->articleService->getArticleDetail($id, $type);
+        $articleDetail = $this->articleService->getArticleDetail($id, $type, true);
 
         if (empty($articleDetail)) {
             Log::error(__FUNCTION__ . ": Request get {$type} was fail.");
@@ -223,17 +236,44 @@ class PostController extends Controller
             return view('errors.500');
         }
 
+        $currentRequestDomain = \request()->getHttpHost();
+        $humorDomainHost = substr(env('DOMAIN_HUMOR_SHARE'), strrpos(env('DOMAIN_HUMOR_SHARE'),"/") + 1);
+        $pattern = "/($humorDomainHost)/";
+        if (preg_match($pattern, $currentRequestDomain)) {
+            $defaultResponse = [
+                'app_name'        => 'Hài 24h',
+                'header_app_desc' => 'App Hài 24h',
+                'ios_app_link'    => CommonConstant::URL_IOS_HUMOR_APP,
+                'common_bg_color' => CommonConstant::HUMOR_COLOR_COMMON_BG,
+                'icon_app_circle' => asset('images/humor/icon_app_circle.png')
+            ];
+            $isi = CommonConstant::IOS_ISI_HUMOR;
+            $package = CommonConstant::IOS_PACKAGE_HUMOR;
+        } else {
+            $defaultResponse = [
+                'app_name'        => 'Tin Hay 24h',
+                'header_app_desc' => 'App đọc tin hay',
+                'ios_app_link'    => CommonConstant::URL_IOS_APP,
+                'common_bg_color' => CommonConstant::NEWS_COLOR_COMMON_BG,
+                'icon_app_circle' => asset('images/ico_app_circle.png')
+            ];
+            $isi = CommonConstant::IOS_ISI_NEWS;
+            $package = CommonConstant::IOS_PACKAGE_NEWS;
+        }
+
         $shareLink = $type === "video" ? $type : "share";
+        $urlIosDynamicLink = str_replace(
+            ["{type}", "{id}", "{isi}", "{package}"],
+            [$shareLink, $id, $isi, $package],
+            CommonConstant::URL_DYNAMIC_LINK
+        );
 
-        $urlIosDynamicLink = str_replace(["{type}","{id}"], [$shareLink, $id], CommonConstant::URL_DYNAMIC_LINK);
-
-        return [
+        return array_merge($defaultResponse, [
             'category_list'     => $allCategories,
             'post'              => $articleDetail,
             'ios_dynamic_link'  => $urlIosDynamicLink,
-            'ios_app_link'      => CommonConstant::URL_IOS_APP,
             'share_type'        => $type
-        ];
+        ]);
     }
 
     public function instantArticles()

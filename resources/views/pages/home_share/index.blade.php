@@ -22,16 +22,16 @@
                 <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start" id="wrap-header_menus">
                     <div class="flex-shrink-0 flex items-center">
                         <a href="{{ route('share-home') }}">
-                            <img class="block sm:hidden h-8 w-auto" src="{{ asset('images/ico_app.png') }}" alt="Trang tin hay">
+                            <img class="block sm:hidden h-8 w-auto" src="{{ $icon_app_circle }}" alt="{{ $app_name }}">
                         </a>
                         {{-- Icon for desktop --}}
                         <a href="{{ route('share-home') }}">
-                            <img class="hidden sm:block h-10 w-auto" src="{{ asset('images/ico_app.png') }}" alt="Trang tin hay">
+                            <img class="hidden sm:block h-10 w-auto" src="{{ $icon_app_circle }}" alt="{{ $app_name }}">
                         </a>
                     </div>
                     <div class="hidden sm:block sm:ml-6">
                         <div class="flex space-x-4">
-                            <a href="{{ route('share-home') }}" class="bg-green_custom_two hover:bg-blue-300 text-white px-3 py-2 rounded-md text-sm font-medium">
+                            <a href="{{ route('share-home') }}" class="{{ $common_bg_color }} hover:bg-blue-300 text-white px-3 py-2 rounded-md text-sm font-medium">
                                 Trang Chủ
                             </a>
                         </div>
@@ -43,7 +43,7 @@
         {{-- Open when click icon mobile show --}}
         <div class="hidden sm:hidden" id="wrap-mobile_header_menus">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="{{ route('share-home') }}" class="bg-green_custom_two text-white block px-3 py-2 rounded-md text-base font-medium">
+                <a href="{{ route('share-home') }}" class="{{ $common_bg_color }} text-white block px-3 py-2 rounded-md text-base font-medium">
                     Trang Chủ
                 </a>
             </div>
@@ -51,19 +51,19 @@
     </nav>
 
     {{-- End headers --}}
-    <div class="mt-12 sm:mt-0 w-full mx-auto bg-green_custom_two">
+    <div class="mt-12 sm:mt-0 w-full mx-auto {{ $common_bg_color }}">
         {{-- Banner --}}
         <div class="w-full mx-auto md:max-w-screen-sm grid grid-cols-2 pt-8 pb-8 pl-2 pr-2 sm:pl-0 sm:pr-0">
-            <img class="w-11/12 sm:w-3/4 sm:col-span-1" src="{{ asset('images/home_share_banner.png') }}">
+            <img class="w-11/12 sm:w-3/4 sm:col-span-1" src="{{ asset("images/{$view_resource}/home_share_banner.png") }}">
 
             <div class="md:col-span-1 mt-0 sm:mt-10">
-                <p class="text-3xl sm:text-5xl font-bold text-white sm:mt-5 mb-2">Tin Hay 24h</p>
-                <p class="text-sm sm:text-lg text-white mb-10">App đọc tin hay. Cập nhật liên tục các tin mới nhất, hot nhất.</p>
+                <p class="text-3xl sm:text-5xl font-bold text-white sm:mt-5 mb-2">{{ $app_name }}</p>
+                <p class="text-sm sm:text-lg text-white mb-10">{{ $app_desc }}</p>
                 <a
                     class="uppercase text-md text-white rounded-xl border-2 border-white p-3 hover:bg-blue-300"
                     target="_blank"
-                    href="{{ \App\Constants\CommonConstant::URL_IOS_APP }}"><i class="fab fa-apple text-xl mr-1"></i> App Store</a>
-                <img class="mt-10 w-1/2" src="{{ asset('images/qr_ios_app.png') }}">
+                    href="{{ $ios_app_link }}"><i class="fab fa-apple text-xl mr-1"></i> App Store</a>
+                <img class="mt-10 w-1/2" src="{{ $ios_app_qrcode }}">
             </div>
         </div>
     </div>
@@ -71,21 +71,21 @@
     {{-- Content One --}}
     <div class="w-full bg-green-100 text-center pb-10">
         <p class="text-xl text-home_share_color_one font-bold pt-5 pb-5 sm:pt-10 sm:pb-10 sm:text-5xl">
-            Luôn cập nhật các tin hot và mới nhất
+            {{ $app_summary }}
         </p>
 
         <div class="grid grid-cols-4 gap-1 text-center">
             <div class="flex justify-center col-span-2 sm:col-span-1 pb-3 sm:pb-0">
-                <img class="w-4/5 rounded-2xl" src="{{ asset('images/home_share_one.png') }}">
+                <img class="w-4/5 rounded-2xl" src="{{ asset("images/{$view_resource}/home_share_one.png") }}">
             </div>
             <div class="flex justify-center col-span-2 sm:col-span-1 pb-3 sm:pb-0">
-                <img class="w-4/5 rounded-2xl" src="{{ asset('images/home_share_two.png') }}">
+                <img class="w-4/5 rounded-2xl" src="{{ asset("images/{$view_resource}/home_share_two.png") }}">
             </div>
             <div class="flex justify-center col-span-2 sm:col-span-1 pb-3 sm:pb-0">
-                <img class="w-4/5 rounded-2xl" src="{{ asset('images/home_share_three.png') }}">
+                <img class="w-4/5 rounded-2xl" src="{{ asset("images/{$view_resource}/home_share_three.png") }}">
             </div>
             <div class="flex justify-center col-span-2 sm:col-span-1 pb-3 sm:pb-0">
-                <img class="w-4/5 rounded-2xl" src="{{ asset('images/home_share_four.png') }}">
+                <img class="w-4/5 rounded-2xl" src="{{ asset("images/{$view_resource}/home_share_four.png") }}">
             </div>
         </div>
     </div>

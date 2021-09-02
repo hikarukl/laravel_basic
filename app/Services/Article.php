@@ -7,10 +7,12 @@ namespace App\Services;
 use App\Constants\CommonConstant;
 use App\Helpers\GuzzleClientHelper;
 use App\Helpers\SignatureHelper;
+use http\Env\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Client;
 use GuzzleHttp\Promise;
+use App\Helpers\DomainHelper;
 
 class Article
 {
@@ -104,23 +106,25 @@ class Article
      *
      * @param int $articleId
      * @param string $type
+     * @param boolean $isShare
      *
      * @return array
      *
      */
-    public function getArticleDetail($articleId, $type = 'article')
+    public function getArticleDetail($articleId, $type = CommonConstant::SHARE_TYPE_ARTICLE, $isShare = false)
     {
         try {
-            $cacheName = CommonConstant::CACHE_ARTICLE_PREFIX_NAME . $type . $articleId;
+            if ($isShare) {
+                $currentRequestDomain = \request()->getHost();
+                $cacheName = CommonConstant::CACHE_ARTICLE_PREFIX_NAME . $type . $articleId . md5($currentRequestDomain);
+            } else {
+                $cacheName = CommonConstant::CACHE_ARTICLE_PREFIX_NAME . $type . $articleId;
+            }
             if (Cache::has($cacheName)) {
                 return Cache::get($cacheName);
             }
 
-            if ($type !== 'article') {
-                $url = env('API_PREFIX_URL', "http://10.104.0.2/") . CommonConstant::URL_REQUEST_VIDEO_DETAIL;
-            } else {
-                $url = env('API_PREFIX_URL', "http://10.104.0.2/") . CommonConstant::URL_REQUEST_ARTICLE_DETAIL;
-            }
+            $url = DomainHelper::getRequestShareUrl($type);
 
             $requestToken = SignatureHelper::generateTokenRequestServer();
             $params = [

@@ -1,21 +1,27 @@
 @extends('master_post_share')
 @push("meta_facebook")
     {{-- Basic tags --}}
-    <meta property="og:og:site_name" content="Tin Hay 24h" />
+    <meta property="og:og:site_name" content="{{ $app_name }}" />
     <meta property="og:title" content="{{ $post['title'] }}" />
-    <meta property="og:image" content="{{ $post['thumbnail'] }}" />
+    @if(isset($post['thumbnail']) && $post['thumbnail'])
+        <meta property="og:image" content="{{ $post['thumbnail'] }}" />
+    @else
+        <meta property="og:image" content="{{ $post['thumbnail_url'] }}" />
+    @endif
     {{-- Optional tags --}}
-    <meta property="og:description" content="{{ $post['description'] }}" />
+    @if(isset($post['description']))
+        <meta property="og:description" content="{{ $post['description'] }}" />
+    @endif
 @endpush
 @inject('postHelper', 'App\Helpers\PostHelper')
 @section('main')
     {{-- This section summary --}}
     <div class="w-full md:max-w-screen-sm mx-auto">
         <div class="flex justify-center items-center p-3 bg-header_share">
-            <img class="w-5 rounded mr-2" src="{{ asset('images/icon_app.jpg') }}">
-            <span class="font-bold text-sm mr-2">Tin hay 24h</span>
-            <span class="text-sm text-gray-500 mr-3">App đọc tin hay</span>
-            <a target="_blank" href="{{ $ios_app_link }}" class="rounded bg-green_custom_one p-1 text-white text-size-10 uppercase">Tải ngay</a>
+            <img class="w-7 rounded mr-2" src="{{ $icon_app_circle }}">
+            <span class="font-bold text-sm mr-2">{{ $app_name }}</span>
+            <span class="text-sm text-gray-500 mr-3">{{ $header_app_desc }}</span>
+            <a target="_blank" href="{{ $ios_app_link }}" class="rounded {{ $common_bg_color }} p-1 text-white text-size-10 uppercase">Tải ngay</a>
         </div>
 
         <div class="p-3">
@@ -27,13 +33,19 @@
                 </div>
                 <div class="w-full text-left md:flex md:justify-center">
                     <p class="text-sm mt-1 mb-5 md:w-96">
-                        {{ $share_type == "article" ? $category_list[$post['category']['id']]['name'] : $post['category']['name'] }}
-                        -
+                        @if(isset($post['category']))
+                            {{ $share_type == "article" ? $category_list[$post['category']['id']]['name'] : $post['category']['name'] }}
+                            -
+                        @endif
                         <span class="text-gray-500">{{ $postHelper::convertTimeToDisplay($post['published_time']) }}</span>
                     </p>
                 </div>
                 <div class="w-full md:flex md:justify-center relative">
-                    <img src="{{ $postHelper::convertImgToGif($post['thumbnail']) }}" class="rounded mb-4 md:max-w-screen-sm w-full">
+                    @if(isset($post['thumbnail']) && $post['thumbnail'])
+                        <img src="{{ $postHelper::convertImgToGif($post['thumbnail']) }}" class="rounded mb-4 md:max-w-screen-sm w-full">
+                    @else
+                        <img src="{{ $postHelper::convertImgToGif($post['thumbnail_url']) }}" class="rounded mb-4 md:max-w-screen-sm w-full">
+                    @endif
                     @if($share_type == 'video')
                         <img class="absolute w-20 img-btn_play_thumb" src="{{ asset('images/img_play_thumb.png') }}">
                     @endif
@@ -52,11 +64,11 @@
                     {{-- Link for mobile --}}
                     {{--<a target="_blank" href="https://apps.apple.com/us/app/id1576498863?fbclid=IwAR3L9ZmJPth09TqEzWthPoGvzc8exdqImdlyaAeX3zi_H4T5qErL1n96HVs" class="md:hidden rounded nav-background p-3 text-white font-bold"><i class="fal fa-mobile mr-1"></i> Đọc tiếp bằng app Tin Hay 24h</a>--}}
                     {{-- Link for web --}}
-                    <a target="_blank" id="btn-open" href="" class="md:max-w-sm rounded bg-green_custom_one p-3 text-white font-bold"><i class="fal fa-mobile mr-1"></i>
+                    <a target="_blank" id="btn-open" href="" class="md:max-w-sm rounded {{ $common_bg_color }} p-3 text-white font-bold"><i class="fal fa-mobile mr-1"></i>
                         @if($share_type == "article")
-                            Đọc tiếp bằng app Tin Hay 24h
+                            Đọc tiếp bằng app {{ $app_name }}
                         @else
-                            Xem FULL bằng app Tin Hay 24h
+                            Xem FULL bằng app {{ $app_name }}
                         @endif
                     </a>
                 </div>

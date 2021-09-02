@@ -13,8 +13,24 @@ class CommonConstant
     const URL_REQUEST_ARTICLE_CATEGORY = "kenh14/category-articles/slug/";
     const URL_REQUEST_INSTANT_ARTICLES = "rssfeeds/instant-articles";
     const URL_REQUEST_HOST = "http://103.57.208.205/";
-    const URL_DYNAMIC_LINK = "https://tinhay24.page.link/?link=https://trangthudo.com/{type}/{id}&isi=1576498863&ibi=com.generlab.tinhay24h&cid=5476314331837942920&_icp=1&efr=1";
+    const URL_DYNAMIC_LINK = "https://tinhay24.page.link/?link=https://trangthudo.com/{type}/{id}&isi={isi}&ibi={package}&cid=5476314331837942920&_icp=1&efr=1";
     const URL_IOS_APP = "https://apps.apple.com/vn/app/id1576498863#?platform=iphone";
+    const URL_IOS_HUMOR_APP = "https://apps.apple.com/vn/app/id1583362092#?platform=iphone";
+    const IOS_ISI_NEWS = 1576498863;
+    const IOS_ISI_HUMOR = 1583362092;
+    const IOS_PACKAGE_NEWS = "com.generlab.tinhay24h";
+    const IOS_PACKAGE_HUMOR = "com.generlab.Hai24h";
+    const NEWS_COLOR_COMMON_BG = 'bg-green_custom_one';
+
+    // Normal
+    const SHARE_TYPE_ARTICLE = 'article';
+    const SHARE_TYPE_PICTURE = 'picture';
+    const SHARE_TYPE_VIDEO = 'video';
+
+    // Humor
+    const URL_REQUEST_HUMOR_PICTURE_DETAIL = "api/pictures/GetDetailPicture/{id}";
+    const URL_REQUEST_HUMOR_VIDEO_DETAIL = "api/videos/GetDetailVideo/{id}";
+    const HUMOR_COLOR_COMMON_BG = 'bg-orange_custom_one';
 
 
     // Cache
