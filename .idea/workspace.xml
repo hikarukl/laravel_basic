@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e9cf20d-dc7c-4c56-86bd-e5c513349413" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Helpers/PostHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/PostHelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Permission.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Permission.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Role.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,6 +173,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1w1q8GWrHAueCm5dFFPebjF7r0i" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -176,7 +183,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/images/favicons" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Traits" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -187,13 +194,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\wamp64\www\personal\laravel_basic\public\images\favicons" />
-      <recent name="D:\wamp64\www\personal\laravel_basic\public\images" />
-      <recent name="D:\wamp64\www\personal\laravel_basic\app\Helpers" />
-      <recent name="D:\wamp64\www\personal\laravel_basic\resources\views\admin\post" />
-      <recent name="D:\wamp64\www\personal\laravel_basic\resources\views\pages\category" />
+      <recent name="D:\wamp64\www\personal\laravel_basic\app\Traits" />
+      <recent name="D:\wamp64\www\personal\laravel_basic\app\Http\Middleware" />
+      <recent name="D:\wamp64\www\homepage" />
+      <recent name="D:\wamp64\www\homepage\views\share" />
+      <recent name="D:\wamp64\www\homepage\views\jp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\wamp64\www\homepage\views\en" />
+      <recent name="D:\wamp64\www\personal\qrcode_app\android\app\src\main\res\drawable" />
       <recent name="D:\wamp64\www\personal\laravel_basic\public\images\categories" />
     </key>
   </component>
@@ -229,7 +238,27 @@
       <workItem from="1628500685135" duration="13778000" />
       <workItem from="1628589449909" duration="97000" />
       <workItem from="1628607286607" duration="8437000" />
-      <workItem from="1628699226522" duration="13061000" />
+      <workItem from="1628699226522" duration="17279000" />
+      <workItem from="1628952849661" duration="710000" />
+      <workItem from="1628956636998" duration="6332000" />
+      <workItem from="1628965319305" duration="870000" />
+      <workItem from="1629023137563" duration="1288000" />
+      <workItem from="1629025143494" duration="913000" />
+      <workItem from="1629026100072" duration="12574000" />
+      <workItem from="1629210367955" duration="10212000" />
+      <workItem from="1629300130032" duration="3900000" />
+      <workItem from="1629383967351" duration="1182000" />
+      <workItem from="1629432322454" duration="52000" />
+      <workItem from="1629538124661" duration="4397000" />
+      <workItem from="1629561059515" duration="5234000" />
+      <workItem from="1629649012839" duration="946000" />
+      <workItem from="1630139506349" duration="2509000" />
+      <workItem from="1630236134898" duration="1204000" />
+      <workItem from="1630424264812" duration="598000" />
+      <workItem from="1630564130117" duration="6551000" />
+      <workItem from="1630591651808" duration="2503000" />
+      <workItem from="1630661857241" duration="1686000" />
+      <workItem from="1630691038474" duration="791000" />
     </task>
     <servers />
   </component>

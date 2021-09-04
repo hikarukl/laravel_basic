@@ -24,4 +24,13 @@ class Role extends Model
     {
         return $this->belongsToMany(AdminMenu::class, 'role_has_menus');
     }
+
+    /**
+     * Get permissions of role
+     *
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'role_has_permissions');
+    }
 }

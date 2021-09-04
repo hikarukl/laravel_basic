@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasPermissions;
 use App\Traits\HasRoles;
 use App\Traits\AdminHasMenus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,6 +20,7 @@ class Admin extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
+    use HasPermissions;
     use AdminHasMenus;
 
     protected $fillable = [

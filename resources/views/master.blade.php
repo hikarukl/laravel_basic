@@ -38,6 +38,29 @@
 <script type='text/javascript' src="{{ asset('js/all.min.js') }}"></script>
 <script type='text/javascript' src="{{ asset('js/flickity.min.js') }}"></script>
 <script type='text/javascript' src="{{ asset("js/common.js") }}"></script>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "{{ asset('js/firebase-app.js') }}";
+    import { getAnalytics } from "{{ asset('js/firebase-analytics.js') }}";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyBUT75xB9kR6taxQ5Sv-UpCNXpuNhnwnmQ",
+        authDomain: "my-project-1489733461325.firebaseapp.com",
+        projectId: "my-project-1489733461325",
+        storageBucket: "my-project-1489733461325.appspot.com",
+        messagingSenderId: "1019738238667",
+        appId: "1:1019738238667:web:6d2bfe7b7ccdc7ee46354e",
+        measurementId: "G-CWZQLHLTKN"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+</script>
 @yield('scripts')
 @stack('scripts_component')
 </html>

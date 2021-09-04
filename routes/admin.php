@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function () {
     Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.index');
 
-    Route::group(['middleware' => 'can.access.menu'], function () {
+    Route::group(['middleware' => ['can.access.menu', 'has.permission']], function () {
         // Ajax when go to screen
         Route::get('/admin-post/ajax/list', '\App\Http\Controllers\Admin\PostController@ajaxGetList')->name('admin-post.ajax.list');
 
