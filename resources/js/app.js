@@ -10,6 +10,7 @@ import "./toast";
 import "./ckeditor";
 import "./tabulator";
 import "./highlight";
+import "./firebase"
 
 import "./dropdown";
 import "./modal";
