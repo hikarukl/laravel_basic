@@ -21,8 +21,8 @@ import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript.js';
 import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript.js';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline.js';
 
-
 import cash from "cash-dom";
+
 
 let editorConfig = {
     plugins: [
@@ -77,7 +77,7 @@ let editorConfig = {
     },
     ckfinder: {
         // Upload the images to the server using the CKFinder QuickUpload command.
-        uploadUrl: 'http://personal.local/ckfinder/upload?type=Images&responseType=json',
+        uploadUrl: process.env.CKEDITOR_API,
         openerMethod: 'popup'
     }
 };
