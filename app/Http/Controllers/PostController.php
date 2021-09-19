@@ -118,17 +118,30 @@ class PostController extends Controller
                 return view('errors.500');
             }
 
-            $thumbExtension = pathinfo($articleDetail['thumbnail'], PATHINFO_EXTENSION);
-            $imageSaveName = md5($articleDetail['slug']) . "." . $thumbExtension;
+            if ($articleDetail['thumbnail']) {
+                $thumbExtension = pathinfo($articleDetail['thumbnail'], PATHINFO_EXTENSION);
+                $imageSaveName = md5($articleDetail['slug']) . "." . $thumbExtension;
+            } else {
+                $articleDetail['thumbnail'] = asset('images/thumb_post_default.png');
+                $imageSaveName = "thumb_post_default.png";
+            }
 
             if (!file_exists(public_path("images/post_og"))) {
                 mkdir(public_path("images/post_og"));
             }
 
             if (!file_exists(public_path("images/post_og/{$imageSaveName}"))) {
-                ImageManagerStatic::make($articleDetail['thumbnail'])
-                    ->resize(1200, 675)
-                    ->save(public_path("images/post_og/{$imageSaveName}"));
+                if ($articleDetail['thumbnail']) {
+                    ImageManagerStatic::make($articleDetail['thumbnail'])
+                        ->resize(1200, 675)
+                        ->save(public_path("images/post_og/{$imageSaveName}"));
+                } else {
+                    if (!file_exists(public_path("images/post_og/{$imageSaveName}"))) {
+                        ImageManagerStatic::make(public_path("images/thumb_post_default.png"))
+                            ->resize(1200, 675)
+                            ->save(public_path("images/post_og/{$imageSaveName}"));
+                    }
+                }
             }
 
             $articleDetail['post_og_img'] = $imageSaveName;
@@ -234,6 +247,14 @@ class PostController extends Controller
             Log::error(__FUNCTION__ . ": Request get {$type} was fail.");
 
             return view('errors.500');
+        }
+        // Check thumbnail article
+        if ($type == CommonConstant::SHARE_TYPE_ARTICLE) {
+            if (
+                !isset($articleDetail['thumbnail']) && !isset($articleDetail['thumbnail_url'])
+            ) {
+                $articleDetail['thumbnail'] = asset('images/thumb_post_default.png');
+            }
         }
 
         $currentRequestDomain = \request()->getHttpHost();

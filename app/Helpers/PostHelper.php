@@ -48,6 +48,8 @@ class PostHelper
 
     public static function convertImgToGif($imgLink)
     {
+        $imgLink = $imgLink ? $imgLink : asset('images/thumb_post_default.png');
+
         if(preg_match("/(\.gif\.).*$/", $imgLink)) {
             return preg_replace("/(\.gif\.).*$/", ".gif", $imgLink);
         }

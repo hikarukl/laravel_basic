@@ -35,7 +35,9 @@
                     </p>
                 </div>
                 <div class="w-full md:flex md:justify-center">
-                    <img src="{{ $postHelper::convertImgToGif($post['thumbnail']) }}" class="rounded mb-4 md:max-w-screen-sm">
+                    @if(!preg_match('/(thumb_post_default)/', $post['thumbnail']))
+                        <img src="{{ $postHelper::convertImgToGif($post['thumbnail']) }}" class="rounded mb-4 md:max-w-screen-sm">
+                    @endif
                 </div>
                 @foreach($post['content'] as $content)
                     @if(is_string($content) && !preg_match("/.*(Ảnh:).*/", $content) && !preg_match("/.*(Nguồn:).*/", $content))
