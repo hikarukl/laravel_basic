@@ -91,6 +91,7 @@ class HomeController extends Controller
             });
 
             // Get 5 top posts : Get from social
+            $newestArticles = array_values($newestArticles);
             $topPostList = $this->getArticlesFilter(0, 5, $newestArticles);
 
             // Get 9 newest posts
@@ -136,8 +137,10 @@ class HomeController extends Controller
         $result = [];
 
         while ($i < $length) {
-            $result[] = $list[$offset];
-            $offset++;
+            if (isset($list[$offset])) {
+                $result[] = $list[$offset];
+                $offset++;
+            }
             $i++;
         }
 
