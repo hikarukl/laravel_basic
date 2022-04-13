@@ -290,5 +290,10 @@ class CommonConstant
             "name" => "Xem-Ăn-Chơi",
             "slug" => "xem-an-choi",
         ],
+        48 => [
+            "id" => 46,
+            "name" => "Kinh Doanh",
+            "slug" => "dinh-doanh",
+        ]
     ];
 }
