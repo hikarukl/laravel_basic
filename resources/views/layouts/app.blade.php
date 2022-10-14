@@ -21,7 +21,7 @@
         @stack('styles_component')
         @livewireStyles
     </head>
-    <body>
+    <body class="py-5">
         <section id="main-page">
             <div class="relative">
                 @include('partials.header')
