@@ -1,17 +1,15 @@
-import Velocity from "velocity-animate";
-
-(function (cash) {
+(function () {
     "use strict";
 
     // Show code or preview
-    cash("body").on("change", ".show-code", function () {
-        let elementId = cash(this).data("target");
-        if (cash(this).is(":checked")) {
-            cash(elementId).find(".preview").hide();
-            Velocity(cash(elementId).find(".source-code"), "fadeIn");
+    $("body").on("change", ".show-code", function () {
+        const elementId = $(this).data("target");
+        if ($(this).is(":checked")) {
+            $(elementId).find(".preview").hide();
+            $(elementId).find(".source-code").fadeIn(200);
         } else {
-            Velocity(cash(elementId).find(".preview"), "fadeIn");
-            cash(elementId).find(".source-code").hide();
+            $(elementId).find(".preview").fadeIn(200);
+            $(elementId).find(".source-code").hide();
         }
     });
-})(cash);
+})();

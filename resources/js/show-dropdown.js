@@ -1,18 +1,30 @@
-(function (cash) {
+(function () {
     "use strict";
 
     // Show dropdown
-    cash("#programmatically-show-dropdown").on("click", function () {
-        cash("#programmatically-dropdown").dropdown("show");
+    $("#programmatically-show-dropdown").on("click", function () {
+        setTimeout(() => {
+            const el = document.querySelector("#programmatically-dropdown");
+            const dropdown = tailwind.Dropdown.getOrCreateInstance(el);
+            dropdown.show();
+        }, 100);
     });
 
     // Hide dropdown
-    cash("#programmatically-hide-dropdown").on("click", function () {
-        cash("#programmatically-dropdown").dropdown("hide");
+    $("#programmatically-hide-dropdown").on("click", function () {
+        setTimeout(() => {
+            const el = document.querySelector("#programmatically-dropdown");
+            const dropdown = tailwind.Dropdown.getOrCreateInstance(el);
+            dropdown.hide();
+        }, 100);
     });
 
     // Toggle dropdown
-    cash("#programmatically-toggle-dropdown").on("click", function () {
-        cash("#programmatically-dropdown").dropdown("toggle");
+    $("#programmatically-toggle-dropdown").on("click", function () {
+        setTimeout(() => {
+            const el = document.querySelector("#programmatically-dropdown");
+            const dropdown = tailwind.Dropdown.getOrCreateInstance(el);
+            dropdown.toggle();
+        }, 100);
     });
-})(cash);
+})();

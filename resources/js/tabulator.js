@@ -2,11 +2,11 @@ import xlsx from "xlsx";
 import feather from "feather-icons";
 import Tabulator from "tabulator-tables";
 
-(function (cash) {
+(function () {
     "use strict";
 
     // Tabulator
-    if (cash("#tabulator").length) {
+    if ($("#tabulator").length) {
         // Setup Tabulator
         let table = new Tabulator("#tabulator", {
             ajaxURL: "https://dummy-data.left4code.com",
@@ -15,7 +15,7 @@ import Tabulator from "tabulator-tables";
             printAsHtml: true,
             printStyled: true,
             pagination: "remote",
-            paginationSize: 10,
+            paginationSize: 19,
             paginationSizeSelector: [10, 20, 30, 40],
             layout: "fitColumns",
             responsiveLayout: "collapse",
@@ -25,7 +25,7 @@ import Tabulator from "tabulator-tables";
                     formatter: "responsiveCollapse",
                     width: 40,
                     minWidth: 30,
-                    align: "center",
+                    hozAlign: "center",
                     resizable: false,
                     headerSort: false,
                 },
@@ -44,7 +44,7 @@ import Tabulator from "tabulator-tables";
                             <div class="font-medium whitespace-nowrap">${
                                 cell.getData().name
                             }</div>
-                            <div class="text-gray-600 text-xs whitespace-nowrap">${
+                            <div class="text-slate-500 text-xs whitespace-nowrap">${
                                 cell.getData().category
                             }</div>
                         </div>`;
@@ -61,17 +61,17 @@ import Tabulator from "tabulator-tables";
                     formatter(cell, formatterParams) {
                         return `<div class="flex lg:justify-center">
                             <div class="intro-x w-10 h-10 image-fit">
-                                <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="/dist/images/${
+                                <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full" src="/dist/images/${
                                     cell.getData().images[0]
                                 }">
                             </div>
                             <div class="intro-x w-10 h-10 image-fit -ml-5">
-                                <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="/dist/images/${
+                                <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full" src="/dist/images/${
                                     cell.getData().images[1]
                                 }">
                             </div>
                             <div class="intro-x w-10 h-10 image-fit -ml-5">
-                                <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="/dist/images/${
+                                <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full" src="/dist/images/${
                                     cell.getData().images[2]
                                 }">
                             </div>
@@ -98,8 +98,8 @@ import Tabulator from "tabulator-tables";
                     formatter(cell, formatterParams) {
                         return `<div class="flex items-center lg:justify-center ${
                             cell.getData().status
-                                ? "text-theme-9"
-                                : "text-theme-6"
+                                ? "text-success"
+                                : "text-danger"
                         }">
                             <i data-feather="check-square" class="w-4 h-4 mr-2"></i> ${
                                 cell.getData().status ? "Active" : "Inactive"
@@ -117,14 +117,28 @@ import Tabulator from "tabulator-tables";
                     print: false,
                     download: false,
                     formatter(cell, formatterParams) {
-                        return `<div class="flex lg:justify-center items-center">
-                            <a class="flex items-center mr-3" href="">
+                        let a =
+                            $(`<div class="flex lg:justify-center items-center">
+                            <a class="edit flex items-center mr-3" href="javascript:;">
                                 <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit
                             </a>
-                            <a class="flex items-center text-theme-6" href="">
+                            <a class="delete flex items-center text-danger" href="javascript:;">
                                 <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
                             </a>
-                        </div>`;
+                        </div>`);
+                        $(a)
+                            .find(".edit")
+                            .on("click", function () {
+                                alert("EDIT");
+                            });
+
+                        $(a)
+                            .find(".delete")
+                            .on("click", function () {
+                                alert("DELETE");
+                            });
+
+                        return a[0];
                     },
                 },
 
@@ -208,14 +222,14 @@ import Tabulator from "tabulator-tables";
 
         // Filter function
         function filterHTMLForm() {
-            let field = cash("#tabulator-html-filter-field").val();
-            let type = cash("#tabulator-html-filter-type").val();
-            let value = cash("#tabulator-html-filter-value").val();
+            let field = $("#tabulator-html-filter-field").val();
+            let type = $("#tabulator-html-filter-type").val();
+            let value = $("#tabulator-html-filter-value").val();
             table.setFilter(field, type, value);
         }
 
         // On submit filter form
-        cash("#tabulator-html-filter-form")[0].addEventListener(
+        $("#tabulator-html-filter-form")[0].addEventListener(
             "keypress",
             function (event) {
                 let keycode = event.keyCode ? event.keyCode : event.which;
@@ -227,43 +241,43 @@ import Tabulator from "tabulator-tables";
         );
 
         // On click go button
-        cash("#tabulator-html-filter-go").on("click", function (event) {
+        $("#tabulator-html-filter-go").on("click", function (event) {
             filterHTMLForm();
         });
 
         // On reset filter form
-        cash("#tabulator-html-filter-reset").on("click", function (event) {
-            cash("#tabulator-html-filter-field").val("name");
-            cash("#tabulator-html-filter-type").val("like");
-            cash("#tabulator-html-filter-value").val("");
+        $("#tabulator-html-filter-reset").on("click", function (event) {
+            $("#tabulator-html-filter-field").val("name");
+            $("#tabulator-html-filter-type").val("like");
+            $("#tabulator-html-filter-value").val("");
             filterHTMLForm();
         });
 
         // Export
-        cash("#tabulator-export-csv").on("click", function (event) {
+        $("#tabulator-export-csv").on("click", function (event) {
             table.download("csv", "data.csv");
         });
 
-        cash("#tabulator-export-json").on("click", function (event) {
+        $("#tabulator-export-json").on("click", function (event) {
             table.download("json", "data.json");
         });
 
-        cash("#tabulator-export-xlsx").on("click", function (event) {
+        $("#tabulator-export-xlsx").on("click", function (event) {
             window.XLSX = xlsx;
             table.download("xlsx", "data.xlsx", {
                 sheetName: "Products",
             });
         });
 
-        cash("#tabulator-export-html").on("click", function (event) {
+        $("#tabulator-export-html").on("click", function (event) {
             table.download("html", "data.html", {
                 style: true,
             });
         });
 
         // Print
-        cash("#tabulator-print").on("click", function (event) {
+        $("#tabulator-print").on("click", function (event) {
             table.print();
         });
     }
-})(cash);
+})();

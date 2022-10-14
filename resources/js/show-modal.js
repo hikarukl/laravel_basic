@@ -1,18 +1,24 @@
-(function (cash) {
+(function () {
     "use strict";
 
     // Show modal
-    cash("#programmatically-show-modal").on("click", function () {
-        cash("#programmatically-modal").modal("show");
+    $("#programmatically-show-modal").on("click", function () {
+        const el = document.querySelector("#programmatically-modal");
+        const modal = tailwind.Modal.getOrCreateInstance(el);
+        modal.show();
     });
 
     // Hide modal
-    cash("#programmatically-hide-modal").on("click", function () {
-        cash("#programmatically-modal").modal("hide");
+    $("#programmatically-hide-modal").on("click", function () {
+        const el = document.querySelector("#programmatically-modal");
+        const modal = tailwind.Modal.getOrCreateInstance(el);
+        modal.hide();
     });
 
     // Toggle modal
-    cash("#programmatically-toggle-modal").on("click", function () {
-        cash("#programmatically-modal").modal("toggle");
+    $("#programmatically-toggle-modal").on("click", function () {
+        const el = document.querySelector("#programmatically-modal");
+        const modal = tailwind.Modal.getOrCreateInstance(el);
+        modal.toggle();
     });
-})(cash);
+})();

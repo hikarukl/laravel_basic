@@ -1,31 +1,31 @@
 import tippy, { roundArrow } from "tippy.js";
 
-(function (cash) {
+(function () {
     "use strict";
 
     // Tooltips
-    cash(".tooltip").each(function () {
+    $(".tooltip").each(function () {
         let options = {
-            content: cash(this).attr("title"),
+            content: $(this).attr("title"),
         };
 
-        if (cash(this).data("trigger") !== undefined) {
-            options.trigger = cash(this).data("trigger");
+        if ($(this).data("trigger") !== undefined) {
+            options.trigger = $(this).data("trigger");
         }
 
-        if (cash(this).data("placement") !== undefined) {
-            options.placement = cash(this).data("placement");
+        if ($(this).data("placement") !== undefined) {
+            options.placement = $(this).data("placement");
         }
 
-        if (cash(this).data("theme") !== undefined) {
-            options.theme = cash(this).data("theme");
+        if ($(this).data("theme") !== undefined) {
+            options.theme = $(this).data("theme");
         }
 
-        if (cash(this).data("tooltip-content") !== undefined) {
-            options.content = cash(cash(this).data("tooltip-content"))[0];
+        if ($(this).data("tooltip-content") !== undefined) {
+            options.content = $($(this).data("tooltip-content"))[0];
         }
 
-        cash(this).removeAttr("title");
+        $(this).removeAttr("title");
 
         tippy(this, {
             arrow: roundArrow,
@@ -33,4 +33,4 @@ import tippy, { roundArrow } from "tippy.js";
             ...options,
         });
     });
-})(cash);
+})();

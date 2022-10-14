@@ -1,25 +1,58 @@
-import './bootstrap'
+/*
+ |--------------------------------------------------------------------------
+ | Midone Built-in Components
+ |--------------------------------------------------------------------------
+ |
+ | Import Midone built-in components.
+ |
+ */
+import "./bootstrap";
+import "@left4code/tw-starter/dist/js/svg-loader";
+import "@left4code/tw-starter/dist/js/accordion";
+import "@left4code/tw-starter/dist/js/alert";
+import "@left4code/tw-starter/dist/js/dropdown";
+import "@left4code/tw-starter/dist/js/modal";
+import "@left4code/tw-starter/dist/js/tab";
 
-import "./feather";
-// Tool tip
-import "./tippy";
-import "./tail-select";
-import "./zoom";
-import "./svg-loader";
-import "./toast";
-import "./ckeditor";
-import "./tabulator";
+/*
+ |--------------------------------------------------------------------------
+ | 3rd Party Libraries
+ |--------------------------------------------------------------------------
+ |
+ | Import 3rd party library JS files.
+ |
+ */
+import "./chart";
 import "./highlight";
-import "./firebase"
+import "./feather";
+import "./tiny-slider";
+import "./tippy";
+import "./datepicker";
+import "./tom-select";
+import "./dropzone";
+import "./validation";
+import "./zoom";
+import "./notification";
+import "./tabulator";
+import "./calendar";
 
-import "./dropdown";
-import "./modal";
-import "./mobile-menu";
+/*
+ |--------------------------------------------------------------------------
+ | Custom Components
+ |--------------------------------------------------------------------------
+ |
+ | Import JS custom components.
+ |
+ */
+import "./maps";
+import "./chat";
 import "./show-modal";
+import "./show-slide-over";
 import "./show-dropdown";
-import "./tab";
 import "./search";
 import "./copy-code";
 import "./show-code";
-
-require('alpinejs');
+import "./side-menu";
+import "./mobile-menu";
+import "./side-menu-tooltip";
+import "./dark-mode-switcher";
