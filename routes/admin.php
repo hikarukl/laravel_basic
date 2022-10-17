@@ -22,5 +22,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function () 
 
         Route::resource('admin-category', \App\Http\Controllers\Admin\CategoryController::class);
         Route::resource('admin-post', \App\Http\Controllers\Admin\PostController::class);
+        Route::resource('admin-profile', \App\Http\Controllers\Admin\ProfileController::class);
+
     });
 });
