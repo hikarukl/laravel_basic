@@ -50,7 +50,7 @@ class ProfileController
             $data['post_list'] = $this->postService->getAllListPagination($dataSearch)
                 ->appends(request()->query());*/
 
-            return view("admin.profile.index", ['post_list' => '']);
+            return view("admin.profile.index", ['breadCrumb' => 'Profile']);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
             Log::error($exception->getTraceAsString());

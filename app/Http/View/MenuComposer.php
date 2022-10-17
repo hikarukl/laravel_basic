@@ -31,6 +31,10 @@ class MenuComposer
         if (request()->route()) {
             $pageName = request()->route()->getName();
             $activeMenuInfo = $this->activeMenu($pageName);
+            $data = $view->getData();
+            if (isset($data['breadCrumb'])) {
+                \Illuminate\Support\Facades\View::share('breadCrumb', $data['breadCrumb']);
+            }
 
             $view->with('menu_list', $activeMenuInfo['menu_list']);
             $view->with('parent_active_index', $activeMenuInfo['parent_active_index']);
