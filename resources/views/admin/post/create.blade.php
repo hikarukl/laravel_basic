@@ -1,11 +1,7 @@
 <x-app-layout>
-    <div class="w-full">
-        @include('admin.components.breadcrumb', ['route' => route('admin-post.index'), 'pageName' => 'Create Post'])
-
-        <div class="w-full">
-            <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-                <h2 class="text-lg font-medium mr-auto">Create Post</h2>
-            </div>
+    <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+        <h2 class="text-lg font-medium mr-auto">Add New Post</h2>
+        <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
             @if(\Illuminate\Support\Facades\Session::has('message'))
                 <div class="rounded-md mt-3 p-5 border border-red-600">
                     <div class="font-medium text-red-600">{{ \Illuminate\Support\Facades\Session::get('message') }}</div>
@@ -13,136 +9,179 @@
             @endif
             <x-jet-validation-errors class="rounded-md mt-3 p-5 border border-red-600" />
 
-            <form class="pos intro-y grid grid-cols-12 gap-5 mt-5" enctype="multipart/form-data" method="post" action="{{ route('admin-post.store') }}">
-                @csrf
-
-                <div class="intro-y col-span-12 lg:col-span-8">
-                    <input
-                        type="text"
-                        name="post_title"
-                        class="intro-y border input input--lg w-full box pr-10 placeholder-theme-13"
-                        required
-                        value="{{ old('post_title') }}"
-                        placeholder="Title">
-                    <input
-                            type="text"
-                            name="post_slug"
-                            class="intro-y border input input--lg w-full box pr-10 placeholder-theme-13 mt-5"
-                            required
-                            value="{{ old('post_slug') }}"
-                            placeholder="Slug">
-
-                    <div class="post intro-y overflow-hidden box mt-5">
-                        <div class="post__tabs nav-tabs flex flex-col sm:flex-row bg-gray-300 dark:bg-dark-2 text-gray-600">
-                            <a title="Fill in the article content" data-toggle="tab" data-target="#content" href="javascript:;" class="tooltip w-full sm:w-40 py-4 text-center flex justify-center items-center active">
-                                <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Content
+            <div class="dropdown mr-2">
+                <button class="dropdown-toggle btn box flex items-center" aria-expanded="false" data-tw-toggle="dropdown">
+                    English <i class="w-4 h-4 ml-2" data-feather="chevron-down"></i>
+                </button>
+                <div class="dropdown-menu w-40">
+                    <ul class="dropdown-content">
+                        <li>
+                            <a href="" class="dropdown-item">
+                                <i data-feather="activity" class="w-4 h-4 mr-2"></i>
+                                <span class="truncate">English</span>
                             </a>
+                            </a>
+                        <li>
+                            <a href="" class="dropdown-item">
+                                <i data-feather="activity" class="w-4 h-4 mr-2"></i>
+                                <span class="truncate">Indonesian</span>
+                            </a>
+                            </a>
+                    </ul>
+                </div>
+            </div>
+            <button type="button" class="btn box mr-2 flex items-center ml-auto sm:ml-0">
+                <i class="w-4 h-4 mr-2" data-feather="eye"></i> Preview
+            </button>
+            <button type="button" class="btn box mr-2 flex items-center ml-auto sm:ml-0">
+                <i class="w-4 h-4 mr-2" data-feather="eye"></i> Save
+            </button>>
+
+        </div>
+    </div>
+
+    <form class="pos intro-y grid grid-cols-12 gap-5 mt-5" enctype="multipart/form-data" method="post" action="{{ route('admin-post.store') }}">
+        @csrf
+
+        <div class="intro-y col-span-12 lg:col-span-8">
+            <input
+                type="text"
+                name="post_title"
+                class="intro-y form-control py-3 px-4 box pr-10"
+                required
+                value="{{ old('post_title') }}"
+                placeholder="Title">
+            <input
+                type="text"
+                name="post_slug"
+                class="intro-y border input input--lg w-full box pr-10 placeholder-theme-13 mt-5"
+                required
+                value="{{ old('post_slug') }}"
+                placeholder="Slug">
+
+            <div class="post intro-y overflow-hidden box mt-5">
+                <ul class="post__tabs nav nav-tabs flex-col sm:flex-row bg-slate-200 dark:bg-darkmode-800" role="tablist">
+                    <li class="nav-item">
+                        <button title="Fill in the article content" data-tw-toggle="tab" data-tw-target="#content" href="javascript:;" class="nav-link tooltip w-full sm:w-40 py-4 active" id="content-tab" role="tab" aria-controls="content" aria-selected="true">
+                            <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Content
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button title="Adjust the meta title" data-tw-toggle="tab" data-tw-target="#meta-title" href="javascript:;" class="nav-link tooltip w-full sm:w-40 py-4" id="meta-title-tab" role="tab" aria-selected="false">
+                            <i data-feather="code" class="w-4 h-4 mr-2"></i> Meta Title
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button title="Use search keywords" data-tw-toggle="tab" data-tw-target="#keywords" href="javascript:;" class="nav-link tooltip w-full sm:w-40 py-4" id="keywords-tab" role="tab" aria-selected="false">
+                            <i data-feather="align-left" class="w-4 h-4 mr-2"></i> Keywords
+                        </button>
+                    </li>
+                </ul>
+                <div class="post__content tab-content">
+                    <div id="content" class="tab-pane p-5 active" role="tabpanel" aria-labelledby="content-tab">
+                        <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
+                            <div class="font-medium flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
+                                <i data-feather="chevron-down" class="w-4 h-4 mr-2"></i> Text Content
+                            </div>
+                            <div class="mt-5">
+                                <textarea class="editor" name="post_content" required>
+                                     {{ old('post_content', 'Content of post') }}
+                                </textarea>
+                            </div>
                         </div>
-                        <div class="post__content tab-content">
-                            <div class="tab-content__pane p-5 active" id="content">
-                                <div class="border border-gray-200 dark:border-dark-5 rounded-md p-5">
-                                    <div class="font-medium flex items-center border-b border-gray-200 dark:border-dark-5 pb-5">
-                                        <i data-feather="chevron-down" class="w-4 h-4 mr-2"></i> Text Content
-                                    </div>
-                                    <div class="mt-5">
-                                        <textarea class="editor" name="post_content" required>
-                                           {{ old('post_content') }}
-                                        </textarea>
-                                    </div>
+                        <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5 mt-5">
+                            <div class="font-medium flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
+                                <i data-feather="chevron-down" class="w-4 h-4 mr-2"></i> Caption & Images
+                            </div>
+                            <div class="mt-5">
+                                <div>
+                                    <label for="post-form-7" class="form-label">Caption</label>
+                                    <input id="post-form-7" type="text" class="form-control" placeholder="Write caption">
                                 </div>
-                                <div class="border border-gray-200 dark:border-dark-5 rounded-md p-5 mt-5">
-                                    <div class="font-medium flex items-center border-b border-gray-200 dark:border-dark-5 pb-5">
-                                        <i data-feather="chevron-down" class="w-4 h-4 mr-2"></i> Description & Thumbnail
-                                    </div>
-                                    <div class="mt-5">
-                                        <div>
-                                            <label>Description</label>
-                                            <textarea required name="post_description" class="input w-full border mt-2 text-left"> {{ old('post_description') }}</textarea>
-                                        </div>
-                                        <div class="mt-3">
-                                            <label>Upload Thumbnail</label>
-                                            <div class="border-2 border-dashed dark:border-dark-5 rounded-md mt-3 pt-4">
-                                                <div class="flex flex-wrap px-4">
-                                                    <div class="w-24 h-24 relative image-fit mb-5 mr-5 cursor-pointer zoom-in">
-                                                        <img class="rounded-md" id="preview-thumbnail" alt="" src="{{ asset('images/default_post_200x200.jpg') }}">
-                                                        <div id="btn-remove_thumbnail" title="Remove this image?" class="tooltip w-5 h-5 flex items-center justify-center absolute rounded-full text-white bg-theme-6 right-0 top-0 -mr-2 -mt-2">
-                                                            <i data-feather="x" class="w-4 h-4"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="px-4 pb-4 flex items-center cursor-pointer relative">
-                                                    <i data-feather="image" class="w-4 h-4 mr-2"></i> <span class="text-theme-1 dark:text-theme-10 mr-1">Upload a file</span>
-                                                    <input type="file" accept="image/*" id="input-thumbnail" name="post_thumbnail" class="w-full h-full top-0 left-0 absolute opacity-0">
-                                                    <input type="hidden" id="thumbnail-default" value="">
+                                <div class="mt-3">
+                                    <label class="form-label">Upload Image</label>
+                                    <div class="border-2 border-dashed dark:border-darkmode-400 rounded-md pt-4">
+                                        <div class="flex flex-wrap px-4">
+                                            <div class="w-24 h-24 relative image-fit mb-5 mr-5 cursor-pointer zoom-in">
+                                                <img class="rounded-md" id="preview-thumbnail" alt="" src="{{ asset('images/default_post_200x200.jpg') }}">
+                                                <div id="btn-remove_thumbnail" title="Remove this image?" class="tooltip w-5 h-5 flex items-center justify-center absolute rounded-full text-white bg-danger right-0 top-0 -mr-2 -mt-2">
+                                                    <i data-feather="x" class="w-4 h-4"></i>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="px-4 pb-4 flex items-center cursor-pointer relative">
+                                            <i data-feather="image" class="w-4 h-4 mr-2"></i> <span class="text-primary mr-1">Upload a file</span> or drag and drop
+                                            <input type="file" accept="image/*" id="input-thumbnail" name="post_thumbnail" class="w-full h-full top-0 left-0 absolute opacity-0">
+                                            <input type="hidden" id="thumbnail-default" value="">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="mb-2 ml-5 flex justify-center">
-                            <a href="{{ route('admin-post.index') }}" class="button text-white bg-theme-1 shadow-md flex items-center mr-3">
-                                Back
-                            </a>
-                            <button type="submit" class="button text-white bg-theme-1 shadow-md flex items-center">
-                                Save
-                            </button>
-                        </div>
+                    <div class="mb-2 ml-5 flex justify-center">
+                        <a href="{{ route('admin-post.index') }}" class="button text-white bg-theme-1 shadow-md flex items-center mr-3">
+                            Back
+                        </a>
+                        <button type="submit" class="button text-white bg-theme-1 shadow-md flex items-center">
+                            Save
+                        </button>
                     </div>
                 </div>
-
-                <!-- BEGIN: Post Info -->
-                <div class="col-span-12 lg:col-span-4">
-                    <div class="intro-y box p-5">
-                        <div class="mt-3">
-                            <label>Categories</label>
-                            <div class="mt-2">
-                                <select data-placeholder="Select categories" class="tail-select w-full" name="post_category_id">
-                                    @foreach($category_list as $category)
-                                        <option value="{{ $category->id }}" @if(old('post_category_id') == $category->id) selected @endif >{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="mt-5">
-                            <label>Tags</label>
-                            <div class="mt-2">
-                                <input id="input-post_tags" class="input w-full border mb-2" type="text" value="">
-                                <input id="post-tags" name="post_tags" class="input w-full border mb-2" type="hidden" value="{{ old('post_tags') }}">
-                                <div class="w-full flex justify-start flex-wrap" id="wrap-post_tags">
-                                    @if(old('post_tags'))
-                                        @foreach(explode(",", old('post_tags')) as $tag)
-                                            <span class="btn-remove_post_tag pl-2 pr-2 mb-3 cursor-pointer bg-theme-7 rounded text-white mr-2 hover:bg-blue-400">{{ $tag }}</span>
-                                        @endforeach
-                                    @endif
-
-                                    <template id="tpl-item_tag">
-                                        <span class="btn-remove_post_tag pl-2 pr-2 mb-3 cursor-pointer bg-theme-7 rounded text-white mr-2 hover:bg-blue-400">__VALUE__</span>
-                                    </template>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-5">
-                            <label>Published</label>
-                            <div class="mt-2">
-                                <input id="post-status" name="post_status" class="input input--switch border" type="checkbox" @if(old('post_status')) checked @endif">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
-    @section('scripts')
-        <script src="{{ asset('js/ckfinder/ckfinder.js') }}"></script>
-        <script>
-            CKFinder.config( { connectorPath: '/ckfinder/connector' } );
 
-            $(document).ready(function () {
+        <!-- BEGIN: Post Info -->
+        <div class="col-span-12 lg:col-span-4">
+            <div class="intro-y box p-5">
+                <div class="mt-3">
+                    <label class="form-label">Categories</label>
+                    <div class="mt-2">
+                        <select data-placeholder="Select categories" class="tom-select w-full" name="post_category_id" multiple>
+                            @foreach($category_list as $category)
+                                <option value="{{ $category->id }}" @if(old('post_category_id') == $category->id) selected @endif >{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mt-5">
+                    <label class="form-label">Tags</label>
+                    <div class="mt-2">
+                        <input id="input-post_tags" class="input w-full border mb-2" type="text" value="">
+                        <input id="post-tags" name="post_tags" class="input w-full border mb-2" type="hidden" value="{{ old('post_tags') }}">
+                        <div class="w-full flex justify-start flex-wrap" id="wrap-post_tags">
+                            @if(old('post_tags'))
+                                @foreach(explode(",", old('post_tags')) as $tag)
+                                    <span class="btn-remove_post_tag pl-2 pr-2 mb-3 cursor-pointer bg-theme-7 rounded text-gray mr-2 hover:bg-blue-400">{{ $tag }}</span>
+                                @endforeach
+                            @endif
+
+                            <template id="tpl-item_tag">
+                                <span class="btn-remove_post_tag pl-2 pr-2 mb-3 cursor-pointer bg-theme-7 rounded text-gray mr-2 hover:bg-blue-400">__VALUE__</span>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-check form-switch flex flex-col items-start mt-5">
+                    <label class="form-check-label ml-0 mb-2">Published</label>
+                    <div class="mt-2">
+                        <input id="post-status" name="post_status" class="form-check-input" type="checkbox" @if(old('post_status')) checked @endif">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    @section('scripts')
+        {{--<script src="{{ asset('js/ckfinder/ckfinder.js') }}"></script>--}}
+        <script src="{{ asset('js/ckeditor-classic.js') }}"></script>
+        <script>
+            //CKFinder.config( { connectorPath: '/ckfinder/connector' } );
+            (function () {
+                console.log(1321231231);
                 let fileInputStorage = [];
                 let inputThumbnailTarget = $('#input-thumbnail');
                 let previewThumbnailTarget = $('#preview-thumbnail');
@@ -209,7 +248,7 @@
                         return false;
                     }
                 });
-                $(document).on('click', '.btn-remove_post_tag', function (e) {
+                wrapPostTagTarget.on('click', '.btn-remove_post_tag', function (e) {
                     let value = $(this).html();
 
                     if (postTagStorage.hasOwnProperty(value)) {
@@ -244,7 +283,8 @@
                             stopOnFocus: true }).showToast();
                     }
                 });
-            })
+            })();
+
         </script>
     @endsection
 </x-app-layout>

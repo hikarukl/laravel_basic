@@ -1,7 +1,6 @@
 <x-app-layout>
-    <div class="w-full">
-        @include('admin.components.breadcrumb', ['route' => route('admin-post.index'), 'pageName' => 'Posts'])
-
+    <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+        <h2 class="text-lg font-medium mr-auto">List Posts</h2>
         <div class="w-full grid grid-cols-12">
             <div class="col-span-12 flex justify-between items-center mt-2">
                 <h2 class="text-lg font-medium mr-auto">Post List</h2>
@@ -31,7 +30,7 @@
 
     @section('scripts')
         <script type="text/javascript">
-            $(document).ready(function () {
+            window.dom.ready(function () {
                 let tabulatorParams = {
                     id: "#tabulator-post_list",
                     ajaxUrl: "/admin/admin-post/ajax/list",
