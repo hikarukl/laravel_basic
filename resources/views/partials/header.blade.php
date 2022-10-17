@@ -54,9 +54,8 @@
                             </a>
                         </li>
                         <li><hr class="dropdown-divider border-white/[0.08]"></li>
-
                         <li>
-                            <form action="{{  route('logout') }}" method="post" class="p-2 border-t border-theme-40 dark:border-dark-3">
+                            <form action="{{  route('logout') }}" method="post" class="p-2 dark:border-dark-3">
                                 @csrf
                                 <button type="submit" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
                                     <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout
@@ -99,13 +98,13 @@
                 @if(($listChildMenus = auth()->user()->getChildMenusOfRoot($menu->id))->isNotEmpty())
                     <ul class="@if($key == $parent_active_index) top-menu__sub-open @endif">
                         @foreach($listChildMenus as $subKey => $subMenu)
-                            <li>
+                            <li class="@if($subKey !== (count($listChildMenus) - 1)) border-b border-white @endif">
                                 <a href="{{ $subMenu->route_params ? route($subMenu->route, json_decode($subMenu->route_params, true)) : route($subMenu->route) }}" class="top-menu">
                                     <div class="top-menu__icon">
                                         <i data-feather="activity"></i>
                                     </div>
                                     <div class="top-menu__title">
-                                        {{ $subMenu['title'] }}
+                                        {{ $subMenu->name }}
                                         @if (isset($subMenu['sub_menu']))
                                             <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
                                         @endif
