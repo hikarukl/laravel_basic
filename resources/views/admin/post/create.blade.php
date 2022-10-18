@@ -20,13 +20,13 @@
                                 <i data-feather="activity" class="w-4 h-4 mr-2"></i>
                                 <span class="truncate">English</span>
                             </a>
-                            </a>
+                        </li>
                         <li>
                             <a href="" class="dropdown-item">
                                 <i data-feather="activity" class="w-4 h-4 mr-2"></i>
                                 <span class="truncate">Indonesian</span>
                             </a>
-                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -35,7 +35,7 @@
             </button>
             <button type="button" class="btn box mr-2 flex items-center ml-auto sm:ml-0">
                 <i class="w-4 h-4 mr-2" data-feather="eye"></i> Save
-            </button>>
+            </button>
 
         </div>
     </div>
@@ -149,7 +149,7 @@
                 <div class="mt-5">
                     <label class="form-label">Tags</label>
                     <div class="mt-2">
-                        <input id="input-post_tags" class="input w-full border mb-2" type="text" value="">
+                        {{--<input id="input-post_tags" class="input w-full border mb-2" type="text" value="">
                         <input id="post-tags" name="post_tags" class="input w-full border mb-2" type="hidden" value="{{ old('post_tags') }}">
                         <div class="w-full flex justify-start flex-wrap" id="wrap-post_tags">
                             @if(old('post_tags'))
@@ -161,7 +161,12 @@
                             <template id="tpl-item_tag">
                                 <span class="btn-remove_post_tag pl-2 pr-2 mb-3 cursor-pointer bg-theme-7 rounded text-gray mr-2 hover:bg-blue-400">__VALUE__</span>
                             </template>
-                        </div>
+                        </div>--}}
+                        <select data-placeholder="Input or select tags" class="tom-select w-full" name="post_tags" multiple>
+                            @foreach($category_list as $category)
+                                <option value="{{ $category->id }}" @if(old('post_category_id') == $category->id) selected @endif >{{ $category->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
