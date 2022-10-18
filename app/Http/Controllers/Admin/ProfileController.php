@@ -39,49 +39,42 @@ class ProfileController
     public function index(Request $request)
     {
         try {
-            /*$dataReceived = $request->getQueryString()? Query::parse($request->getQueryString()) : [];
-
-            $dataSearch = [
-                'limit' => isset($dataReceived['limit']) && $dataReceived['limit'] ? $dataReceived['limit'] : CommonConstants::DEFAULT_LIMIT_SEARCH,
+            $data = [
+                'breadCrumb' => 'Profile'
             ];
 
-            $dataSearch = array_merge($dataReceived, $dataSearch);
-
-            $data['post_list'] = $this->postService->getAllListPagination($dataSearch)
-                ->appends(request()->query());*/
-
-            return view("admin.profile.index", ['breadCrumb' => 'Profile']);
+            return view("admin.profile.index", $data);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
             Log::error($exception->getTraceAsString());
         }
     }
 
-    public function show(PostShowRequest $request, $id)
+    public function changePassword()
     {
         try {
-            if (!$id || !is_numeric($id)) {
-               throw new \Exception("Invalid search param: {$id}");
-            }
-
-            // Get post detail
-            $postCacheKey = str_replace("{ID}", $id, CommonConstants::CACHE_POST_DETAIL_NAME);
-            if (Cache::has($postCacheKey)) {
-                $postDetail = Cache::get($postCacheKey);
-            } else {
-                $postDetail = \App\Models\Post::find($id);
-                Cache::put($postCacheKey, $postDetail, CommonConstants::CACHE_DEFAULT_EXPIRED_MINUTES);
-            }
-
             $data = [
-                'post_detail' => $postDetail
+                'breadCrumb' => 'Profile'
             ];
-            return view('admin.post.show', $data);
-        } catch (\Exception $e) {
-            Log::error(__CLASS__ . " - " . __FUNCTION__ . ": Has error.");
-            Log::error($e->getMessage());
 
-            return redirect()->route('dashboard.index');
+            return view("admin.profile.change-password", $data);
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
+        }
+    }
+
+    public function accountSettings()
+    {
+        try {
+            $data = [
+                'breadCrumb' => 'Profile'
+            ];
+
+            return view("admin.profile.account-settings", $data);
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
         }
     }
 
@@ -238,5 +231,14 @@ class ProfileController
             Log::error($exception->getMessage());
             Log::error($exception->getTraceAsString());
         }
+    }
+
+    public function getListMenuProfile()
+    {
+        return [
+            'admin-profile.index' => 'Profile Information',
+            'admin-profile.account-settings' => 'Profile Information',
+            'admin-profile.index' => 'Profile Information',
+        ];
     }
 }

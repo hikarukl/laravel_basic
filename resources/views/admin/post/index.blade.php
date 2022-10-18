@@ -1,24 +1,22 @@
 <x-app-layout>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">List Posts</h2>
-        <div class="w-full grid grid-cols-12">
-            <div class="col-span-12 flex justify-between items-center mt-2">
-                <h2 class="text-lg font-medium mr-auto">Post List</h2>
-                <a href="{{ route('admin-post.create') }}" class="button text-white bg-theme-1 shadow-md mr-5">Add New Post</a>
-            </div>
-
-            <div class="intro-y col-span-12 box p-5 mt-5">
-                @include('tables.header_filter_tabulator', ['field_search' => [
-                    'title',
-                    'tags'
-                ]])
-
-                <div class="overflow-x-auto">
-                    <table class="table table-report mt-2" id="tabulator-post_list"></table>
-                </div>
-            </div>
+        <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
+            <a href="{{ route('admin-post.create') }}" class="btn btn-primary shadow-md mr-2">Add New Post</a>
         </div>
     </div>
+
+    <div class="intro-y box p-5 mt-5">
+        @include('tables.header_filter_tabulator', ['field_search' => [
+            'title',
+            'tags'
+        ]])
+
+        <div class="overflow-x-auto scrollbar-hidden">
+            <div id="tabulator-post_list" class="mt-5 table-report table-report--tabulator"></div>
+        </div>
+    </div>
+
     @include('modals.confirm_modal', [
         'modalId'        => 'delete-confirmation-modal',
         'modalClasses'   => 'mt-0 ml-0 pl-0',
@@ -30,7 +28,7 @@
 
     @section('scripts')
         <script type="text/javascript">
-            window.dom.ready(function () {
+            (function () {
                 let tabulatorParams = {
                     id: "#tabulator-post_list",
                     ajaxUrl: "/admin/admin-post/ajax/list",
@@ -139,13 +137,13 @@
                 let table = initTabulatorTable(tabulatorParams);
 
                 // On reset filter form
-                cash("#tabulator-html-filter-reset").on("click", function (event) {
-                    cash("#tabulator-html-filter-field").val("title");
-                    cash("#tabulator-html-filter-type").val("=");
-                    cash("#tabulator-html-filter-value").val("");
+                $("#tabulator-html-filter-reset").on("click", function (event) {
+                    $("#tabulator-html-filter-field").val("title");
+                    $("#tabulator-html-filter-type").val("=");
+                    $("#tabulator-html-filter-value").val("");
                     filterHTMLForm(table);
                 });
-            });
+            })();
         </script>
     @endsection
 </x-app-layout>

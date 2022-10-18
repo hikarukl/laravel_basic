@@ -33,11 +33,12 @@
         </section>
     </body>
     <!-- Scripts -->
-    @livewireScripts
     <script type='text/javascript' src="{{ asset('js/app.js') }}"></script>
     <script type='text/javascript' src="{{ asset('js/all.min.js') }}"></script>
     <script type='text/javascript' src="{{ asset('js/flickity.min.js') }}"></script>
+    <script type='text/javascript' src="{{ asset('js/tabulator.js') }}"></script>
     <script type='text/javascript' src="{{ asset("js/common.js") }}"></script>
+    @livewireScripts
     @yield('scripts')
     @stack('scripts_component')
 </html>

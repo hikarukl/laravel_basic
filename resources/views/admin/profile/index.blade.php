@@ -1,132 +1,56 @@
 <x-app-layout>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <!-- BEGIN: Profile Menu -->
-        <div class="col-span-12 lg:col-span-4 2xl:col-span-3 flex lg:block flex-col-reverse">
-            <div class="intro-y box mt-5 lg:mt-0">
-                <div class="relative flex items-center p-5">
-                    <div class="w-12 h-12 image-fit">
-                        <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full" src="{{ asset('images/profile-1.jpg') }}">
-                    </div>
-                    <div class="ml-4 mr-auto">
-                        <div class="font-medium text-base">{{ auth()->user()->name }}</div>
-                        <div class="text-slate-500">{{ auth()->user()->email }}</div>
-                    </div>
-                </div>
-                <div class="p-5 border-t border-slate-200/60 dark:border-darkmode-400">
-                    <a class="flex items-center text-primary font-medium" href="">
-                        <i data-feather="activity" class="w-4 h-4 mr-2"></i> Personal Information
-                    </a>
-                    <a class="flex items-center mt-5" href="">
-                        <i data-feather="box" class="w-4 h-4 mr-2"></i> Account Settings
-                    </a>
-                    <a class="flex items-center mt-5" href="">
-                        <i data-feather="lock" class="w-4 h-4 mr-2"></i> Change Password
-                    </a>
-                    <a class="flex items-center mt-5" href="">
-                        <i data-feather="settings" class="w-4 h-4 mr-2"></i> User Settings
-                    </a>
-                </div>
-            </div>
-        </div>
+        @include('admin.profile.profile-menu')
         <!-- END: Profile Menu -->
+
         <div class="col-span-12 lg:col-span-8 2xl:col-span-9">
-            <div class="grid grid-cols-12 gap-6">
-                <!-- BEGIN: Daily Sales -->
-                <div class="intro-y box col-span-12 2xl:col-span-6">
-                    <div class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                        <h2 class="font-medium text-base mr-auto">Daily Sales</h2>
-                        <div class="dropdown ml-auto sm:hidden">
-                            <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown">
-                                <i data-feather="more-horizontal" class="w-5 h-5 text-slate-500"></i>
-                            </a>
-                            <div class="dropdown-menu w-40">
-                                <ul class="dropdown-content">
-                                    <li>
-                                        <a href="javascript:;" class="dropdown-item">
-                                            <i data-feather="file" class="w-4 h-4 mr-2"></i> Download Excel
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <button class="btn btn-outline-secondary hidden sm:flex">
-                            <i data-feather="file" class="w-4 h-4 mr-2"></i> Download Excel
-                        </button>
-                    </div>
-                    <div class="p-5">
-                        <div class="relative flex items-center">
-                            <div class="w-12 h-12 flex-none image-fit">
-                                <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full" src="{{ asset('images/profile-1.jpg') }}">
-                            </div>
-                            <div class="ml-4 mr-auto">
-                                <a href="" class="font-medium">{{ auth()->user()->name }}</a>
-                                <div class="text-slate-500 mr-5 sm:mr-5">Bootstrap 4 HTML Admin Template</div>
-                            </div>
-                            <div class="font-medium text-slate-600 dark:text-slate-500">+$19</div>
-                        </div>
-                        <div class="relative flex items-center mt-5">
-                            <div class="w-12 h-12 flex-none image-fit">
-                                <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full" src="{{ asset('images/profile-1.jpg') }}">
-                            </div>
-                            <div class="ml-4 mr-auto">
-                                <a href="" class="font-medium">{{ auth()->user()->name }}</a>
-                                <div class="text-slate-500 mr-5 sm:mr-5">Tailwind HTML Admin Template</div>
-                            </div>
-                            <div class="font-medium text-slate-600 dark:text-slate-500">+$25</div>
-                        </div>
-                        <div class="relative flex items-center mt-5">
-                            <div class="w-12 h-12 flex-none image-fit">
-                                <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full" src="{{ asset('images/profile-1.jpg') }}">
-                            </div>
-                            <div class="ml-4 mr-auto">
-                                <a href="" class="font-medium">{{ auth()->user()->name }}</a>
-                                <div class="text-slate-500 mr-5 sm:mr-5">Vuejs HTML Admin Template</div>
-                            </div>
-                            <div class="font-medium text-slate-600 dark:text-slate-500">+$21</div>
-                        </div>
-                    </div>
+            <!-- BEGIN: Display Information -->
+            <div class="intro-y box lg:mt-5">
+                <div class="flex items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                    <h2 class="font-medium text-base mr-auto">Profile Information</h2>
                 </div>
-                <!-- END: Daily Sales -->
-                <!-- BEGIN: Announcement -->
-                <div class="intro-y box col-span-12 2xl:col-span-6">
-                    <div class="flex items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                        <h2 class="font-medium text-base mr-auto">Announcement</h2>
-                        <button data-carousel="announcement" data-target="prev" class="tiny-slider-navigator btn btn-outline-secondary px-2 mr-2">
-                            <i data-feather="chevron-left" class="w-4 h-4"></i>
-                        </button>
-                        <button data-carousel="announcement" data-target="next" class="tiny-slider-navigator btn btn-outline-secondary px-2">
-                            <i data-feather="chevron-right" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                    <div class="tiny-slider py-5" id="announcement">
-                        <div class="px-5">
-                            <div class="font-medium text-lg">Rubick Admin Template</div>
-                            <div class="text-slate-600 dark:text-slate-500 mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever. <br><br> Lorem Ipsum is simply dummy text of the printing and typesetting industry since the 1500s.</div>
-                            <div class="flex items-center mt-5">
-                                <div class="px-3 py-2 text-primary bg-primary/10 dark:bg-darkmode-400 dark:text-slate-300 rounded font-medium">02 June 2021</div>
-                                <button class="btn btn-secondary ml-auto">View Details</button>
+                <div class="p-5">
+                    <div class="flex flex-col-reverse xl:flex-row flex-col">
+                        <div class="flex-1 mt-6 xl:mt-0">
+                            <div class="grid grid-cols-12 gap-x-5">
+                                <div class="col-span-12 2xl:col-span-6">
+                                    <div>
+                                        <label for="update-profile-form-1" class="form-label">Name</label>
+                                        <input id="update-profile-form-1" type="text" class="form-control" placeholder="Input text" value="{{ auth()->user()->name }}">
+                                    </div>
+                                    <div class="mt-3">
+                                        <label for="update-profile-form-2" class="form-label">Email</label>
+                                        <input id="update-profile-form-1" type="email" class="form-control" placeholder="Input text" value="{{ auth()->user()->email }}">
+                                    </div>
+                                </div>
+                                <div class="col-span-12 2xl:col-span-6">
+                                    <div>
+                                        <label for="update-profile-form-4" class="form-label">Phone Number</label>
+                                        <input id="update-profile-form-4" type="text" class="form-control" placeholder="Input text" value="65570828">
+                                    </div>
+                                </div>
                             </div>
+                            <button type="button" class="btn btn-primary w-20 mt-3">Save</button>
                         </div>
-                        <div class="px-5">
-                            <div class="font-medium text-lg">Rubick Admin Template</div>
-                            <div class="text-slate-600 dark:text-slate-500 mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever. <br><br> Lorem Ipsum is simply dummy text of the printing and typesetting industry since the 1500s.</div>
-                            <div class="flex items-center mt-5">
-                                <div class="px-3 py-2 text-primary bg-primary/10 dark:bg-darkmode-400 dark:text-slate-300 rounded font-medium">02 June 2021</div>
-                                <button class="btn btn-secondary ml-auto">View Details</button>
-                            </div>
-                        </div>
-                        <div class="px-5">
-                            <div class="font-medium text-lg">Rubick Admin Template</div>
-                            <div class="text-slate-600 dark:text-slate-500 mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever. <br><br> Lorem Ipsum is simply dummy text of the printing and typesetting industry since the 1500s.</div>
-                            <div class="flex items-center mt-5">
-                                <div class="px-3 py-2 text-primary bg-primary/10 dark:bg-darkmode-400 dark:text-slate-300 rounded font-medium">02 June 2021</div>
-                                <button class="btn btn-secondary ml-auto">View Details</button>
+                        <div class="w-52 mx-auto xl:mr-0 xl:ml-6">
+                            <div class="border-2 border-dashed shadow-sm border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
+                                <div class="h-40 relative image-fit cursor-pointer zoom-in mx-auto">
+                                    <img class="rounded-md" alt="Rubick Tailwind HTML Admin Template" src="{{ asset('images/profile-1.jpg') }}">
+                                    <div title="Remove this profile photo?" class="tooltip w-5 h-5 flex items-center justify-center absolute rounded-full text-white bg-danger right-0 top-0 -mr-2 -mt-2">
+                                        <i data-feather="x" class="w-4 h-4"></i>
+                                    </div>
+                                </div>
+                                <div class="mx-auto cursor-pointer relative mt-5">
+                                    <button type="button" class="btn btn-primary w-full">Change Photo</button>
+                                    <input type="file" class="w-full h-full top-0 left-0 absolute opacity-0">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- END: Announcement -->
             </div>
+            <!-- END: Display Information -->
         </div>
     </div>
 </x-app-layout>

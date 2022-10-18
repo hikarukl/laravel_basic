@@ -22,7 +22,11 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function () 
 
         Route::resource('admin-category', \App\Http\Controllers\Admin\CategoryController::class);
         Route::resource('admin-post', \App\Http\Controllers\Admin\PostController::class);
-        Route::resource('admin-profile', \App\Http\Controllers\Admin\ProfileController::class);
 
+        Route::group(['prefix' => 'admin-profile', 'as' => 'admin-profile.'], function () {
+            Route::get('/change-password', ['as' => 'change-password', 'uses' => '\App\Http\Controllers\Admin\ProfileController@changePassword']);
+            Route::get('/account-settings', ['as' => 'account-settings', 'uses' => '\App\Http\Controllers\Admin\ProfileController@accountSettings']);
+        });
+        Route::resource('admin-profile', \App\Http\Controllers\Admin\ProfileController::class);
     });
 });

@@ -30,7 +30,7 @@ function handleCountdownTime(
  */
 function initTabulatorTable(params)
 {
-    let table = new Tabulator(params.id, {
+    let table = new window.Tabulator(params.id, {
         ajaxURL: params.ajaxUrl,
         ajaxFiltering: true,
         ajaxSorting: true,
@@ -59,7 +59,7 @@ function initTabulatorTable(params)
     });
 
     // On submit filter form
-    cash("#tabulator-html-filter-form")[0].addEventListener(
+    $("#tabulator-html-filter-form")[0].addEventListener(
         "keypress",
         function (event) {
             let keycode = event.keyCode ? event.keyCode : event.which;
@@ -71,34 +71,34 @@ function initTabulatorTable(params)
     );
 
     // On click go button
-    cash("#tabulator-html-filter-go").on("click", function (event) {
+    $("#tabulator-html-filter-go").on("click", function (event) {
         filterHTMLForm(table);
     });
 
     // Export
-    cash("#tabulator-export-csv").on("click", function (event) {
+    $("#tabulator-export-csv").on("click", function (event) {
         table.download("csv", "data.csv");
     });
 
-    cash("#tabulator-export-json").on("click", function (event) {
+    $("#tabulator-export-json").on("click", function (event) {
         table.download("json", "data.json");
     });
 
-    cash("#tabulator-export-xlsx").on("click", function (event) {
+    $("#tabulator-export-xlsx").on("click", function (event) {
         window.XLSX = xlsx;
         table.download("xlsx", "data.xlsx", {
             sheetName: "Sheet 1",
         });
     });
 
-    cash("#tabulator-export-html").on("click", function (event) {
+    $("#tabulator-export-html").on("click", function (event) {
         table.download("html", "data.html", {
             style: true,
         });
     });
 
     // Print
-    cash("#tabulator-print").on("click", function (event) {
+    $("#tabulator-print").on("click", function (event) {
         table.print();
     });
 
@@ -109,8 +109,9 @@ function initTabulatorTable(params)
  * Apply filter value
  */
 function filterHTMLForm(table) {
-    let field = cash("#tabulator-html-filter-field").val();
-    let type = cash("#tabulator-html-filter-type").val();
-    let value = cash("#tabulator-html-filter-value").val();
+    let field = $("#tabulator-html-filter-field").val();
+    let type = $("#tabulator-html-filter-type").val();
+    let value = $("#tabulator-html-filter-value").val();
     table.setFilter(field, type, value);
 }
+
