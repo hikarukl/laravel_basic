@@ -8,6 +8,10 @@ class DashboardController
 {
     public function index()
     {
-        return view("admin.dashboard.index");
+        $data = [
+            'breadCrumb' => 'Dashboard'
+        ];
+
+        return view("admin.dashboard.index", $data);
     }
 }

@@ -25,7 +25,7 @@ class CategoryController
     public function index(Request $request)
     {
         try {
-            $dataReceived = $request->getQueryString()? Query::parse($request->getQueryString()) : [];
+            /*$dataReceived = $request->getQueryString()? Query::parse($request->getQueryString()) : [];
 
             $dataSearch = [
                 'limit' => isset($dataReceived['limit']) && $dataReceived['limit'] ? $dataReceived['limit'] : CommonConstants::DEFAULT_LIMIT_SEARCH,
@@ -34,7 +34,10 @@ class CategoryController
             $dataSearch = array_merge($dataReceived, $dataSearch);
 
             $data['category_list'] = $this->categoryService->getAllListPagination($dataSearch)
-                ->appends(request()->query());
+                ->appends(request()->query());*/
+            $data = [
+                'breadCrumb' => 'Category'
+            ];
 
             return view("admin.category.index", $data);
         } catch (\Exception $exception) {

@@ -2,7 +2,7 @@
 <div class="border-b border-white/[0.08] -mt-10 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-10">
     <div class="top-bar-boxed flex items-center">
         <!-- BEGIN: Logo -->
-        <a href="" class="-intro-x hidden md:flex">
+        <a href="{{ route('dashboard.index') }}" class="-intro-x hidden md:flex">
             <img alt="Rubick Tailwind HTML Admin Template" class="w-6" src="{{ asset('images/logo.svg') }}">
             <span class="text-white text-lg ml-3">
                 Admin

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,19 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function () {
-    Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/', [Admin\DashboardController::class, 'index'])->name('dashboard.index');
 
     Route::group(['middleware' => ['can.access.menu', 'has.permission']], function () {
         // Ajax when go to screen
         Route::get('/admin-post/ajax/list', '\App\Http\Controllers\Admin\PostController@ajaxGetList')->name('admin-post.ajax.list');
 
-        Route::resource('admin-category', \App\Http\Controllers\Admin\CategoryController::class);
-        Route::resource('admin-post', \App\Http\Controllers\Admin\PostController::class);
+        Route::resource('admin-category', Admin\CategoryController::class);
+        Route::resource('admin-post', Admin\PostController::class);
 
         Route::group(['prefix' => 'admin-profile', 'as' => 'admin-profile.'], function () {
             Route::get('/change-password', ['as' => 'change-password', 'uses' => '\App\Http\Controllers\Admin\ProfileController@changePassword']);
             Route::get('/account-settings', ['as' => 'account-settings', 'uses' => '\App\Http\Controllers\Admin\ProfileController@accountSettings']);
         });
-        Route::resource('admin-profile', \App\Http\Controllers\Admin\ProfileController::class);
+        Route::resource('admin-profile', Admin\ProfileController::class);
     });
 });

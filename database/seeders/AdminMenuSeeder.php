@@ -23,7 +23,7 @@ class AdminMenuSeeder extends Seeder
             [
                 'name'      => 'Dashboard',
                 'slug'      => 'dashboard',
-                'route'     => NULL,
+                'route'     => 'dashboard.index',
                 'icon_config'  => json_encode([
                     'type'  => 'font-awesome',
                     'value' => '<i class="fa fa-home" aria-hidden="true"></i>'

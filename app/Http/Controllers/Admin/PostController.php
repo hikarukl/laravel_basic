@@ -39,18 +39,10 @@ class PostController
     public function index(Request $request)
     {
         try {
-            /*$dataReceived = $request->getQueryString()? Query::parse($request->getQueryString()) : [];
-
-            $dataSearch = [
-                'limit' => isset($dataReceived['limit']) && $dataReceived['limit'] ? $dataReceived['limit'] : CommonConstants::DEFAULT_LIMIT_SEARCH,
+            $data = [
+                'breadCrumb' => 'Post'
             ];
-
-            $dataSearch = array_merge($dataReceived, $dataSearch);
-
-            $data['post_list'] = $this->postService->getAllListPagination($dataSearch)
-                ->appends(request()->query());*/
-
-            return view("admin.post.index", ['post_list' => '']);
+            return view("admin.post.index", $data);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
             Log::error($exception->getTraceAsString());
