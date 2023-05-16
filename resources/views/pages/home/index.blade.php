@@ -63,7 +63,6 @@
     <div class="grid grid-cols-3 max-w-7xl mx-auto">
         {{-- Section by category: Tiêu điểm --}}
         <section id="section-home_newest_sport" class="pr-5 pl-5 mt-8 col-span-3 md:col-span-2">
-            @include('ads.header_pc_ad', ['classes' => 'mb-5 w-1/2 m-auto'])
 
             @include(
                 "component_common.block_two_columns_style_one",
@@ -158,5 +157,4 @@
         </section>
     </div>
 
-    @include('ads.footer_mobile_ad')
 @endsection

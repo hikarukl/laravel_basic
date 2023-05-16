@@ -16,7 +16,6 @@
     {{-- This section summary --}}
     <div class="max-w-7xl mx-auto mt-3 pl-5 pr-5 pt-28 mt-2 md:mt-0 md:pt-8 md:grid md:grid-cols-3">
         <div class="md:col-span-2">
-            @include('ads.header_pc_ad', ['classes' => 'md:w-96 m-auto mb-4'])
 
             <div class="grid grid-cols-1 auto-cols-max md:text-left article-detail">
                 <div class="w-full text-left md:flex md:justify-center">
@@ -119,7 +118,6 @@
             )
         </section>
     </div>
-    @include('ads.footer_mobile_ad')
 @endsection
 @section('scripts')
     <script type="text/javascript">
