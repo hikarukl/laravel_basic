@@ -20,7 +20,7 @@
     <link rel="icon" type="image/png" href="{{ asset('images/ico_app_circle.png') }}"/>
     @yield('styles')
     @stack('styles_component')
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1503834624773138" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9235033618407996" crossorigin="anonymous"></script>
 </head>
 <body>
 <script>
