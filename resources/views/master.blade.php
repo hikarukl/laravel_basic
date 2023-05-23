@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{!! url('/')  !!}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="monetag" content="2f675a5907494f2d27a8653434efdf88">
     @stack("meta_facebook")
     @php $time = time(); @endphp
     <link href="{{ asset("css/app.css?t=$time") }}" rel="stylesheet">
