@@ -76,7 +76,11 @@
                 <input type="hidden" id="share-type" value="{{ $share_type }}">
                 <input type="hidden" id="url-ios_app" value="{{ $ios_app_link }}">
                 @if($share_type == "article")
-                    <input type="hidden" id="url-normal" value="{{ route('post-detail', ['category' => $category_list[$post['category']['id']]['slug'], 'id' => $post['slug']]) }}">
+                    {{--<input type="hidden" id="url-normal" value="{{ route('post-detail', ['category' => $category_list[$post['category']['id']]['slug'], 'id' => $post['slug']]) }}">--}}
+                    @php
+                        $link = env('DOMAIN_WEB_BACKUP') . "/{$category_list[$post['category']['id']]['slug']}/{$post['slug']}";
+                    @endphp
+                    <input type="hidden" id="url-normal" value="{{ $link }}">
                 @endif
             </div>
         </div>
